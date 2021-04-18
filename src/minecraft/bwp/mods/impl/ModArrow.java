@@ -66,7 +66,6 @@ public class ModArrow extends ModDraggable{
 
 	@Override
 	public ScreenPosition load() {
-		// TODO Auto-generated method stub
 		return posi;
 	}
 	
