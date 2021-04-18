@@ -8,8 +8,9 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+#Custom
 logs/
-
+temp/
 jars/logs
 
 # Generated files
