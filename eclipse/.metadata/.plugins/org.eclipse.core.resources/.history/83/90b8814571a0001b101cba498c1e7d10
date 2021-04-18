@@ -1,0 +1,39 @@
+package bwp.mods;
+
+import bwp.gui.hud.HUDManager;
+import bwp.mods.impl.ModArmorStatus;
+import bwp.mods.impl.ModArrow;
+import bwp.mods.impl.ModCoords;
+import bwp.mods.impl.ModFPS;
+
+
+public class ModInstances {
+	
+	
+	private static ModArmorStatus modArmorStatus;
+	
+	private static ModFPS modFPS;
+	
+	private static ModCoords modCoords;
+	
+	private static ModArrow modArrow;
+	
+	public static void register(HUDManager api) {
+		
+		modArmorStatus = new ModArmorStatus();
+		api.register(modArmorStatus);
+		
+		modFPS = new ModFPS();
+		api.register(modFPS);
+		
+		modCoords = new ModCoords();
+		api.register(modCoords);
+		
+		modArrow = new ModArrow();
+		api.register(modArrow);
+		
+		
+	}
+
+
+}
