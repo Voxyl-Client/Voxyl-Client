@@ -6,6 +6,7 @@ import bwp.mods.impl.ModArrow;
 import bwp.mods.impl.ModCoords;
 import bwp.mods.impl.ModFPS;
 import bwp.mods.impl.ModKeystrokes;
+import bwp.mods.impl.togglesprint.ToggleSprintSneak;
 
 
 public class ModInstances {
@@ -20,6 +21,8 @@ public class ModInstances {
 	private static ModArrow modArrow;
 	
 	private static ModKeystrokes modKeyStrokes;
+
+	private static ToggleSprintSneak toggleSprintSneak;
 	
 	public static void register(HUDManager api) {
 		
@@ -37,8 +40,15 @@ public class ModInstances {
 		
 		modKeyStrokes = new ModKeystrokes();
 		api.register(modKeyStrokes);
+
+		toggleSprintSneak = new ToggleSprintSneak();
+		api.register(toggleSprintSneak);
+
+
 		
 	}
 
-
+	public static ToggleSprintSneak getToggleSprintSneak() {
+		return toggleSprintSneak;
+	}
 }

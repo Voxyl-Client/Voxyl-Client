@@ -10,9 +10,7 @@ public class ModFPS extends ModDraggable{
 
 	@Override
 	public int getWidth() {
-		
 		return 50;
-
 	}
 
 	@Override
@@ -35,7 +33,6 @@ public class ModFPS extends ModDraggable{
 
 	@Override
 	public ScreenPosition load() {
-		// TODO Auto-generated method stub
 		return pos;
 	}
 
