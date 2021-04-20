@@ -1,5 +1,6 @@
 package net.minecraft.client;
 
+import bwp.event.impl.WorldUnloadEvent;
 import bwp.mods.impl.togglesprint.BWPMovementInput;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -2347,6 +2348,10 @@ public class Minecraft implements IThreadListener, IPlayerUsage
      */
     public void loadWorld(WorldClient worldClientIn, String loadingMessage)
     {
+
+        if(worldClientIn != null){
+            new WorldUnloadEvent(worldClientIn);
+        }
         if (worldClientIn == null)
         {
             NetHandlerPlayClient nethandlerplayclient = this.getNetHandler();

@@ -1,5 +1,6 @@
 package net.minecraft.server;
 
+import bwp.event.impl.WorldUnloadEvent;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
@@ -490,6 +491,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 for (int i = 0; i < this.worldServers.length; ++i)
                 {
                     WorldServer worldserver = this.worldServers[i];
+                    new WorldUnloadEvent(worldserver);
                     worldserver.flush();
                 }
             }
@@ -1126,6 +1128,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
 
             if (worldserver != null)
             {
+
+                new WorldUnloadEvent(worldserver);
                 worldserver.flush();
             }
         }
