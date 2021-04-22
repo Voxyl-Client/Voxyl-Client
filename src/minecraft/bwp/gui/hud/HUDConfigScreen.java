@@ -1,19 +1,15 @@
 package bwp.gui.hud;
 
-import java.awt.Color;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import org.lwjgl.input.Keyboard;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.function.Predicate;
-
-import org.lwjgl.input.Keyboard;
-
-import com.ibm.icu.impl.duration.impl.ResourceBasedPeriodFormatterDataService;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
 
 public class HUDConfigScreen extends GuiScreen {
 	
@@ -24,6 +20,7 @@ public class HUDConfigScreen extends GuiScreen {
 	private int prevX, prevY;
 	
 	public HUDConfigScreen(HUDManager api) {
+
 		
 		Collection<IRenderer> registeredRengerers = api.getRegisteredRenderers();
 		
@@ -43,6 +40,7 @@ public class HUDConfigScreen extends GuiScreen {
 		
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+
 		super.drawDefaultBackground();
 			
 		final float zBackup = this.zLevel;
@@ -101,6 +99,8 @@ public class HUDConfigScreen extends GuiScreen {
 	
 	@Override
 	public void onGuiClosed() {
+
+
 		for(IRenderer renderer: renderers.keySet()) {
 			renderer.save(renderers.get(renderer));
 		}

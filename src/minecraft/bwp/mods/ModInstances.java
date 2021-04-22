@@ -1,11 +1,7 @@
 package bwp.mods;
 
 import bwp.gui.hud.HUDManager;
-import bwp.mods.impl.ModArmorStatus;
-import bwp.mods.impl.ModArrow;
-import bwp.mods.impl.ModCoords;
-import bwp.mods.impl.ModFPS;
-import bwp.mods.impl.ModKeystrokes;
+import bwp.mods.impl.*;
 import bwp.mods.impl.togglesprint.ToggleSprintSneak;
 
 
@@ -23,6 +19,8 @@ public class ModInstances {
 	private static ModKeystrokes modKeyStrokes;
 
 	private static ToggleSprintSneak toggleSprintSneak;
+
+	private static ModCPS modCPS;
 	
 	public static void register(HUDManager api) {
 		
@@ -43,6 +41,11 @@ public class ModInstances {
 
 		toggleSprintSneak = new ToggleSprintSneak();
 		api.register(toggleSprintSneak);
+
+		modCPS = new ModCPS();
+		api.register(modCPS);
+
+
 
 
 		
