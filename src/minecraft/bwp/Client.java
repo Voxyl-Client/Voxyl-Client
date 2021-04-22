@@ -19,6 +19,7 @@ public class Client {
 	
 	private HUDManager hudManager;
 	public void init() {
+		FileManager.init();
 		SplashProgress.setProgress(1, "Creating Discord Connection");
 		discordRP.start();
 		EventManager.register(this);

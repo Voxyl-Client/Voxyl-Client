@@ -1,14 +1,13 @@
 package bwp.mods.impl;
 
-import java.awt.Color;
-
-import org.lwjgl.opengl.GL11;
-
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.settings.KeyBinding;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 public class ModKeystrokes extends ModDraggable {
 	
@@ -140,16 +139,6 @@ public class ModKeystrokes extends ModDraggable {
 		
 	}
 
-	@Override
-	public void save(ScreenPosition pos) {
-		this.pos = pos;
-		
-	}
 
-	@Override
-	public ScreenPosition load() {
-		// TODO Auto-generated method stub
-		return pos;
-	}
 	
 }

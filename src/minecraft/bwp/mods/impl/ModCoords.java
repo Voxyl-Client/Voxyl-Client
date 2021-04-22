@@ -4,7 +4,7 @@ import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
 
 public class ModCoords extends ModDraggable {
-	private ScreenPosition pos;
+
 
 	@Override
 	public int getWidth() {
@@ -32,15 +32,6 @@ public class ModCoords extends ModDraggable {
 
 	}
 
-	@Override
-	public void save(ScreenPosition pos) {
-		this.pos = pos;
-		
-	}
 
-	@Override
-	public ScreenPosition load() {
-		return pos;
-	}
 
 }

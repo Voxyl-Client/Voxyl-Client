@@ -5,7 +5,7 @@ import bwp.mods.ModDraggable;
 
 public class ToggleSprintSneak extends ModDraggable {
     
-    private ScreenPosition pos;
+
 
     private String textToRender = "";
 
@@ -16,15 +16,7 @@ public class ToggleSprintSneak extends ModDraggable {
 
 
 
-    @Override
-    public void save(ScreenPosition pos) {
-        this.pos = pos;
-    }
 
-    @Override
-    public ScreenPosition load() {
-        return pos;
-    }
 
     @Override
     public int getWidth() {

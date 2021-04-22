@@ -1,14 +1,14 @@
 package bwp.mods.impl;
 
-import java.awt.Color;
-
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import java.awt.*;
+
 public class ModArrow extends ModDraggable{
-	private ScreenPosition posi;
+
 
 	@Override
 	public int getWidth() {
@@ -58,15 +58,6 @@ public class ModArrow extends ModDraggable{
 		   }
 
 
-	@Override
-	public void save(ScreenPosition posi) {
-		this.posi = posi;
-		
-	}
 
-	@Override
-	public ScreenPosition load() {
-		return posi;
-	}
 	
 }

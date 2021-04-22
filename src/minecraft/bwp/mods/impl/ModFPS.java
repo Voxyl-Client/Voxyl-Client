@@ -5,13 +5,14 @@ import bwp.mods.ModDraggable;
 
 public class ModFPS extends ModDraggable{
 	
-	private ScreenPosition pos;
+
 	
 
 	@Override
 	public int getWidth() {
 		return 50;
 	}
+
 
 	@Override
 	public int getHeight() {
@@ -25,16 +26,7 @@ public class ModFPS extends ModDraggable{
 	}
 
 
-	@Override
-	public void save(ScreenPosition pos) {
-		this.pos = pos;
-		
-	}
 
-	@Override
-	public ScreenPosition load() {
-		return pos;
-	}
 
 
 }
