@@ -12,7 +12,7 @@ public class ToggleSprintSneak extends ModDraggable {
     //settings
     public boolean flyBoost = true;
     public float flyBoostFactor = 4;
-    public int keyHoldTicks = 7;///
+    public int keyHoldTicks = 7;
 
 
 
