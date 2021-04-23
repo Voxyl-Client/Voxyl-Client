@@ -5,17 +5,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.Gson;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.gui.GuiNewChat;
@@ -27,16 +16,7 @@ import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.network.play.client.C15PacketClientSettings;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
-import optifine.ClearWater;
-import optifine.Config;
-import optifine.CustomColors;
-import optifine.CustomSky;
-import optifine.DynamicLights;
-import optifine.Lang;
-import optifine.NaturalTextures;
-import optifine.RandomMobs;
-import optifine.Reflector;
-
+import optifine.*;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,6 +24,14 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import shadersmod.client.Shaders;
+
+import java.io.*;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class GameSettings
 {
@@ -272,6 +260,7 @@ public class GameSettings
     private File optionsFileOF;
 
     public KeyBinding CLIENT_GUI_MOD_POS = new KeyBinding("Mod Positioning",Keyboard.KEY_RSHIFT, "Bedwars Practice Client");
+    public KeyBinding CLIENT_PERSPECTIVE = new KeyBinding("Toggle Perspective", Keyboard.KEY_F, "Bedwars Practice Client");
     public GameSettings(Minecraft mcIn, File p_i46326_2_)
     {
         this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindStreamStartStop, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindFullscreen, this.keyBindSpectatorOutlines}, this.keyBindsHotbar));
@@ -306,6 +295,7 @@ public class GameSettings
 
     private void addClientKeybinds() {
 		this.keyBindings = (((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_MOD_POS)));
+        this.keyBindings = (((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_PERSPECTIVE)));
 		
 	}
 

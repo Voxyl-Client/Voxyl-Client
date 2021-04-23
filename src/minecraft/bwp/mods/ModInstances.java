@@ -21,6 +21,7 @@ public class ModInstances {
 	private static ToggleSprintSneak toggleSprintSneak;
 
 	private static ModCPS modCPS;
+	private static ModPerspective modPerspective;
 	
 	public static void register(HUDManager api) {
 		
@@ -45,13 +46,22 @@ public class ModInstances {
 		modCPS = new ModCPS();
 		api.register(modCPS);
 
+		modPerspective = new ModPerspective();
+		api.register(modPerspective);
 
 
 
-		
+
+
+
 	}
 
 	public static ToggleSprintSneak getToggleSprintSneak() {
 		return toggleSprintSneak;
+	}
+
+	public static ModPerspective getModPerspective(){
+		return modPerspective;
+
 	}
 }
