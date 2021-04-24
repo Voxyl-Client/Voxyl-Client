@@ -9,10 +9,12 @@
 .idea/**/shelf
 
 #Custom
-logs/
-temp/
-jars/logs/*
-jars/*
+/jars
+.idea
+/eclipse
+/docs
+/*.sh
+/*.bat
 
 # Generated files
 .idea/**/contentModel.xml
