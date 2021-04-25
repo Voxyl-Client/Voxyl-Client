@@ -1,2 +1,0 @@
-# BWPClient
-Updated bwp client 
