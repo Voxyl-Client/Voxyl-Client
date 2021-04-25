@@ -434,6 +434,7 @@ public class RenderItem implements IResourceManagerReloadListener
 
     public void renderItemIntoGUI(ItemStack stack, int x, int y)
     {
+        //Takes size and times it up
         this.renderItemGui = true;
         IBakedModel ibakedmodel = this.itemModelMesher.getItemModel(stack);
         GlStateManager.pushMatrix();

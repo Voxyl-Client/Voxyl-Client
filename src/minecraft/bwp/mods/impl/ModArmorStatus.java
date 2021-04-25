@@ -20,7 +20,6 @@ public class ModArmorStatus extends ModDraggable {
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
 		return 64;
 	}
 

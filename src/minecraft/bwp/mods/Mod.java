@@ -21,7 +21,7 @@ public class Mod {
 		setEnabled(isEnabled);
 	}
 
-	private void setEnabled(boolean isEnabled) {
+	public void setEnabled(boolean isEnabled) {
 		
 		this.isEnabled = isEnabled;
 		

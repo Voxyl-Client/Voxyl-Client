@@ -261,6 +261,7 @@ public class GameSettings
 
     public KeyBinding CLIENT_GUI_MOD_POS = new KeyBinding("Mod Positioning",Keyboard.KEY_RSHIFT, "Bedwars Practice Client");
     public KeyBinding CLIENT_PERSPECTIVE = new KeyBinding("Toggle Perspective", Keyboard.KEY_F, "Bedwars Practice Client");
+    public KeyBinding CLIENT_GUI_MOD_TOGGLE = new KeyBinding("Mod Toggling," ,Keyboard.KEY_MINUS, "Bedwars Practice Client");
     public GameSettings(Minecraft mcIn, File p_i46326_2_)
     {
         this.keyBindings = (KeyBinding[])((KeyBinding[])ArrayUtils.addAll(new KeyBinding[] {this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindStreamStartStop, this.keyBindStreamPauseUnpause, this.keyBindStreamCommercials, this.keyBindStreamToggleMic, this.keyBindFullscreen, this.keyBindSpectatorOutlines}, this.keyBindsHotbar));
@@ -296,6 +297,7 @@ public class GameSettings
     private void addClientKeybinds() {
 		this.keyBindings = (((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_MOD_POS)));
         this.keyBindings = (((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_PERSPECTIVE)));
+        this.keyBindings = (((KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLIENT_GUI_MOD_TOGGLE)));
 		
 	}
 

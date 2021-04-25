@@ -6,6 +6,9 @@ import bwp.event.impl.ClientTickEvent;
 import bwp.gui.SplashProgress;
 import bwp.gui.hud.HUDManager;
 import bwp.mods.ModInstances;
+import bwp.mods.toggle.GuiCheckBox;
+import bwp.mods.toggle.GuiModToggle;
+import bwp.mods.toggle.ModEntry;
 import net.minecraft.client.Minecraft;
 
 public class Client {
@@ -16,8 +19,12 @@ public class Client {
 	}
 	
 	private DiscordRP discordRP = new DiscordRP();
+
+
 	
 	private HUDManager hudManager;
+	private ModEntry modEntry;
+
 	public void init() {
 		FileManager.init();
 		SplashProgress.setProgress(1, "Creating Discord Connection");
@@ -29,7 +36,10 @@ public class Client {
 	}
 	public void start() {
 		hudManager = HUDManager.getInstance();
+
 		ModInstances.register(hudManager);
+
+
 	}
 	public void shutdown() {
 		discordRP.shutdown();
@@ -44,7 +54,18 @@ public class Client {
 	public void onTick(ClientTickEvent e) {
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
 			hudManager.openConfigScreen();
+
 		
+		}
+		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_TOGGLE.isPressed()) {
+			GuiModToggle guiModToggle = new GuiModToggle();
+			hudManager.openToggleScreen();
+			guiModToggle.initGui();
+
+
+
+
+
 		}
 	}
 }

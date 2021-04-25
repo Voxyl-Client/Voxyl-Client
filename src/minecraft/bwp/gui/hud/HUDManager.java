@@ -3,12 +3,16 @@ package bwp.gui.hud;
 import java.util.Collection;
 import java.util.Set;
 
+import bwp.mods.toggle.GuiModToggle;
+import bwp.mods.toggle.ModEntry;
+import bwp.mods.toggle.ScrollListModToggle;
 import com.google.common.collect.Sets;
 
 import bwp.event.EventManager;
 import bwp.event.EventTarget;
 import bwp.event.impl.RenderEvent;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.inventory.GuiContainer;
 
@@ -54,6 +58,13 @@ public class HUDManager {
 		mc.displayGuiScreen(new HUDConfigScreen(this));
 		
 	}
+	public void openToggleScreen(){
+		GuiModToggle guiModToggle = new GuiModToggle();
+		guiModToggle.initGui();
+		mc.displayGuiScreen(new GuiModToggle());
+
+	}
+
 	
 	@EventTarget
 	public void onRender(RenderEvent e) {

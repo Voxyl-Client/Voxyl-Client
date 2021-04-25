@@ -23,9 +23,13 @@ public class ModArrow extends ModDraggable{
 	@Override
 	public void render(ScreenPosition pos) {
 		if(this.getRemainingArrows() < 1) {
-			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.RED.getRGB());
-		} else {
+			font.drawString(this.getRemainingArrows() + "", (pos.getAbsoluteX() + 8), (pos.getAbsoluteY() + 15) * 2, Color.RED.getRGB());
+
+		} else if(this.getRemainingArrows() < 33){
 			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.WHITE.getRGB());
+		}
+		else{
+			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.GREEN.getRGB());
 		}
         this.mc.getRenderItem().renderItemIntoGUI(new ItemStack(Items.arrow), pos.getAbsoluteX() + 3, pos.getAbsoluteY() - 1);
         
@@ -41,7 +45,7 @@ public class ModArrow extends ModDraggable{
 		} else {
 			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.WHITE.getRGB());
 		}
-        this.mc.getRenderItem().renderItemIntoGUI(new ItemStack(Items.arrow), pos.getAbsoluteX() + 3, pos.getAbsoluteY() - 1);
+        this.mc.getRenderItem().renderItemIntoGUI(new ItemStack(Items.arrow), (pos.getAbsoluteX() + 3) , (pos.getAbsoluteY() - 1));
 
 	}
 	
