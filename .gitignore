@@ -10,9 +10,9 @@
 
 #Custom
 jars/*
-!jars/versions 
-!jars/libraries 
-!jars/assets
+!jars/versions/* 
+!jars/libraries/* 
+!jars/assets/*
 
 
 # Generated files
@@ -79,7 +79,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 eclipse/*
-eclipse/.metadata
 eclipse/.metadata
 bin/
 tmp/
