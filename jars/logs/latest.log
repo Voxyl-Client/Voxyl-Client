@@ -1,237 +1,184 @@
-[18:07:34] [Client thread/INFO]: Setting user: Player328
-[18:07:34] [Client thread/INFO]: (Session ID is token:0:Player328)
-[18:07:35] [Client thread/INFO]: [OptiFine] *** Reflector Forge ***
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.Attributes
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: mods.betterfoliage.client.BetterFoliageClient
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.asm.transformers.BlamingTransformer
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.world.ChunkWatchEvent$UnWatch
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.relauncher.CoreModManager
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.DimensionManager
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.GuiScreenEvent$DrawScreenEvent$Pre
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.GuiScreenEvent$DrawScreenEvent$Post
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.EntityViewRenderEvent$CameraSetup
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.EntityViewRenderEvent$FogColors
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.Event
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.EventBus
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.Event$Result
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.property.ExtendedBlockState
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.FMLClientHandler
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.FMLCommonHandler
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.biome.BiomeGenBase.getWaterColorMultiplier
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.addDestroyEffects
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.addHitEffects
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.canCreatureSpawn
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.canRenderInLayer
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.doesSideBlockRendering
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getBedDirection
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getExtendedState
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.hasTileEntity
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isAir
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isBed
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isBedFoot
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isSideSolid
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.canRiderInteract
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.entity.Entity.captureDrops
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.entity.Entity.capturedDrops
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.shouldRenderInPass
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.shouldRiderSit
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.ForgeEventFactory
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.ForgeHooks
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.ForgeHooksClient
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.getDurabilityForDisplay
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.getModel
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.onEntitySwing
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.shouldCauseReequipAnimation
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.showDurabilityBar
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.ItemRecord.getRecordResource
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.ForgeModContainer
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.potion.PotionEffect.isCurativeItem
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.canRenderBreaking
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.getRenderBoundingBox
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.hasFastRenderer
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.shouldRenderInPass
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher.preDrawBatch
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher.drawBatch
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.preDraw
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.postDraw
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.World.countEntities
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.World.getPerWorldStorage
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getCloudRenderer
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getSkyRenderer
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getWeatherRenderer
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.GuiModList
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.IColoredBakedQuad
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.property.IExtendedBlockState
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.IRenderHandler
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.ISmartBlockModel
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.ItemModelMesherForge
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraft.launchwrapper.Launch
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.pipeline.LightUtil
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.MinecraftForge
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.MinecraftForgeClient
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.ModelLoader
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderBlockOverlayEvent$OverlayType
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.registry.RenderingRegistry
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderItemInFrameEvent
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Pre
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Post
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Specials$Pre
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Specials$Post
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.SplashProgress
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.world.WorldEvent$Load
-[18:07:35] [Client thread/INFO]: [OptiFine] *** Reflector Vanilla ***
-[18:07:35] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: optifine.OptiFineClassTransformer
-[18:07:35] [Client thread/INFO]: LWJGL Version: 2.9.4
-[18:07:35] [Client thread/INFO]: [OptiFine] 
-[18:07:35] [Client thread/INFO]: [OptiFine] OptiFine_1.8.8_HD_U_H8
-[18:07:35] [Client thread/INFO]: [OptiFine] Build: null
-[18:07:35] [Client thread/INFO]: [OptiFine] OS: Windows 10 (amd64) version 10.0
-[18:07:35] [Client thread/INFO]: [OptiFine] Java: 1.8.0_282, AdoptOpenJDK
-[18:07:35] [Client thread/INFO]: [OptiFine] VM: OpenJDK 64-Bit Server VM (mixed mode), AdoptOpenJDK
-[18:07:35] [Client thread/INFO]: [OptiFine] LWJGL: 2.9.4
-[18:07:35] [Client thread/INFO]: [OptiFine] OpenGL: NVIDIA GeForce GTX 1660 Ti/PCIe/SSE2, version 4.6.0 NVIDIA 465.89, NVIDIA Corporation
-[18:07:35] [Client thread/INFO]: [OptiFine] OpenGL Version: 4.6.0
-[18:07:35] [Client thread/INFO]: [OptiFine] Maximum texture size: 32768x32768
-[18:07:35] [Client thread/INFO]: [Shaders] ShadersMod version: 2.4.12
-[18:07:35] [Client thread/INFO]: [Shaders] OpenGL Version: 4.6.0 NVIDIA 465.89
-[18:07:35] [Client thread/INFO]: [Shaders] Vendor:  NVIDIA Corporation
-[18:07:35] [Client thread/INFO]: [Shaders] Renderer: NVIDIA GeForce GTX 1660 Ti/PCIe/SSE2
-[18:07:35] [Client thread/INFO]: [Shaders] Capabilities:  2.0  2.1  3.0  3.2  4.0 
-[18:07:35] [Client thread/INFO]: [Shaders] GL_MAX_DRAW_BUFFERS: 8
-[18:07:35] [Client thread/INFO]: [Shaders] GL_MAX_COLOR_ATTACHMENTS_EXT: 8
-[18:07:35] [Client thread/INFO]: [Shaders] GL_MAX_TEXTURE_IMAGE_UNITS: 32
-[18:07:35] [Client thread/INFO]: [Shaders] Load ShadersMod configuration.
-[18:07:35] [Client thread/INFO]: [Shaders] Save ShadersMod configuration.
-[18:07:35] [Client thread/INFO]: [Shaders] Shaders can not be loaded, Fast Render is enabled.
-[18:07:35] [Client thread/INFO]: [Shaders] No shaderpack loaded.
-[18:07:35] [Client thread/INFO]: Reloading ResourceManager: Default
-[18:07:35] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
-[18:07:35] [Client thread/INFO]: [OptiFine] Resource packs: Default
-[18:07:36] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[18:07:36] [Thread-7/INFO]: Initializing LWJGL OpenAL
-[18:07:36] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[18:07:38] [Client thread/INFO]: [OptiFine] Mipmap levels: 4
-[18:07:38] [Client thread/INFO]: [OptiFine] Multitexture: false
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/0_glass_white/glass_pane_white.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/0_glass_white/glass_white.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/10_glass_purple/glass_pane_purple.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/10_glass_purple/glass_purple.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/11_glass_blue/glass_blue.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/11_glass_blue/glass_pane_blue.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/12_glass_brown/glass_brown.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/12_glass_brown/glass_pane_brown.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/13_glass_green/glass_green.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/13_glass_green/glass_pane_green.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/14_glass_red/glass_pane_red.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/14_glass_red/glass_red.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/15_glass_black/glass_black.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/15_glass_black/glass_pane_black.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/1_glass_orange/glass_orange.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/1_glass_orange/glass_pane_orange.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/2_glass_magenta/glass_magenta.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/2_glass_magenta/glass_pane_magenta.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/3_glass_light_blue/glass_light_blue.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/3_glass_light_blue/glass_pane_light_blue.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/4_glass_yellow/glass_pane_yellow.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/4_glass_yellow/glass_yellow.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/5_glass_lime/glass_lime.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/5_glass_lime/glass_pane_lime.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/6_glass_pink/glass_pane_pink.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/6_glass_pink/glass_pink.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/7_glass_gray/glass_gray.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/7_glass_gray/glass_pane_gray.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/8_glass_silver/glass_pane_silver.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/8_glass_silver/glass_silver.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/9_glass_cyan/glass_cyan.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/9_glass_cyan/glass_pane_cyan.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/bookshelf.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/glass.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/glasspane.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/sandstone.properties
-[18:07:38] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
-[18:07:38] [Thread-7/INFO]: OpenAL initialized.
-[18:07:38] [Sound Library Loader/INFO]: Sound engine started
-[18:07:39] [Client thread/INFO]: Created: 1024x512 textures-atlas
-[18:07:39] [Client thread/INFO]: [OptiFine] *** Reloading custom textures ***
-[18:07:39] [Client thread/INFO]: [OptiFine] Enable face culling: acacia_leaves, birch_leaves, dark_oak_leaves, jungle_leaves, oak_leaves, spruce_leaves
-[18:07:42] [Server thread/INFO]: Starting integrated minecraft server version 1.8.8
-[18:07:42] [Server thread/INFO]: Generating keypair
-[18:07:42] [Server thread/INFO]: Preparing start region for level 0
-[18:07:42] [Server thread/INFO]: Changing view distance to 8, from 10
-[18:07:43] [Server thread/INFO]: Player328[local:E:6eee644e] logged in with entity id 115 at (149.11367907761192, 71.0155550727022, -974.5154519667075)
-[18:07:43] [Server thread/INFO]: Player328 joined the game
-[18:08:08] [Server thread/INFO]: Saving and pausing game...
-[18:08:08] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:08] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:08] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:13] [Server thread/INFO]: Saving and pausing game...
-[18:08:13] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:13] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:13] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:14] [Server thread/INFO]: Saving and pausing game...
-[18:08:14] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:14] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:14] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:18] [Server thread/INFO]: Saving and pausing game...
-[18:08:18] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:18] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:18] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:20] [Server thread/INFO]: Saving and pausing game...
-[18:08:20] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:20] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:20] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:22] [Server thread/INFO]: Saving and pausing game...
-[18:08:22] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:22] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:22] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:25] [Server thread/INFO]: Saving and pausing game...
-[18:08:25] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:25] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:25] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:43] [Server thread/INFO]: Saving and pausing game...
-[18:08:43] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:43] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:43] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:46] [Server thread/INFO]: Saving and pausing game...
-[18:08:46] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:08:46] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:08:46] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:08:54] [Server thread/INFO]: Player328 has just earned the achievement [Taking Inventory]
-[18:08:54] [Client thread/INFO]: [CHAT] Player328 has just earned the achievement [Taking Inventory]
-[18:09:02] [Server thread/INFO]: Saving and pausing game...
-[18:09:02] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:09:02] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:09:02] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:09:06] [Server thread/INFO]: Saving and pausing game...
-[18:09:06] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:09:06] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:09:06] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:09:44] [Server thread/INFO]: Saving and pausing game...
-[18:09:44] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:09:44] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:09:44] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:09:49] [Server thread/INFO]: Saving and pausing game...
-[18:09:49] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:09:49] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:09:49] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:09:50] [Server thread/INFO]: Saving and pausing game...
-[18:09:50] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:09:50] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:09:50] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:09:54] [Server thread/INFO]: Saving and pausing game...
-[18:09:54] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:09:54] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:09:54] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:09:57] [Server thread/INFO]: Saving and pausing game...
-[18:09:57] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:09:57] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:09:57] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:09:57] [Client thread/INFO]: Stopping!
-[18:09:57] [Client thread/INFO]: SoundSystem shutting down...
-[18:09:58] [Server thread/INFO]: Stopping server
-[18:09:58] [Server thread/INFO]: Saving players
-[18:09:58] [Server thread/INFO]: Saving worlds
-[18:09:58] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
-[18:09:58] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
-[18:09:58] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
-[18:09:58] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[13:52:48] [Client thread/INFO]: Setting user: Player459
+[13:52:48] [Client thread/INFO]: (Session ID is token:0:Player459)
+[13:52:53] [Client thread/INFO]: [OptiFine] *** Reflector Forge ***
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.Attributes
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: mods.betterfoliage.client.BetterFoliageClient
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.asm.transformers.BlamingTransformer
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.world.ChunkWatchEvent$UnWatch
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.relauncher.CoreModManager
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.DimensionManager
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.GuiScreenEvent$DrawScreenEvent$Pre
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.GuiScreenEvent$DrawScreenEvent$Post
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.EntityViewRenderEvent$CameraSetup
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.EntityViewRenderEvent$FogColors
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.Event
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.EventBus
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.eventhandler.Event$Result
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.property.ExtendedBlockState
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.FMLClientHandler
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.common.FMLCommonHandler
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.biome.BiomeGenBase.getWaterColorMultiplier
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.addDestroyEffects
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.addHitEffects
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.canCreatureSpawn
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.canRenderInLayer
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.doesSideBlockRendering
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getBedDirection
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.getExtendedState
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.hasTileEntity
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isAir
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isBed
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isBedFoot
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.block.Block.isSideSolid
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.canRiderInteract
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.entity.Entity.captureDrops
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Field not present: net.minecraft.entity.Entity.capturedDrops
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.shouldRenderInPass
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.entity.Entity.shouldRiderSit
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.ForgeEventFactory
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.ForgeHooks
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.ForgeHooksClient
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.getDurabilityForDisplay
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.getModel
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.onEntitySwing
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.shouldCauseReequipAnimation
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.Item.showDurabilityBar
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.item.ItemRecord.getRecordResource
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.ForgeModContainer
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.potion.PotionEffect.isCurativeItem
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.canRenderBreaking
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.getRenderBoundingBox
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.hasFastRenderer
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.tileentity.TileEntity.shouldRenderInPass
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher.preDrawBatch
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher.drawBatch
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.preDraw
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.client.renderer.vertex.VertexFormatElement$EnumUsage.postDraw
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.World.countEntities
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.World.getPerWorldStorage
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getCloudRenderer
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getSkyRenderer
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Method not present: net.minecraft.world.WorldProvider.getWeatherRenderer
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.GuiModList
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.IColoredBakedQuad
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.property.IExtendedBlockState
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.IRenderHandler
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.ISmartBlockModel
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.ItemModelMesherForge
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraft.launchwrapper.Launch
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.pipeline.LightUtil
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.common.MinecraftForge
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.MinecraftForgeClient
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.model.ModelLoader
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderBlockOverlayEvent$OverlayType
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.registry.RenderingRegistry
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderItemInFrameEvent
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Pre
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Post
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Specials$Pre
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.client.event.RenderLivingEvent$Specials$Post
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.fml.client.SplashProgress
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: net.minecraftforge.event.world.WorldEvent$Load
+[13:52:53] [Client thread/INFO]: [OptiFine] *** Reflector Vanilla ***
+[13:52:53] [Client thread/INFO]: [OptiFine] (Reflector) Class not present: optifine.OptiFineClassTransformer
+[13:52:53] [Client thread/INFO]: LWJGL Version: 2.9.4
+[13:52:54] [Client thread/INFO]: [OptiFine] 
+[13:52:54] [Client thread/INFO]: [OptiFine] OptiFine_1.8.8_HD_U_H8
+[13:52:54] [Client thread/INFO]: [OptiFine] Build: null
+[13:52:54] [Client thread/INFO]: [OptiFine] OS: Windows 10 (amd64) version 10.0
+[13:52:54] [Client thread/INFO]: [OptiFine] Java: 1.8.0_251, Oracle Corporation
+[13:52:54] [Client thread/INFO]: [OptiFine] VM: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+[13:52:54] [Client thread/INFO]: [OptiFine] LWJGL: 2.9.4
+[13:52:54] [Client thread/INFO]: [OptiFine] OpenGL: GeForce GT 1030/PCIe/SSE2, version 4.6.0 NVIDIA 452.06, NVIDIA Corporation
+[13:52:54] [Client thread/INFO]: [OptiFine] OpenGL Version: 4.6.0
+[13:52:54] [Client thread/INFO]: [OptiFine] Maximum texture size: 32768x32768
+[13:52:54] [Client thread/INFO]: [Shaders] ShadersMod version: 2.4.12
+[13:52:54] [Client thread/INFO]: [Shaders] OpenGL Version: 4.6.0 NVIDIA 452.06
+[13:52:54] [Client thread/INFO]: [Shaders] Vendor:  NVIDIA Corporation
+[13:52:54] [Client thread/INFO]: [Shaders] Renderer: GeForce GT 1030/PCIe/SSE2
+[13:52:54] [Client thread/INFO]: [Shaders] Capabilities:  2.0  2.1  3.0  3.2  4.0 
+[13:52:54] [Client thread/INFO]: [Shaders] GL_MAX_DRAW_BUFFERS: 8
+[13:52:54] [Client thread/INFO]: [Shaders] GL_MAX_COLOR_ATTACHMENTS_EXT: 8
+[13:52:54] [Client thread/INFO]: [Shaders] GL_MAX_TEXTURE_IMAGE_UNITS: 32
+[13:52:54] [Client thread/INFO]: [Shaders] Load ShadersMod configuration.
+[13:52:54] [Client thread/INFO]: [Shaders] Save ShadersMod configuration.
+[13:52:54] [Client thread/INFO]: [Shaders] Shaders can not be loaded, Fast Render is enabled.
+[13:52:54] [Client thread/INFO]: [Shaders] No shaderpack loaded.
+[13:52:54] [Client thread/INFO]: Reloading ResourceManager: Default
+[13:52:54] [Client thread/INFO]: [OptiFine] *** Reloading textures ***
+[13:52:54] [Client thread/INFO]: [OptiFine] Resource packs: Default
+[13:52:55] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[13:52:56] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[13:52:56] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[13:52:56] [Thread-7/INFO]: OpenAL initialized.
+[13:52:56] [Sound Library Loader/INFO]: Sound engine started
+[13:53:02] [Client thread/INFO]: [OptiFine] Mipmap levels: 4
+[13:53:02] [Client thread/INFO]: [OptiFine] Multitexture: false
+[13:53:02] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/0_glass_white/glass_pane_white.properties
+[13:53:02] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/0_glass_white/glass_white.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/10_glass_purple/glass_pane_purple.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/10_glass_purple/glass_purple.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/11_glass_blue/glass_blue.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/11_glass_blue/glass_pane_blue.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/12_glass_brown/glass_brown.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/12_glass_brown/glass_pane_brown.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/13_glass_green/glass_green.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/13_glass_green/glass_pane_green.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/14_glass_red/glass_pane_red.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/14_glass_red/glass_red.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/15_glass_black/glass_black.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/15_glass_black/glass_pane_black.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/1_glass_orange/glass_orange.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/1_glass_orange/glass_pane_orange.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/2_glass_magenta/glass_magenta.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/2_glass_magenta/glass_pane_magenta.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/3_glass_light_blue/glass_light_blue.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/3_glass_light_blue/glass_pane_light_blue.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/4_glass_yellow/glass_pane_yellow.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/4_glass_yellow/glass_yellow.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/5_glass_lime/glass_lime.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/5_glass_lime/glass_pane_lime.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/6_glass_pink/glass_pane_pink.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/6_glass_pink/glass_pink.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/7_glass_gray/glass_gray.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/7_glass_gray/glass_pane_gray.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/8_glass_silver/glass_pane_silver.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/8_glass_silver/glass_silver.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/9_glass_cyan/glass_cyan.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/9_glass_cyan/glass_pane_cyan.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/bookshelf.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/glass.properties
+[13:53:03] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/glasspane.properties
+[13:53:04] [Client thread/INFO]: [OptiFine] ConnectedTextures: mcpatcher/ctm/default/sandstone.properties
+[13:53:04] [Client thread/INFO]: [OptiFine] Multipass connected textures: false
+[13:53:06] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[13:53:06] [Client thread/INFO]: [OptiFine] *** Reloading custom textures ***
+[13:53:06] [Client thread/INFO]: [OptiFine] Enable face culling: acacia_leaves, birch_leaves, dark_oak_leaves, jungle_leaves, oak_leaves, spruce_leaves
+[13:53:12] [Server thread/INFO]: Starting integrated minecraft server version 1.8.8
+[13:53:12] [Server thread/INFO]: Generating keypair
+[13:53:12] [Server thread/INFO]: Preparing start region for level 0
+[13:53:13] [Server thread/INFO]: Preparing spawn area: 75%
+[13:53:13] [Server thread/INFO]: Changing view distance to 8, from 10
+[13:53:13] [Server thread/INFO]: Player459[local:E:be1f7f0c] logged in with entity id 115 at (86.9212625701217, 79.16610926093821, -1161.9821184836237)
+[13:53:13] [Server thread/INFO]: Player459 joined the game
+[13:53:25] [Server thread/INFO]: Saving and pausing game...
+[13:53:25] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[13:53:25] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[13:53:25] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
+[13:53:27] [Server thread/INFO]: Player459 fell out of the world
+[13:53:27] [Server thread/INFO]: [Player459: Killed Player459]
+[13:53:27] [Client thread/INFO]: [CHAT] Player459 fell out of the world
+[13:53:27] [Client thread/INFO]: [CHAT] Killed Player459
+[13:53:38] [Server thread/INFO]: Saving and pausing game...
+[13:53:38] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[13:53:38] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[13:53:38] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
+[13:53:40] [Server thread/INFO]: Stopping server
+[13:53:40] [Server thread/INFO]: Saving players
+[13:53:40] [Server thread/INFO]: Saving worlds
+[13:53:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[13:53:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[13:53:40] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
+[13:53:45] [Client thread/INFO]: Stopping!
+[13:53:45] [Client thread/INFO]: SoundSystem shutting down...
+[13:53:45] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

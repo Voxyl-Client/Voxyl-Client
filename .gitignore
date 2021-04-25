@@ -15,6 +15,11 @@
 #/docs
 #/*.sh
 #/*.bat
+/jars
+!/jars/versions
+!/jars/libraries
+!/jars/assets
+
 
 # Generated files
 .idea/**/contentModel.xml
