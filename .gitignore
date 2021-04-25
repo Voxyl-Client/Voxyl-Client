@@ -9,12 +9,10 @@
 .idea/**/shelf
 
 #Custom
-#/jars
-#.idea
-#/eclipse
-#/docs
-#/*.sh
-#/*.bat
+/jars 
+!/jars/versions 
+!/jars/libraries 
+!/jars/assets
 /jars
 !/jars/versions
 !/jars/libraries
