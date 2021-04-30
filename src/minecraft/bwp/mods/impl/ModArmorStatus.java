@@ -39,22 +39,23 @@ public class ModArmorStatus extends ModDraggable {
 	}
 
 	private void renderItemStack(int i, ItemStack is,ScreenPosition position) {
-		if(is == null) {
+		if (is == null) {
 			return;
 		}
-		
+
 		GL11.glPushMatrix();
 		int yAdd = (-16 * i) + 48;
-		if(is.getItem().isDamageable()) {
+		if (is.getItem().isDamageable()) {
 			double damage = ((is.getMaxDamage() + is.getItemDamage()) / (double) is.getMaxDamage()) * 100;
-			font.drawString(String.format("%.2f%%", damage), position.getAbsoluteX() + 20, position.getAbsoluteY()+ yAdd + 5, -1);
+			font.drawString(String.format("%.2f%%", damage), position.getAbsoluteX() + 20, position.getAbsoluteY() + yAdd + 5, -1);
 		}
-		
+
 		RenderHelper.enableGUIStandardItemLighting();
 		mc.getRenderItem().renderItemAndEffectIntoGUI(is, position.getAbsoluteX(), position.getAbsoluteY() + yAdd);
 		GL11.glPopMatrix();
-		
+
 	}
+
 
 
 	

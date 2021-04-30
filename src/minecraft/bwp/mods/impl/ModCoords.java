@@ -8,7 +8,7 @@ public class ModCoords extends ModDraggable {
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
+
 		return font.getStringWidth(getXYZString());
 	}
 

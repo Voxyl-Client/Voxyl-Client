@@ -122,9 +122,9 @@ public class ModKeystrokes extends ModDraggable {
 			int textWidth = font.getStringWidth(key.getName());
 			
 			
-			Gui.drawRect(pos.getAbsoluteX() + key.getX(), pos.getAbsoluteY() + key.getY(), 
-					pos.getAbsoluteX() + key.getX() + key.getWidth(), 
-					pos.getAbsoluteY() + key.getY() + key.getHeight(), 
+			Gui.drawRect(pos.getAbsoluteX() + key.getX(), pos.getAbsoluteY() + key.getY() ,
+					pos.getAbsoluteX() + key.getX() + key.getWidth(),
+					pos.getAbsoluteY() + key.getY() + key.getHeight(),
 					key.isDown() ? new Color(255, 255, 255).getRGB() : new Color(0, 0,0, 102).getRGB());
 			
 			font.drawString(

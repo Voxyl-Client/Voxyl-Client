@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
+
+import bwp.cosmetics.impl.CapeBoolean;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.IImageBuffer;
@@ -16,32 +18,43 @@ import org.apache.commons.io.FilenameUtils;
 
 public class CapeUtils
 {
-    public static void downloadCape(final AbstractClientPlayer p_downloadCape_0_)
+    public static void downloadCape(final AbstractClientPlayer player)
     {
-        String s = p_downloadCape_0_.getNameClear();
 
-        if (s != null && !s.isEmpty())
-        {
-            String s1 = "http://s.optifine.net/capes/" + s + ".png";
-            String s2 = FilenameUtils.getBaseName(s1);
-            final ResourceLocation resourcelocation = new ResourceLocation("capeof/" + s2);
+        String username = player.getNameClear();
+
+        if (username != null && !username.isEmpty())
+        { //You may replace "CapeBoolean" with your classname if you created one with another name for the boolean
+            if(CapeBoolean.Cape == true) {				//Edit this to your cape image's file location
+                final ResourceLocation capeLocation = new ResourceLocation("bwp/testcape.png");
+                if(capeLocation !=null) {
+                    player.setLocationOfCape(capeLocation);
+                }
+            }
+        }
+        else {
+            String ofCapeUrl = "http://s.optifine.net/capes/" + username + ".png";
+            String mptHash = FilenameUtils.getBaseName(ofCapeUrl);
+            //TODO - HOOK IN WITH MYSQL AND MAKE SETTINGS
+            final ResourceLocation resourcelocation = new ResourceLocation("bwp/testcape.png");
             TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
-            ITextureObject itextureobject = texturemanager.getTexture(resourcelocation);
+            ITextureObject tex = texturemanager.getTexture(resourcelocation);
 
-            if (itextureobject != null && itextureobject instanceof ThreadDownloadImageData)
+            if (tex != null && tex instanceof ThreadDownloadImageData)
             {
-                ThreadDownloadImageData threaddownloadimagedata = (ThreadDownloadImageData)itextureobject;
+                ThreadDownloadImageData thePlayer = (ThreadDownloadImageData)tex;
 
-                if (threaddownloadimagedata.imageFound != null)
+                if (thePlayer.imageFound != null)
                 {
-                    if (threaddownloadimagedata.imageFound.booleanValue())
+                    if (thePlayer.imageFound.booleanValue())
                     {
-                        p_downloadCape_0_.setLocationOfCape(resourcelocation);
+                        player.setLocationOfCape(resourcelocation);
                     }
 
                     return;
                 }
             }
+
 
             IImageBuffer iimagebuffer = new IImageBuffer()
             {
@@ -52,10 +65,10 @@ public class CapeUtils
                 }
                 public void skinAvailable()
                 {
-                    p_downloadCape_0_.setLocationOfCape(resourcelocation);
+                    player.setLocationOfCape(resourcelocation);
                 }
             };
-            ThreadDownloadImageData threaddownloadimagedata1 = new ThreadDownloadImageData((File)null, s1, (ResourceLocation)null, iimagebuffer);
+            ThreadDownloadImageData threaddownloadimagedata1 = new ThreadDownloadImageData((File)null, username, (ResourceLocation)null, iimagebuffer);
             threaddownloadimagedata1.pipeline = true;
             texturemanager.loadTexture(resourcelocation, threaddownloadimagedata1);
         }

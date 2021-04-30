@@ -2,12 +2,12 @@ package bwp.gui;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.UnicodeFont;
@@ -20,43 +20,43 @@ import net.minecraft.util.StringUtils;
 
 
 public class UnicodeFontRenderer {
-	
-	public static UnicodeFontRenderer getFontOnPC(String name, int size) {
-		return getFontOnPC(name, size, Font.PLAIN);
-	}
-	
-	public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType) {
-		return getFontOnPC(name, size, fontType, 0);
-	}
-	
-	public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType, float kerning) {
-		return getFontOnPC(name, size, fontType, kerning, 3.0f);
-	}
-	
-	public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType, float kerning, float antiAliasingFactor) {
-		return new UnicodeFontRenderer(new Font(name, fontType, size), kerning, antiAliasingFactor);
-	}
-	
-	public static UnicodeFontRenderer getFontFromAssets(String name, int size) {
-		return getFontOnPC(name, size, Font.PLAIN);
-	}
-	
-	public static UnicodeFontRenderer getFontFromAssets(String name, int size, int fontType) {
-		return getFontOnPC(name, fontType, size, 0);
-	}
-	
-	public static UnicodeFontRenderer getFontFromAssets(String name, int size, float kerning, int fontType) {
-		return getFontFromAssets(name, size, fontType, kerning, 3.0f);
-	}
-	
-	public static UnicodeFontRenderer getFontFromAssets(String name, int size, int fontType,  float kerning, float antiAliasingFactor) {
-		return new UnicodeFontRenderer(name, fontType, size, kerning, antiAliasingFactor);
-	}
-	
-	
-	/*-------------------------------------------------------------------------------------------------------------------*/
-	
-	public final int FONT_HEIGHT = 9;
+
+    public static UnicodeFontRenderer getFontOnPC(String name, int size) {
+        return getFontOnPC(name, size, Font.PLAIN);
+    }
+
+    public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType) {
+        return getFontOnPC(name, size, fontType, 0);
+    }
+
+    public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType, float kerning) {
+        return getFontOnPC(name, size, fontType, kerning, 3.0f);
+    }
+
+    public static UnicodeFontRenderer getFontOnPC(String name, int size, int fontType, float kerning, float antiAliasingFactor) {
+        return new UnicodeFontRenderer(new Font(name, fontType, size), kerning, antiAliasingFactor);
+    }
+
+    public static UnicodeFontRenderer getFontFromAssets(String name, int size) {
+        return getFontOnPC(name, size, Font.PLAIN);
+    }
+
+    public static UnicodeFontRenderer getFontFromAssets(String name, int size, int fontType) {
+        return getFontOnPC(name, fontType, size, 0);
+    }
+
+    public static UnicodeFontRenderer getFontFromAssets(String name, int size, float kerning, int fontType) {
+        return getFontFromAssets(name, size, fontType, kerning, 3.0f);
+    }
+
+    public static UnicodeFontRenderer getFontFromAssets(String name, int size, int fontType,  float kerning, float antiAliasingFactor) {
+        return new UnicodeFontRenderer(name, fontType, size, kerning, antiAliasingFactor);
+    }
+
+
+    /*-------------------------------------------------------------------------------------------------------------------*/
+
+    public final int FONT_HEIGHT = 9;
     private final int[] colorCodes = new int[32];
     private final float kerning;
     private final Map<String, Float> cachedStringWidth = new HashMap<>();
@@ -354,10 +354,10 @@ public class UnicodeFontRenderer {
 
     public void drawSplitString(ArrayList<String> lines, int x, int y, int color) {
         drawString(
-            String.join("\n\r", lines),
-            x,
-            y,
-            color
+                String.join("\n\r", lines),
+                x,
+                y,
+                color
         );
     }
 
@@ -379,5 +379,5 @@ public class UnicodeFontRenderer {
         lines.add(currentString.toString());
         return lines;
     }
-	
+
 }
