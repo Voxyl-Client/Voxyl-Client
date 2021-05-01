@@ -8,6 +8,11 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+#Custom
+hi/
+jars/*
+
+
 
 # Generated files
 .idea/**/contentModel.xml
@@ -74,6 +79,7 @@ fabric.properties
 
 eclipse/*
 eclipse/.metadata
+eclipse/.metadata
 bin/
 tmp/
 *.tmp
@@ -133,8 +139,3 @@ local.properties
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
-
-jars/*
-!jars/versions/
-!jars/libraries/
-!jars/assets/

@@ -1,9 +1,5 @@
 package bwp.gui;
 
-import java.awt.Color;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -11,6 +7,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 public class SplashProgress {
 
@@ -78,10 +77,14 @@ public class SplashProgress {
 		if(Minecraft.getMinecraft().gameSettings == null || Minecraft.getMinecraft().getTextureManager() == null) {
 			return;
 		}
-		
+
 		if(ufr == null) {
 			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
+
+
+
 		}
+
 		
 		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 		
@@ -92,7 +95,7 @@ public class SplashProgress {
 		
 		GlStateManager.resetColor();
 		resetTextureState();
-		//TODO CHANGE IDK
+
 		
 		
 		ufr.drawString(CURRENT, 20, sr.getScaledHeight() - 25, 0xFFFFFFFF);
@@ -106,6 +109,8 @@ public class SplashProgress {
 		Gui.drawRect(0, sr.getScaledHeight() - 2, (int)calc, sr.getScaledHeight(), new Color(149, 201, 144).getRGB());
 		
 		Gui.drawRect(0, sr.getScaledHeight() - 2, sr.getScaledWidth(), sr.getScaledHeight(), new Color(0, 0, 0, 10).getRGB());
+
+		System.out.println("hi");
 		
 	}
 	

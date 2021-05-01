@@ -9,6 +9,7 @@ import bwp.mods.ModInstances;
 import bwp.mods.toggle.GuiCheckBox;
 import bwp.mods.toggle.GuiModToggle;
 import bwp.mods.toggle.ModEntry;
+import bwp.utils.PosUtils;
 import net.minecraft.client.Minecraft;
 
 public class Client {
@@ -20,6 +21,10 @@ public class Client {
 	
 	private DiscordRP discordRP = new DiscordRP();
 
+	private int prevPosX = 0;
+	private int prevPosY = 0;
+
+
 
 	
 	private HUDManager hudManager;
@@ -30,6 +35,7 @@ public class Client {
 		SplashProgress.setProgress(1, "Creating Discord Connection");
 		discordRP.start();
 		EventManager.register(this);
+
 
 		
 		
@@ -52,10 +58,19 @@ public class Client {
 
 	@EventTarget
 	public void onTick(ClientTickEvent e) {
+		//TODO - REMOVE
+		PosUtils posUtils = new PosUtils();
+
+		Minecraft mc = Minecraft.getMinecraft();
+		int height = mc.displayHeight;
+		int width = mc.displayWidth;
+
+
+
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
 			hudManager.openConfigScreen();
 
-		
+
 		}
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_TOGGLE.isPressed()) {
 			GuiModToggle guiModToggle = new GuiModToggle();
@@ -66,6 +81,11 @@ public class Client {
 
 
 
+
+
+
 		}
+		prevPosX = mc.displayHeight;
+		prevPosY = mc.displayWidth;
 	}
 }

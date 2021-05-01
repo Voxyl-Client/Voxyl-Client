@@ -20,6 +20,7 @@ public class BWPMovementInput extends MovementInput {
     private float originalFlySpeed = -1.0F;
     private float boostedFlySpeed = 0;
     private Minecraft mc;
+    float f = 0.8F;
 
     public BWPMovementInput(GameSettings gameSettings){
         this.gameSettings = gameSettings;
@@ -117,7 +118,14 @@ public class BWPMovementInput extends MovementInput {
         else{
             sprint = false;
         }
-        if(sprint && moveForward == 1.0F && player.onGround && !player.isUsingItem() && !player.isPotionActive(Potion.blindness)){
+        boolean flags = !mc.thePlayer.movementInput.sneak &&
+                (mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying) &&
+                !mc.thePlayer.isPotionActive(Potion.blindness) &&
+                mc.thePlayer.movementInput.moveForward >= f &&
+                !mc.thePlayer.isSprinting() &&
+                !mc.thePlayer.isUsingItem() &&
+                !mc.thePlayer.isCollidedHorizontally;
+        if(sprint && moveForward == 1.0F && player.onGround && !player.isUsingItem() && !player.isPotionActive(Potion.blindness) ){
             player.setSprinting(false);
         }
         if(ModInstances.getToggleSprintSneak().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) == sprint){
