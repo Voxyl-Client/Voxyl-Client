@@ -11,9 +11,7 @@
 #Custom
 hi/
 jars/*
-!jars/versions 
-!jars/libraries 
-!jars/assets
+
 
 
 # Generated files
