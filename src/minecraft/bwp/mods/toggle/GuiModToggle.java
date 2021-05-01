@@ -38,7 +38,7 @@ public class GuiModToggle extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
         this.scrollPanel.drawScreen(mouseX, mouseY, partialTicks);
-        this.drawCenteredString(this.fontRendererObj, "Mod Options", this.width / 2, 8, 16777215);
+        this.drawCenteredString(this.fontRendererObj, "Mod Options", this.width / 2, 8, -1);
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }

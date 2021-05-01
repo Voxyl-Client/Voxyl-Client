@@ -10,7 +10,7 @@ public interface IRenderer extends IRenderConfig {
 	default void renderDummy(ScreenPosition pos) {
 		render(pos);
 	}
-	
+
 	public default boolean isEnabled() {
 		return true;
 	}
