@@ -125,7 +125,7 @@ public class BWPMovementInput extends MovementInput {
                 !mc.thePlayer.isSprinting() &&
                 !mc.thePlayer.isUsingItem() &&
                 !mc.thePlayer.isCollidedHorizontally;
-        if(sprint && moveForward == 1.0F && player.onGround && !player.isUsingItem() && !player.isPotionActive(Potion.blindness) ){
+        if(sprint && moveForward == 1.0F && player.onGround && !player.isUsingItem() && !player.isPotionActive(Potion.blindness) && !mc.thePlayer.movementInput.sneak && mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying){
             player.setSprinting(false);
         }
         if(ModInstances.getToggleSprintSneak().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) == sprint){
