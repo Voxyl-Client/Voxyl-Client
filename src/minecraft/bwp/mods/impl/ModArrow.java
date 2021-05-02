@@ -23,7 +23,7 @@ public class ModArrow extends ModDraggable{
 	@Override
 	public void render(ScreenPosition pos) {
 		if(this.getRemainingArrows() < 1) {
-			font.drawString(this.getRemainingArrows() + "", (pos.getAbsoluteX() + 8), (pos.getAbsoluteY() + 15) * 2, Color.RED.getRGB());
+			font.drawString(this.getRemainingArrows() + "", (pos.getAbsoluteX() + 8), (pos.getAbsoluteY() + 15), Color.RED.getRGB());
 
 		} else if(this.getRemainingArrows() < 33){
 			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.WHITE.getRGB());

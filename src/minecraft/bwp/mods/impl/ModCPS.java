@@ -2,6 +2,7 @@ package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
+import bwp.utils.Render;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class ModCPS extends ModDraggable {
     private List<Long> clicks = new ArrayList<Long>();
     private boolean wasPressed;
     private long lastPressed;
+    private boolean chroma = true;
 
     @Override
     public int getWidth() {
@@ -33,13 +35,22 @@ public class ModCPS extends ModDraggable {
                 this.clicks.add(this.lastPressed);
             }
         }
-        font.drawString("CPS : " + getCPS(), pos.getAbsoluteX() , pos.getAbsoluteY() , -1);
+        if(chroma){
+            Render.drawChromaString("CPS : " + getCPS(), pos.getAbsoluteX() , pos.getAbsoluteY() , true);
+        }else {
+            font.drawString("CPS : " + getCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+        }
 
     }
 
     @Override
     public void renderDummy(ScreenPosition pos) {
-        font.drawString("CPS : 1000" , pos.getAbsoluteX() , pos.getAbsoluteY() , -1);
+        if(chroma){
+            Render.drawChromaString("CPS : 1000" , pos.getAbsoluteX() , pos.getAbsoluteY() , true);
+        }
+        else {
+            font.drawString("CPS : 1000", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+        }
     }
     private int getCPS(){
         final long time = System.currentTimeMillis();

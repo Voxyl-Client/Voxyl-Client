@@ -31,6 +31,7 @@ public class ToggleSneak extends MovementInput {
         moveStrafe = 0.0F;
         moveForward = 0.0F;
 
+
         if (gameSettings.keyBindForward.isKeyDown()) {
             moveForward++;
 
