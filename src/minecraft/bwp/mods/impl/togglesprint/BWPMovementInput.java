@@ -19,6 +19,7 @@ public class BWPMovementInput extends MovementInput {
     private EntityPlayerSP player;
     private float originalFlySpeed = -1.0F;
     private float boostedFlySpeed = 0;
+    private boolean sprintingToggled = false;
     private Minecraft mc;
     float f = 0.8F;
 
@@ -118,16 +119,21 @@ public class BWPMovementInput extends MovementInput {
         else{
             sprint = false;
         }
+        if(mc.gameSettings.keyBindSprint.isPressed()) {
+            if(mc.thePlayer.isSprinting() && !sprintingToggled) sprintingToggled = true;
+            else if(!mc.thePlayer.isSprinting()) sprintingToggled = !sprintingToggled;
+        }
+
         boolean flags = !mc.thePlayer.movementInput.sneak &&
                 (mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying) &&
                 !mc.thePlayer.isPotionActive(Potion.blindness) &&
                 mc.thePlayer.movementInput.moveForward >= f &&
                 !mc.thePlayer.isSprinting() &&
                 !mc.thePlayer.isUsingItem() &&
-                !mc.thePlayer.isCollidedHorizontally;
-        if(sprint && moveForward == 1.0F && player.onGround && !player.isUsingItem() && !player.isPotionActive(Potion.blindness) && !mc.thePlayer.movementInput.sneak && mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying){
-            player.setSprinting(true);
-        }
+                !mc.thePlayer.isCollidedHorizontally &&
+                sprintingToggled;
+        if (flags) { mc.thePlayer.setSprinting(true); }
+
         if(ModInstances.getToggleSprintSneak().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) == sprint){
             if(originalFlySpeed < 0.0F || this.player.capabilities.getFlySpeed() != boostedFlySpeed){
                 originalFlySpeed = this.player.capabilities.getFlySpeed();
@@ -183,7 +189,7 @@ public class BWPMovementInput extends MovementInput {
             }
         }
 
-        else if(sprint && !isFlying && !isRiding && mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.isFlying){
+        else if(sprint && !isFlying && !isRiding){
             if(isHoldingSprint){
 
                 displayText += "[Sprinting (Key Held)]  ";

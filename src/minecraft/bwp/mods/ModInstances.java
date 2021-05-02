@@ -21,7 +21,10 @@ public class ModInstances {
 	private static ToggleSprintSneak toggleSprintSneak;
 
 	private static ModCPS modCPS;
+
 	private static ModPerspective modPerspective;
+
+	private static ModAutoGG autoGG;
 	
 	public static void register(HUDManager api) {
 		
@@ -49,6 +52,10 @@ public class ModInstances {
 		modPerspective = new ModPerspective();
 		api.register(modPerspective);
 
+		autoGG = new ModAutoGG();
+		api.register(autoGG);
+
+
 
 
 
@@ -64,4 +71,8 @@ public class ModInstances {
 		return modPerspective;
 
 	}
+	public static ModAutoGG getModAutoGG(){
+		return autoGG;
+	}
+
 }

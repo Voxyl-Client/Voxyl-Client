@@ -18,6 +18,7 @@ public class SessionChanger {
     public static SessionChanger getInstance() {
         if (instance == null) {
             instance = new SessionChanger();
+
         }
 
         return instance;

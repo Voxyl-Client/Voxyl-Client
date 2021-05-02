@@ -44,9 +44,9 @@ public class Client {
 		hudManager = HUDManager.getInstance();
 
 		ModInstances.register(hudManager);
-		// SessionChanger.getInstance().setUser("USER", "PASS");
+		SessionChanger.getInstance().setUser("KMistrytulloch@aol.com", "Anselmrules2006");
 
- 
+
 	}
 	public void shutdown() {
 		discordRP.shutdown();
@@ -77,6 +77,7 @@ public class Client {
 			GuiModToggle guiModToggle = new GuiModToggle();
 			hudManager.openToggleScreen();
 			guiModToggle.initGui();
+
 
 
 

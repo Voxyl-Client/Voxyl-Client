@@ -1,5 +1,6 @@
 package net.minecraft.client.gui;
 
+import bwp.mods.impl.AutoGG;
 import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
@@ -126,6 +127,7 @@ public class GuiNewChat extends Gui
     public void printChatMessage(IChatComponent p_146227_1_)
     {
         this.printChatMessageWithOptionalDeletion(p_146227_1_, 0);
+        AutoGG.INSTANCE.onChat(p_146227_1_);
     }
 
     /**
