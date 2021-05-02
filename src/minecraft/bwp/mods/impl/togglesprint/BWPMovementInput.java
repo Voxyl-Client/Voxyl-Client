@@ -126,7 +126,7 @@ public class BWPMovementInput extends MovementInput {
                 !mc.thePlayer.isUsingItem() &&
                 !mc.thePlayer.isCollidedHorizontally;
         if(sprint && moveForward == 1.0F && player.onGround && !player.isUsingItem() && !player.isPotionActive(Potion.blindness) && !mc.thePlayer.movementInput.sneak && mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.allowFlying){
-            player.setSprinting(false);
+            player.setSprinting(true);
         }
         if(ModInstances.getToggleSprintSneak().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) == sprint){
             if(originalFlySpeed < 0.0F || this.player.capabilities.getFlySpeed() != boostedFlySpeed){
@@ -183,7 +183,7 @@ public class BWPMovementInput extends MovementInput {
             }
         }
 
-        else if(sprint && !isFlying && !isRiding){
+        else if(sprint && !isFlying && !isRiding && mc.thePlayer.getFoodStats().getFoodLevel() > 6.0F || mc.thePlayer.capabilities.isFlying){
             if(isHoldingSprint){
 
                 displayText += "[Sprinting (Key Held)]  ";

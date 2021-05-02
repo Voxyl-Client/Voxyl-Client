@@ -2,6 +2,7 @@ package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
+import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.settings.KeyBinding;
@@ -10,6 +11,8 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public class ModKeystrokes extends ModDraggable {
+
+	private boolean chrome = true;
 	
 	public static enum KeystrokesMode {
 		
@@ -112,27 +115,52 @@ public class ModKeystrokes extends ModDraggable {
 
 	@Override
 	public void render(ScreenPosition pos) {
+
 		GL11.glPushMatrix();
-		
+
 		boolean blend = GL11.glIsEnabled(GL11.GL_BLEND);
+
+		if (chrome) {
+			for(Key key : mode.getKeys()) {
+				int textWidth = font.getStringWidth(key.getName());
+
+
+				Gui.drawRect(pos.getAbsoluteX() + key.getX() + 10, pos.getAbsoluteY() + 10 + key.getY() + 10,
+						pos.getAbsoluteX() + 10 + key.getX() + 10 + key.getWidth() + 10,
+						pos.getAbsoluteY() + 10 + key.getY() + 10 + key.getHeight() + 10,
+						key.isDown() ? new Color(255, 255, 255).getRGB() : new Color(0, 0,0, 102).getRGB());
+
+				Render.drawChromaString(
+						key.getName(),
+						pos.getAbsoluteX() + key.getX() + key.getWidth() / 2  - textWidth / 2,
+						pos.getAbsoluteY() + key.getY() + key.getHeight() / 2 - 4,
+						true);
+			}
+
+
+		}else{
+			for(Key key : mode.getKeys()) {
+				int textWidth = font.getStringWidth(key.getName());
+
+
+				Gui.drawRect(pos.getAbsoluteX() + key.getX() + 10, pos.getAbsoluteY() + 10 + key.getY() + 10,
+						pos.getAbsoluteX() + 10 + key.getX() + 10 + key.getWidth() + 10,
+						pos.getAbsoluteY() + 10 + key.getY() + 10 + key.getHeight() + 10,
+						key.isDown() ? new Color(255, 255, 255).getRGB() : new Color(0, 0,0, 102).getRGB());
+
+				font.drawString(
+						key.getName(),
+						pos.getAbsoluteX() + key.getX() + key.getWidth() / 2  - textWidth / 2,
+						pos.getAbsoluteY() + key.getY() + key.getHeight() / 2 - 4,
+						key.isDown() ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
+			}
+
+		}
+
 	
 
 		
-		for(Key key : mode.getKeys()) {
-			int textWidth = font.getStringWidth(key.getName());
-			
-			
-			Gui.drawRect(pos.getAbsoluteX() + key.getX() + 10, pos.getAbsoluteY() + 10 + key.getY() + 10,
-					pos.getAbsoluteX() + 10 + key.getX() + 10 + key.getWidth() + 10,
-					pos.getAbsoluteY() + 10 + key.getY() + 10 + key.getHeight() + 10,
-					key.isDown() ? new Color(255, 255, 255).getRGB() : new Color(0, 0,0, 102).getRGB());
-			
-			font.drawString(
-					key.getName(), 
-					pos.getAbsoluteX() + key.getX() + key.getWidth() / 2  - textWidth / 2, 
-					pos.getAbsoluteY() + key.getY() + key.getHeight() / 2 - 4, 
-					key.isDown() ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
-		}
+
 		
 
 		GL11.glPopMatrix();
