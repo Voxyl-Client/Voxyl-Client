@@ -44,8 +44,9 @@ public class Client {
 		hudManager = HUDManager.getInstance();
 
 		ModInstances.register(hudManager);
+		// SessionChanger.getInstance().setUser("USER", "PASS");
 
-
+ 
 	}
 	public void shutdown() {
 		discordRP.shutdown();

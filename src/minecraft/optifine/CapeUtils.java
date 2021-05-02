@@ -26,7 +26,7 @@ public class CapeUtils
         if (username != null && !username.isEmpty())
         { //You may replace "CapeBoolean" with your classname if you created one with another name for the boolean
             if(CapeBoolean.Cape == true) {				//Edit this to your cape image's file location
-                final ResourceLocation capeLocation = new ResourceLocation("bwp/bwp-capes-sevy/sevy-dmoha-smile.png");
+                final ResourceLocation capeLocation = new ResourceLocation("bwp/bwp-capes-sevy/bwp-cape-sevy.png");
                 if(capeLocation !=null) {
                     player.setLocationOfCape(capeLocation);
                 }
@@ -36,7 +36,7 @@ public class CapeUtils
             String ofCapeUrl = "http://s.optifine.net/capes/" + username + ".png";
             String mptHash = FilenameUtils.getBaseName(ofCapeUrl);
             //TODO - HOOK IN WITH MYSQL AND MAKE SETTINGS
-            final ResourceLocation resourcelocation = new ResourceLocation("bwp/bwp-capes-sevy/sevy-dmoha-smile.png");
+            final ResourceLocation resourcelocation = new ResourceLocation("bwp/bwp-capes-sevy/bwp-cape-sevy.png");
             TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
             ITextureObject tex = texturemanager.getTexture(resourcelocation);
 
