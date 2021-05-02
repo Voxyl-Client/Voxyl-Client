@@ -16,7 +16,10 @@ public class Render {
             int i = Color.HSBtoRGB(l % (int) 2000.0F / 2000.0F, 0.8F, 0.8F);
             String tmp = String.valueOf(textChar);
             mc.fontRendererObj.drawString(tmp, xTmp, y, i, shadow);
+
             xTmp += mc.fontRendererObj.getCharWidth(textChar);
         }
+
+
     }
 }

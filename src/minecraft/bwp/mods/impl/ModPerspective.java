@@ -4,6 +4,7 @@ import bwp.event.EventTarget;
 import bwp.event.impl.KeyPressEvent;
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
+import bwp.utils.Render;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
@@ -15,6 +16,8 @@ public class ModPerspective extends ModDraggable {
     private float cameraYaw = 0F;
 
     private float cameraPitch = 0F;
+
+    private boolean chroma = true;
 
     private int previousPerspective = 0; //previous f5 state
 
@@ -90,7 +93,14 @@ public class ModPerspective extends ModDraggable {
     @Override
     public void render(ScreenPosition pos) {
         if(perspectiveToggled){
-            font.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+            if(chroma){
+                Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), true);
+            }
+            else {
+
+
+                font.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+            }
 
         }
 
@@ -98,7 +108,13 @@ public class ModPerspective extends ModDraggable {
 
     @Override
     public void renderDummy(ScreenPosition pos){
-        font.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+        if(chroma){
+            Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), true);
+        }
+        else {
+
+            font.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+        }
     }
 
 
