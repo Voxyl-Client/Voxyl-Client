@@ -44,7 +44,7 @@ public class Client {
 		hudManager = HUDManager.getInstance();
 
 		ModInstances.register(hudManager);
-		SessionChanger.getInstance().setUser("KMistrytulloch@aol.com", "Anselmrules2006");
+
 
 
 	}
