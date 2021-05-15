@@ -1,5 +1,6 @@
 package bwp.mods.impl;
 
+import bwp.mods.OnToggle;
 import org.lwjgl.opengl.GL11;
 
 import bwp.gui.hud.ScreenPosition;
@@ -9,8 +10,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class ModArmorStatus extends ModDraggable {
-	
-
 
 	@Override
 	public int getWidth() {

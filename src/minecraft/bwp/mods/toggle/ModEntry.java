@@ -4,6 +4,7 @@ import bwp.mods.Mod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiListExtended;
 import org.apache.commons.lang3.StringUtils;
+import org.lwjgl.Sys;
 
 public class ModEntry implements GuiListExtended.IGuiListEntry, Comparable<ModEntry> {
 
@@ -25,6 +26,9 @@ public class ModEntry implements GuiListExtended.IGuiListEntry, Comparable<ModEn
         this.checkbox.xPosition = x + 200;
         this.checkbox.yPosition = y;
         this.checkbox.drawButton(Minecraft.getMinecraft(), mouseX, mouseY);
+        if (this.mod.isEnabled() == !this.checkbox.isChecked()) {
+            this.mod.getOnToggle().onToggle(mod);
+        }
         this.mod.setEnabled(this.checkbox.isChecked());
         gui.drawCenteredString(Minecraft.getMinecraft().fontRendererObj, name, x, y + 4, -1);
     }

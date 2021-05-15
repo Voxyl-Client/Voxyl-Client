@@ -36,6 +36,11 @@ public class BWPMovementInput extends MovementInput {
         this.mc = Minecraft.getMinecraft();
 
     }
+
+    public void disableSprint() {
+        sprintingToggled = false;
+    }
+
     //Sneak
     @Override
     public void updatePlayerMoveState(){
@@ -86,16 +91,16 @@ public class BWPMovementInput extends MovementInput {
                 sneakWasPressed = 0;
             }
 
+            boolean sneakingFlags = mc.currentScreen instanceof InventoryEffectRenderer ||
+                    mc.currentScreen instanceof GuiContainer;
+            if (sneakingFlags && sneakingToggled) {
+                sneak = false;
+            } else {
+                sneak = sneakingToggled;
+            }
         }
         else{
             sneak = gameSettings.keyBindSneak.isKeyDown();
-        }
-        boolean sneakingFlags = mc.currentScreen instanceof InventoryEffectRenderer ||
-                mc.currentScreen instanceof GuiContainer;
-        if (sneakingFlags && sneakingToggled) {
-            sneak = false;
-        } else {
-            sneak = sneakingToggled;
         }
         if(sneak){
             moveStrafe *= 0.3F;
@@ -133,7 +138,7 @@ public class BWPMovementInput extends MovementInput {
         else{
             sprint = false;
         }
-        if(mc.gameSettings.keyBindSprint.isPressed()) {
+        if(mc.gameSettings.keyBindSprint.isPressed() && ModInstances.getToggleSprintSneak().isEnabled()) {
             if(mc.thePlayer.isSprinting() && !sprintingToggled) sprintingToggled = true;
             else if(!mc.thePlayer.isSprinting()) sprintingToggled = !sprintingToggled;
         }

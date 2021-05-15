@@ -44,6 +44,12 @@ public class ModInstances {
 		api.register(modKeyStrokes);
 
 		toggleSprintSneak = new ToggleSprintSneak();
+		toggleSprintSneak.setOnToggle((tss) -> {
+			if (tss.isEnabled()) {
+				tss.mc.thePlayer.movementInput.disableSprint();
+				tss.mc.thePlayer.setSprinting(false);
+			}
+		});
 		api.register(toggleSprintSneak);
 
 		modCPS = new ModCPS();
