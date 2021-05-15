@@ -12,6 +12,14 @@
 hi/
 jars/*
 bin/
+docs/
+conf/
+runtime/
+temp/
+logs/
+*.sh
+*.bat
+
 eclipse/Client/bin
 
 
