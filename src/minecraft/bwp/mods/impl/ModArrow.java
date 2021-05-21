@@ -3,22 +3,23 @@ package bwp.mods.impl;
 import bwp.gui.hud.HUDConfigScreen;
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
+import bwp.utils.Render;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
 public class ModArrow extends ModDraggable{
 
-
 	@Override
 	public int getWidth() {
-		return 20;
+		return mc.fontRendererObj.getStringWidth("Arrows : " + this.getRemainingArrows()) + 3;
 	}
 
 	@Override
 	public int getHeight() {
-		return 25;
+		return mc.fontRendererObj.FONT_HEIGHT + 2;
 	}
 
 	@Override
@@ -26,47 +27,31 @@ public class ModArrow extends ModDraggable{
 		
 
 		if(this.getRemainingArrows() < 1) {
-			font.drawString(this.getRemainingArrows() + "", (pos.getAbsoluteX() + 8), (pos.getAbsoluteY() + 15), Color.RED.getRGB());
+			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), Color.RED.getRGB(), true);
 
 		} else if(this.getRemainingArrows() < 33){
-			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.WHITE.getRGB());
+			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), Color.WHITE.getRGB(), true);
 		}
 		else{
-			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.GREEN.getRGB());
+			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), Color.GREEN.getRGB(), true);
 		}
-        this.mc.getRenderItem().renderItemIntoGUI(new ItemStack(Items.arrow), pos.getAbsoluteX() + 3, pos.getAbsoluteY() - 1);
-        
-        
-
 	}
 	
 	
 	@Override
 	public void renderDummy(ScreenPosition pos) {
-		if(this.getRemainingArrows() < 1) {
-			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.RED.getRGB());
-		} else {
-			font.drawString(this.getRemainingArrows() + "", pos.getAbsoluteX() + 8, pos.getAbsoluteY() + 15, Color.WHITE.getRGB());
-		}
-        this.mc.getRenderItem().renderItemIntoGUI(new ItemStack(Items.arrow), (pos.getAbsoluteX() + 3) , (pos.getAbsoluteY() - 1));
-
+		render(pos);
 	}
 	
 	   private int getRemainingArrows() {
-		      int i = 0;
+		  int i = 0;
 
-		      for(ItemStack itemstack : this.mc.thePlayer.inventory.mainInventory) {
-		         if(itemstack != null && itemstack.getItem().equals(Items.arrow)) {
-		            i += itemstack.stackSize;
-		         }
-		      }
+		  for(ItemStack itemstack : this.mc.thePlayer.inventory.mainInventory) {
+			 if(itemstack != null && itemstack.getItem().equals(Items.arrow)) {
+				i += itemstack.stackSize;
+			 }
+		  }
 
-		      return i;
-		   }
-
-
-
-
-
-	
+		  return i;
+	   }
 }

@@ -1,5 +1,8 @@
 package bwp.mods.impl;
 
+import bwp.mods.OnToggle;
+import bwp.utils.Render;
+
 import org.lwjgl.opengl.GL11;
 
 import bwp.gui.hud.ScreenPosition;
@@ -44,21 +47,17 @@ public class ModArmorStatus extends ModDraggable {
 			return;
 		}
 
-		GL11.glPushMatrix();
 		int yAdd = (-16 * i) + 48;
 		if (is.getItem().isDamageable()) {
 			double damage = ((is.getMaxDamage() + is.getItemDamage()) / (double) is.getMaxDamage()) * 100;
-			font.drawString(String.format("%.2f%%", damage), position.getAbsoluteX() + 20, position.getAbsoluteY() + yAdd + 5, -1);
+			Render.drawString(String.format("%.2f%%", damage), position.getAbsoluteX() + (int) (20 * pos.getScale()), position.getAbsoluteY() + (int) ((yAdd + 5) * pos.getScale()), position.getScale(), true);
 		}
 
 		RenderHelper.enableGUIStandardItemLighting();
-		mc.getRenderItem().renderItemAndEffectIntoGUI(is, position.getAbsoluteX(), position.getAbsoluteY() + yAdd);
+		GL11.glPushMatrix();
+		GL11.glTranslatef(position.getAbsoluteX(), position.getAbsoluteY() + (yAdd * pos.getScale()), 1F);
+		GL11.glScalef(pos.getScale(), pos.getScale(), 1F);
+		mc.getRenderItem().renderItemAndEffectIntoGUI(is, 0, 0);
 		GL11.glPopMatrix();
-
 	}
-
-
-
-	
-
 }
