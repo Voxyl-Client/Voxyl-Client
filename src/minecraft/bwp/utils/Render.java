@@ -11,7 +11,7 @@ public class Render {
     public static void drawChromaString(String string, int x, int y, float scale, boolean shadow)
     {
         GL11.glPushMatrix();
-        GL11.glTranslatef(x, y, 1F);
+        GL11.glTranslatef(x + 1, y + 1, 1F);
         GL11.glScalef(scale, scale, 1F);
 
         int xTmp = 0;
@@ -36,7 +36,7 @@ public class Render {
     public static void drawString(String string, int x, int y, float scale, int color, boolean shadow)
     {
         GL11.glPushMatrix();
-        GL11.glTranslatef(x, y, 1F);
+        GL11.glTranslatef(x + 1, y + 1, 1F);
         GL11.glScalef(scale, scale, 1F);
 
         mc.fontRendererObj.drawString(string, 0, 0, color, shadow);

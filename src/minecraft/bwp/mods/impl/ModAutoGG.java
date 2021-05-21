@@ -17,8 +17,10 @@ public class ModAutoGG extends ModDraggable {
 
     @Override
     public void render(ScreenPosition pos) {
-    	
+    }
 
-
+    @Override
+    public boolean shouldRender() {
+        return false;
     }
 }
