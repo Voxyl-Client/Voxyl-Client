@@ -8,7 +8,6 @@ import bwp.mods.impl.togglemotion.ToggleSprint;
 
 public class ModInstances {
 	
-	
 	private static ModArmorStatus modArmorStatus;
 	
 	private static ModFPS modFPS;
@@ -70,7 +69,6 @@ public class ModInstances {
 
 		fullbright = new FullBright();
 		api.register(fullbright);
-		fullbright.onToggle();
 	}
 
 	public static ToggleSprint getToggleSprint() {
@@ -88,5 +86,4 @@ public class ModInstances {
 	public static ModAutoGG getModAutoGG(){
 		return autoGG;
 	}
-
 }

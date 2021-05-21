@@ -1,6 +1,8 @@
 package bwp.mods.toggle;
 
+import bwp.FileManager;
 import bwp.mods.Mod;
+import bwp.mods.ModInstances;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiListExtended;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +19,6 @@ public class ModEntry implements GuiListExtended.IGuiListEntry, Comparable<ModEn
         name = StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(mod.getClass().getSimpleName().replace("Mod", "").replaceAll("\\d+", "")), " ");
         checkbox = new GuiCheckBox(0, 0, 0, mod.isEnabled());
         this.gui = inGui;
-
     }
 
     @Override
@@ -25,12 +26,7 @@ public class ModEntry implements GuiListExtended.IGuiListEntry, Comparable<ModEn
         this.checkbox.xPosition = x + 200;
         this.checkbox.yPosition = y;
         this.checkbox.drawButton(Minecraft.getMinecraft(), mouseX, mouseY);
-        if (mod.isEnabled() != this.checkbox.isChecked()) {
-            this.mod.setEnabled(this.checkbox.isChecked());
-            mod.onToggle();
-        } else {
-            this.mod.setEnabled(this.checkbox.isChecked());
-        }
+        this.mod.setEnabled(this.checkbox.isChecked());
         gui.drawCenteredString(Minecraft.getMinecraft().fontRendererObj, name, x, y + 4, -1);
     }
 

@@ -9,7 +9,6 @@ import net.minecraft.util.IChatComponent;
 import java.util.Arrays;
 
 public class FullBright extends ModDraggable {
-    public static final FullBright INSTANCE = new FullBright();
 
     @Override
     public int getWidth() {
@@ -33,7 +32,7 @@ public class FullBright extends ModDraggable {
 
     @Override
     public void onToggle() {
-        if (INSTANCE.isEnabled()) {
+        if (this.isEnabled()) {
             mc.gameSettings.gammaSetting = (((mc.gameSettings.gammaSetting+13)%28) + 1);
         } else {
             mc.gameSettings.gammaSetting = 1;

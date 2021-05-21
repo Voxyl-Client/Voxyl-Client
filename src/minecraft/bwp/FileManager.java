@@ -17,8 +17,6 @@ public class FileManager {
         if(ROOT_DIR.exists()){ ROOT_DIR.mkdirs(); }
         if(!MODS_DIR.exists()){ MODS_DIR.mkdirs(); }
         if(!CACHE_DIR.exists()){CACHE_DIR.mkdirs(); }
-
-
     }
     public static Gson getGson(){
         return gson;

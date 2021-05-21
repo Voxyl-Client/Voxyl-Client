@@ -22,19 +22,23 @@ public class Mod {
 	}
 
 	public void setEnabled(boolean isEnabled) {
-		
+
+		boolean oldStatus = this.isEnabled;
 		this.isEnabled = isEnabled;
-		
+
 		if(isEnabled) {
 			EventManager.register(this);
 		}else {
 			EventManager.unregister(this);
 		}
+
+		if (oldStatus != this.isEnabled)
+			onToggle();
 	}
 	public boolean isEnabled() {
 		return isEnabled;
 	}
 
-
-	public void onToggle() { }
+	public void onToggle() {
+	}
 }
