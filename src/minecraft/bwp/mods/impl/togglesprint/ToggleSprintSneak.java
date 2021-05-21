@@ -13,7 +13,7 @@ public class ToggleSprintSneak extends ModDraggable {
     public boolean flyBoost = true;
     public float flyBoostFactor = 4;
     public int keyHoldTicks = 7;
-    private boolean chroma = true;
+    private boolean chroma = false;
 
     @Override
     public int getWidth() {
@@ -28,18 +28,18 @@ public class ToggleSprintSneak extends ModDraggable {
         if (chroma) {
             textToRender = "[Sprinting] (Toggled)";
 
-            Render.drawChromaString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), true);
+            Render.drawChromaString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
 
         }else{
             textToRender = "[Sprinting] (Toggled)";
-            font.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+            Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
     }
 
     @Override
     public void render(ScreenPosition pos) {
         textToRender = mc.thePlayer.movementInput.getDisplayText();
-        font.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+        Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
 
     }
 }

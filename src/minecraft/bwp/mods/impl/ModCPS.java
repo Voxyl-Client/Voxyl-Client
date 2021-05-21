@@ -11,13 +11,16 @@ import java.util.List;
 public class ModCPS extends ModDraggable {
 
     private List<Long> clicks = new ArrayList<Long>();
+    private List<Long> clicksRight = new ArrayList<Long>();
     private boolean wasPressed;
+    private boolean wasPressedR;
     private long lastPressed;
-    private boolean chroma = true;
+    private long lastPressedR;
+    private boolean chroma = false;
 
     @Override
     public int getWidth() {
-        return font.getStringWidth("CPS: 0000") + 5;
+        return font.getStringWidth("CPS: 00 | 00") + 5;
     }
 
     @Override
@@ -35,10 +38,18 @@ public class ModCPS extends ModDraggable {
                 this.clicks.add(this.lastPressed);
             }
         }
+        final boolean pressedR = Mouse.isButtonDown(1);
+        if(pressedR != this.wasPressedR){
+            this.lastPressedR = System.currentTimeMillis();
+            this.wasPressedR = pressedR;
+            if(pressedR){
+                this.clicksRight.add(this.lastPressedR);
+            }
+        }
         if(chroma){
-            Render.drawChromaString("CPS : " + getCPS(), pos.getAbsoluteX() , pos.getAbsoluteY() , true);
+            Render.drawChromaString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
         }else {
-            font.drawString("CPS : " + getCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+            Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
 
     }
@@ -46,15 +57,20 @@ public class ModCPS extends ModDraggable {
     @Override
     public void renderDummy(ScreenPosition pos) {
         if(chroma){
-            Render.drawChromaString("CPS : 1000" , pos.getAbsoluteX() , pos.getAbsoluteY() , true);
+            Render.drawChromaString("CPS : 10 | 10" , pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
         }
         else {
-            font.drawString("CPS : 1000", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+            Render.drawString("CPS : 10 | 10", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
     }
     private int getCPS(){
         final long time = System.currentTimeMillis();
         this.clicks.removeIf(aLong -> aLong + 1000 < time);
         return this.clicks.size();
+    }
+    private int getRightCPS(){
+        final long time = System.currentTimeMillis();
+        this.clicksRight.removeIf(aLong -> aLong + 1000 < time);
+        return this.clicksRight.size();
     }
 }

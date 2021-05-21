@@ -2,6 +2,7 @@ package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
+import bwp.utils.Render;
 
 public class ModCoords extends ModDraggable {
 
@@ -20,8 +21,7 @@ public class ModCoords extends ModDraggable {
 
 	@Override
 	public void render(ScreenPosition pos) {
-		font.drawString(getXYZString(), pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
-		
+		Render.drawString(getXYZString(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
 	}
 
 	private String getXYZString() {

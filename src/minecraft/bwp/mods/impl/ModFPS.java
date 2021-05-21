@@ -9,7 +9,7 @@ public class ModFPS extends ModDraggable{
 
 
 
-	private boolean isChroma = true;
+	private boolean isChroma = false;
 	private boolean betterUI = false;
 
 	@Override
@@ -26,10 +26,10 @@ public class ModFPS extends ModDraggable{
 	public void render(ScreenPosition pos) {
 		if (isChroma) {
 
-			Render.drawChromaString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), true);
+			Render.drawChromaString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
 		}
 		else {
-			font.drawString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+			Render.drawString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
 		}
 	}
 

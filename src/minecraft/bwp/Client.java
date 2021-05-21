@@ -24,9 +24,6 @@ public class Client {
 	private int prevPosX = 0;
 	private int prevPosY = 0;
 
-
-
-	
 	private HUDManager hudManager;
 	private ModEntry modEntry;
 
@@ -35,18 +32,11 @@ public class Client {
 		SplashProgress.setProgress(1, "Creating Discord Connection");
 		discordRP.start();
 		EventManager.register(this);
-
-
-		
-		
 	}
 	public void start() {
 		hudManager = HUDManager.getInstance();
 
 		ModInstances.register(hudManager);
-
-
-
 	}
 	public void shutdown() {
 		discordRP.shutdown();
