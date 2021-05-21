@@ -1,5 +1,6 @@
 package bwp.mods.impl;
 
+import bwp.gui.hud.HUDConfigScreen;
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
 import net.minecraft.init.Items;
@@ -22,6 +23,8 @@ public class ModArrow extends ModDraggable{
 
 	@Override
 	public void render(ScreenPosition pos) {
+		
+
 		if(this.getRemainingArrows() < 1) {
 			font.drawString(this.getRemainingArrows() + "", (pos.getAbsoluteX() + 8), (pos.getAbsoluteY() + 15), Color.RED.getRGB());
 

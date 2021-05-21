@@ -1,9 +1,12 @@
 package bwp.gui.hud;
 
+import bwp.gui.UnicodeFontRenderer;
+import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.Color;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -22,21 +25,25 @@ public class HUDConfigScreen extends GuiScreen {
 	public HUDConfigScreen(HUDManager api) {
 
 		
-		Collection<IRenderer> registeredRenderers = api.getRegisteredRenderers();
+		Collection<IRenderer> registeredRengerers = api.getRegisteredRenderers();
 		
-		for(IRenderer ren : registeredRenderers) {
+		for(IRenderer ren : registeredRengerers) {
 			if(!ren.isEnabled()) {
 				continue;
 			}
 			ScreenPosition pos = ren.load();
 			
 			if (pos == null) {
-				pos = ScreenPosition.fromRelativePosition(0.5, 0.5);
+				pos = ScreenPosition.fromRelativePosition(0.10, 0.10);
 			}
 			adjustBounds(ren, pos);
 			this.renderers.put(ren, pos);
 		}
 	}
+
+
+
+
 		
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -59,6 +66,7 @@ public class HUDConfigScreen extends GuiScreen {
 		this.zLevel = zBackup;
 			
 	}
+
 
 	private void drawHollowRect(int x, int y, int w, int h, int color) {
 		this.drawHorizontalLine(x, x + w, y, color);

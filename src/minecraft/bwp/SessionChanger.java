@@ -3,6 +3,8 @@ package bwp;
 import com.mojang.authlib.Agent;
 import com.mojang.authlib.AuthenticationService;
 import com.mojang.authlib.UserAuthentication;
+import com.mojang.authlib.exceptions.AuthenticationException;
+import com.mojang.authlib.exceptions.InvalidCredentialsException;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.util.UUIDTypeAdapter;
 import net.minecraft.client.Minecraft;
@@ -25,7 +27,7 @@ public class SessionChanger {
     }
 
     //Creates a new Authentication Service.
-    private SessionChanger() {
+    public SessionChanger() {
         UUID notSureWhyINeedThis = UUID.randomUUID(); //Idk, needs a UUID. Seems to be fine making it random
         AuthenticationService authService = new YggdrasilAuthenticationService(Minecraft.getMinecraft().getProxy(), notSureWhyINeedThis.toString());
         auth = authService.createUserAuthentication(Agent.MINECRAFT);
@@ -35,20 +37,18 @@ public class SessionChanger {
 
     //Online mode
     //Checks if your already loggin in to the account.
-    public void setUser(String email, String password) {
+    public void setUser(String email, String password) throws AuthenticationException {
         if(!Minecraft.getMinecraft().getSession().getUsername().equals(email) || Minecraft.getMinecraft().getSession().getToken().equals("0")){
 
             this.auth.logOut();
             this.auth.setUsername(email);
             this.auth.setPassword(password);
-            try {
+
                 this.auth.logIn();
                 Session session = new Session(this.auth.getSelectedProfile().getName(), UUIDTypeAdapter.fromUUID(auth.getSelectedProfile().getId()), this.auth.getAuthenticatedToken(), this.auth.getUserType().getName());
                 setSession(session);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
+            
+			
         }
 
     }

@@ -4,13 +4,6 @@ package bwp.mods.impl.togglesprint;
 import bwp.mods.ModInstances;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiShareToLan;
-import net.minecraft.client.gui.inventory.GuiChest;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.client.network.NetHandlerLoginClient;
-import net.minecraft.client.renderer.InventoryEffectRenderer;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MovementInput;
@@ -27,7 +20,6 @@ public class BWPMovementInput extends MovementInput {
     private float originalFlySpeed = -1.0F;
     private float boostedFlySpeed = 0;
     private boolean sprintingToggled = false;
-    private boolean sneakingToggled = false;
     private Minecraft mc;
     float f = 0.8F;
 
@@ -36,11 +28,6 @@ public class BWPMovementInput extends MovementInput {
         this.mc = Minecraft.getMinecraft();
 
     }
-
-    public void disableSprint() {
-        sprintingToggled = false;
-    }
-
     //Sneak
     @Override
     public void updatePlayerMoveState(){
@@ -69,7 +56,7 @@ public class BWPMovementInput extends MovementInput {
         if(ModInstances.getToggleSprintSneak().isEnabled()){
             if(gameSettings.keyBindSneak.isKeyDown()){
                 if(sneakWasPressed == 0){
-                    if(sneakingToggled){
+                    if(sneak){
                         sneakWasPressed = -1;
                     }
                     else if(player.isRiding() || player.capabilities.isFlying){
@@ -78,7 +65,7 @@ public class BWPMovementInput extends MovementInput {
                     else{
                         sneakWasPressed = 1;
                     }
-                    sneakingToggled = !sneakingToggled;
+                    sneak = !sneak;
                 }
                 else if(sneakWasPressed > 0){
                     sneakWasPressed++;
@@ -86,18 +73,12 @@ public class BWPMovementInput extends MovementInput {
             }
             else{
                 if((ModInstances.getToggleSprintSneak().keyHoldTicks > 0) && (sneakWasPressed > ModInstances.getToggleSprintSneak().keyHoldTicks)){
-                    sneakingToggled = false;
+                    sneak = false;
+
                 }
                 sneakWasPressed = 0;
             }
 
-            boolean sneakingFlags = mc.currentScreen instanceof InventoryEffectRenderer ||
-                    mc.currentScreen instanceof GuiContainer;
-            if (sneakingFlags && sneakingToggled) {
-                sneak = false;
-            } else {
-                sneak = sneakingToggled;
-            }
         }
         else{
             sneak = gameSettings.keyBindSneak.isKeyDown();
@@ -138,7 +119,7 @@ public class BWPMovementInput extends MovementInput {
         else{
             sprint = false;
         }
-        if(mc.gameSettings.keyBindSprint.isPressed() && ModInstances.getToggleSprintSneak().isEnabled()) {
+        if(mc.gameSettings.keyBindSprint.isPressed()) {
             if(mc.thePlayer.isSprinting() && !sprintingToggled) sprintingToggled = true;
             else if(!mc.thePlayer.isSprinting()) sprintingToggled = !sprintingToggled;
         }

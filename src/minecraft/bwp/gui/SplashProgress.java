@@ -9,7 +9,11 @@ import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+import bwp.utils.RoundedRect;
+
 import java.awt.*;
+
+import javax.vecmath.Vector3d;
 
 public class SplashProgress {
 
@@ -42,6 +46,7 @@ public class SplashProgress {
 		
 		GlStateManager.matrixMode(GL11.GL_PROJECTION);
 		GlStateManager.loadIdentity();
+		RoundedRect.renderRoundedQuad(new Vector3d(5,5,0), new Vector3d(50,50,0), 10, Color.WHITE);
 		GlStateManager.ortho(0.0D,  (double)scaledResolution.getScaledWidth(), (double)scaledResolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
 		GlStateManager.matrixMode(GL11.GL_MODELVIEW);
 		GlStateManager.loadIdentity();
@@ -110,7 +115,7 @@ public class SplashProgress {
 		
 		Gui.drawRect(0, sr.getScaledHeight() - 2, sr.getScaledWidth(), sr.getScaledHeight(), new Color(0, 0, 0, 10).getRGB());
 
-		System.out.println("hi");
+
 		
 	}
 	

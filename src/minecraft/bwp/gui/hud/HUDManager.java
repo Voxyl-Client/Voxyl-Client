@@ -1,19 +1,27 @@
 package bwp.gui.hud;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Set;
 
+import bwp.gui.GuiErrorLogin;
+import bwp.gui.GuiLogin;
+import bwp.gui.GuiModMain;
+import bwp.gui.GuiModRescale;
 import bwp.mods.toggle.GuiModToggle;
-import bwp.mods.toggle.ModEntry;
-import bwp.mods.toggle.ScrollListModToggle;
 import com.google.common.collect.Sets;
+import com.mojang.authlib.exceptions.AuthenticationException;
+import com.mojang.authlib.exceptions.InvalidCredentialsException;
 
+import bwp.FileManager;
+import bwp.SessionChanger;
 import bwp.event.EventManager;
 import bwp.event.EventTarget;
 import bwp.event.impl.RenderEvent;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 
 public class HUDManager {
@@ -63,6 +71,72 @@ public class HUDManager {
 		guiModToggle.initGui();
 		mc.displayGuiScreen(new GuiModToggle());
 
+	}
+	public void openLoginScreen(){
+		if(FileManager.doesLoginFileExist()) {
+			String user = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_name.json"), String.class);
+			String pass = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_pass.json"), String.class);
+			
+			try {
+
+			SessionChanger sessionChanger = new SessionChanger();
+			sessionChanger.setUser(user, pass);
+			
+
+
+	
+			} catch (AuthenticationException e) {
+				// TODO Auto-generated catch block
+				GuiLogin guiLogin = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
+				guiLogin.initGui();
+				mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
+			}
+
+		}
+		else {
+		GuiLogin guiLogin = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
+		guiLogin.initGui();
+		mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
+		}
+
+	}
+	public void openErrorScreen() {
+		if(FileManager.doesLoginFileExist()) {
+			String user = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_name.json"), String.class);
+			String pass = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_pass.json"), String.class);
+			
+			try {
+
+			SessionChanger sessionChanger = new SessionChanger();
+			sessionChanger.setUser(user, pass);
+			
+
+
+	
+			} catch (AuthenticationException e) {
+				// TODO Auto-generated catch block
+				GuiErrorLogin guiError = new GuiErrorLogin(new GuiMainMenu());
+				guiError.initGui();
+				mc.displayGuiScreen(new GuiErrorLogin(new GuiMainMenu()));
+			}
+
+		}
+		else {
+		GuiErrorLogin guiError = new GuiErrorLogin(new GuiMainMenu());
+		guiError.initGui();
+		mc.displayGuiScreen(new GuiErrorLogin(new GuiMainMenu()));
+		}
+	}
+	public void openMainGui() {
+		GuiModMain guiModMain = new GuiModMain(mc.currentScreen);
+		guiModMain.initGui();
+		mc.displayGuiScreen(new GuiModToggle());
+
+	}
+	public void openMainScreen(){
+		GuiModRescale guiModRescale = new GuiModRescale(mc.currentScreen);
+		guiModRescale.initGui();
+		mc.displayGuiScreen(guiModRescale);
 	}
 
 	

@@ -6,10 +6,7 @@ import bwp.event.impl.ClientTickEvent;
 import bwp.gui.SplashProgress;
 import bwp.gui.hud.HUDManager;
 import bwp.mods.ModInstances;
-import bwp.mods.toggle.GuiCheckBox;
-import bwp.mods.toggle.GuiModToggle;
 import bwp.mods.toggle.ModEntry;
-import bwp.utils.PosUtils;
 import net.minecraft.client.Minecraft;
 
 public class Client {
@@ -59,8 +56,10 @@ public class Client {
 
 	@EventTarget
 	public void onTick(ClientTickEvent e) {
+
+
 		//TODO - REMOVE
-		PosUtils posUtils = new PosUtils();
+
 
 		Minecraft mc = Minecraft.getMinecraft();
 		int height = mc.displayHeight;
@@ -69,24 +68,17 @@ public class Client {
 
 
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
-			hudManager.openConfigScreen();
+			hudManager.openMainScreen();
 
 
 		}
-		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_TOGGLE.isPressed()) {
-			GuiModToggle guiModToggle = new GuiModToggle();
-			hudManager.openToggleScreen();
-			guiModToggle.initGui();
-
-
-
-
-
-
-
+		if(Minecraft.getMinecraft().gameSettings.CLIENT_LOGIN.isPressed()) {
+			hudManager.openLoginScreen();
 
 
 		}
+
+
 		prevPosX = mc.displayHeight;
 		prevPosY = mc.displayWidth;
 	}

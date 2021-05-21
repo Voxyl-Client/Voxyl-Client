@@ -12,8 +12,6 @@ public class Mod {
 	protected final Minecraft mc;
 	protected final FontRenderer font;
 	protected final Client client;
-
-	protected OnToggle onToggle = mod -> {};
 	
 	public Mod() {
 		this.mc = Minecraft.getMinecraft();
@@ -21,10 +19,6 @@ public class Mod {
 		this.client = Client.getInstance();
 		
 		setEnabled(isEnabled);
-	}
-
-	public void setOnToggle(OnToggle onToggle) {
-		this.onToggle = onToggle;
 	}
 
 	public void setEnabled(boolean isEnabled) {
@@ -41,7 +35,4 @@ public class Mod {
 		return isEnabled;
 	}
 
-	public OnToggle getOnToggle() {
-		return onToggle;
-	}
 }
