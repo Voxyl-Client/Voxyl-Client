@@ -21,12 +21,20 @@ public class Util
         }
         catch (ExecutionException executionexception)
         {
-            p_181617_1_.fatal((String)"Error executing task", (Throwable)executionexception);
+        	
+            p_181617_1_.fatal((String)"Error executing task");
+            //TODO - ADD THIS BACK
+            /*
+             (Throwable)executionexception
+             */
         }
         catch (InterruptedException interruptedexception)
         {
-            p_181617_1_.fatal((String)"Error executing task", (Throwable)interruptedexception);
+            p_181617_1_.fatal((String)"Error executing task");
         }
+        /*
+         * , (Throwable)interruptedexception
+         */
 
         return (V)null;
     }

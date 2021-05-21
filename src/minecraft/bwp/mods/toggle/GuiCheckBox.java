@@ -68,6 +68,8 @@ public class GuiCheckBox extends GuiButton {
             return true;
         }
 
+        System.out.println();
+
         return false;
     }
 
