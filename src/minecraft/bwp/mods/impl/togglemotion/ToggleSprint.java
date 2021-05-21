@@ -1,13 +1,10 @@
-package bwp.mods.impl.togglesprint;
+package bwp.mods.impl.togglemotion;
 
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
 import bwp.utils.Render;
 
-public class ToggleSprintSneak extends ModDraggable{
-    
-
-
+public class ToggleSprint extends ModDraggable{
     private String textToRender = "";
 
     //settings
@@ -15,10 +12,6 @@ public class ToggleSprintSneak extends ModDraggable{
     public float flyBoostFactor = 4;
     public int keyHoldTicks = 7;
     private boolean chroma = false;
-
-
-
-
 
     @Override
     public int getWidth() {
@@ -41,12 +34,9 @@ public class ToggleSprintSneak extends ModDraggable{
         }
     }
 
-
-
     @Override
     public void render(ScreenPosition pos) {
-        textToRender = mc.thePlayer.movementInput.getDisplayText();
+        textToRender = mc.thePlayer.movementInput.getSprintText();
         Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
-
     }
 }

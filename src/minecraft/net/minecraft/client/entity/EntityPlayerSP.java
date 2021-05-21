@@ -1,6 +1,6 @@
 package net.minecraft.client.entity;
 
-import bwp.mods.impl.togglesprint.BWPMovementInput;
+import bwp.mods.impl.togglemotion.BWPMovementInput;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -48,7 +48,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.MovementInput;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;

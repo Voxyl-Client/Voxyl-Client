@@ -35,4 +35,6 @@ public class Mod {
 		return isEnabled;
 	}
 
+
+	public void onToggle() { }
 }

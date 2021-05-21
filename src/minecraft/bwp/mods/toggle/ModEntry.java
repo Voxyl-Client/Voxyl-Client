@@ -25,7 +25,12 @@ public class ModEntry implements GuiListExtended.IGuiListEntry, Comparable<ModEn
         this.checkbox.xPosition = x + 200;
         this.checkbox.yPosition = y;
         this.checkbox.drawButton(Minecraft.getMinecraft(), mouseX, mouseY);
-        this.mod.setEnabled(this.checkbox.isChecked());
+        if (mod.isEnabled() != this.checkbox.isChecked()) {
+            this.mod.setEnabled(this.checkbox.isChecked());
+            mod.onToggle();
+        } else {
+            this.mod.setEnabled(this.checkbox.isChecked());
+        }
         gui.drawCenteredString(Minecraft.getMinecraft().fontRendererObj, name, x, y + 4, -1);
     }
 
