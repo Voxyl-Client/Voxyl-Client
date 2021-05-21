@@ -46,7 +46,12 @@ public class ModKeystrokes extends ModDraggable {
 			return keys;
 		}
 	}
-	
+
+	@Override
+	public boolean shouldUsePadding() {
+		return false;
+	}
+
 	private KeystrokesMode mode = KeystrokesMode.WASD_SPRINT_MOUSE;
 			
 	

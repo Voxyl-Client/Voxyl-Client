@@ -15,4 +15,7 @@ public interface IRenderer extends IRenderConfig {
 		return true;
 	}
 
+	default boolean shouldRender() { return true; }
+
+	default boolean shouldUsePadding() { return true; }
 }

@@ -1,12 +1,9 @@
 package bwp.gui.hud;
 
-import bwp.gui.UnicodeFontRenderer;
-import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Color;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -24,6 +21,7 @@ public class HUDConfigScreen extends GuiScreen {
 
 	private int nodeSize = 8;
 
+	private int padding = 8;
 
 	public HUDConfigScreen(HUDManager api) {
 		
@@ -36,16 +34,12 @@ public class HUDConfigScreen extends GuiScreen {
 			ScreenPosition pos = ren.load();
 			
 			if (pos == null) {
-        				pos = ScreenPosition.fromRelativePosition(0.5, 0.5, 1F);
+				pos = ScreenPosition.fromRelativePosition(0.5, 0.5, 1F);
 			}
 			adjustBounds(ren, pos);
 			this.renderers.put(ren, pos);
 		}
 	}
-
-
-
-
 		
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -58,29 +52,41 @@ public class HUDConfigScreen extends GuiScreen {
 		this.drawHollowRect(0, 0, this.width - 1, this.height - 1, 0xFFFF0200);
 			
 		for(IRenderer renderer : renderers.keySet()) {
-			ScreenPosition pos = renderers.get(renderer);
-				
-			renderer.renderDummy(pos);
-				
-			this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), (int) (renderer.getWidth() * pos.getScale()), (int) (renderer.getHeight() * pos.getScale()), 0xFF00FFFF);
+			if (renderer.shouldRender()) {
+				ScreenPosition pos = renderers.get(renderer);
 
-			int absX = pos.getAbsoluteX();
-			int absY = pos.getAbsoluteY();
+				renderer.renderDummy(pos);
 
-			int color;
-			if (pos.getScale() > 0.5) color = 0xFF00FFFF;
-			else color = 0xFFFF0000;
-			this.drawHollowRect(absX, absY - (nodeSize + 4), nodeSize, nodeSize, color);
+				int absX = pos.getAbsoluteX();
+				int absY = pos.getAbsoluteY();
 
-			if (pos.getScale() < 2) color = 0xFF00FFFF;
-			else color = 0xFFFF0000;
-			this.drawHollowRect(absX + nodeSize + 4, absY - (nodeSize + 4), nodeSize, nodeSize, color);
+				int color;
+
+				if (pos.getScale() > 0.5) color = 0xFF00FFFF;
+				else color = 0xFFFF0000;
+
+				if (renderer.shouldUsePadding()) {
+					this.drawHollowRect(pos.getAbsoluteX() - padding, pos.getAbsoluteY() - padding, (int) (renderer.getWidth() * pos.getScale()) + padding * 2, (int) (renderer.getHeight() * pos.getScale()) + padding * 2, 0xFF00FFFF);
+
+					this.drawHollowRect(absX - padding, absY - (nodeSize + 4) - padding, nodeSize, nodeSize, color);
+
+					if (pos.getScale() < 2) color = 0xFF00FFFF;
+					else color = 0xFFFF0000;
+					this.drawHollowRect(absX - padding + nodeSize + 4, absY - (nodeSize + 4) - padding, nodeSize, nodeSize, color);
+				} else {
+					this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), (int) (renderer.getWidth() * pos.getScale()), (int) (renderer.getHeight() * pos.getScale()), 0xFF00FFFF);
+
+					this.drawHollowRect(absX, absY - (nodeSize + 4), nodeSize, nodeSize, color);
+
+					if (pos.getScale() < 2) color = 0xFF00FFFF;
+					else color = 0xFFFF0000;
+					this.drawHollowRect(absX + nodeSize + 4, absY - (nodeSize + 4), nodeSize, nodeSize, color);
+				}
+			}
 		}
 		
 		this.zLevel = zBackup;
-			
 	}
-
 
 	private void drawHollowRect(int x, int y, int w, int h, int color) {
 		this.drawHorizontalLine(x, x + w, y, color);
@@ -136,7 +142,7 @@ public class HUDConfigScreen extends GuiScreen {
 		
 		int screenWidth = res.getScaledWidth();
 		int screenHeight = res.getScaledHeight();
-		
+
 		int absoluteX = Math.max(0, Math.min(pos.getAbsoluteX(), Math.max(screenWidth - (int) (renderer.getWidth() * pos.getScale()), 0)));
 		int absoluteY = Math.max(0, Math.min(pos.getAbsoluteY(), Math.max(screenHeight - (int) (renderer.getHeight() * pos.getScale()), 0)));
 		
@@ -154,10 +160,18 @@ public class HUDConfigScreen extends GuiScreen {
 			IRenderer renderer = selectedRenderer.get();
 			ScreenPosition pos = renderers.get(renderer);
 
-			if (x >= pos.getAbsoluteX() && x <= pos.getAbsoluteX() + nodeSize && y >= pos.getAbsoluteY() - (nodeSize + 4) && y <= pos.getAbsoluteY() - 4) {
-				if (pos.getScale() > 0.5) pos.setScale((float) (pos.getScale() - 0.1));
-			} else if (x >= pos.getAbsoluteX() + nodeSize + 4 && x <= pos.getAbsoluteX() + 2 * nodeSize + 4 && y >= pos.getAbsoluteY() - (nodeSize + 4) && y <= pos.getAbsoluteY() - 4) {
-				if (pos.getScale() < 2) pos.setScale((float) (pos.getScale() + 0.1));
+			if (renderer.shouldUsePadding()) {
+				if (x >= pos.getAbsoluteX() - padding && x <= pos.getAbsoluteX() - padding + nodeSize && y >= pos.getAbsoluteY() - padding - (nodeSize + 4) && y <= pos.getAbsoluteY() - padding - 4) {
+					if (pos.getScale() > 0.5) pos.setScale((float) (pos.getScale() - 0.1));
+				} else if (x >= pos.getAbsoluteX() - padding + nodeSize + 4 && x <= pos.getAbsoluteX() - padding + 2 * nodeSize + 4 && y >= pos.getAbsoluteY() - padding - (nodeSize + 4) && y <= pos.getAbsoluteY() - padding - 4) {
+					if (pos.getScale() < 2) pos.setScale((float) (pos.getScale() + 0.1));
+				}
+			} else {
+				if (x >= pos.getAbsoluteX() && x <= pos.getAbsoluteX() + nodeSize && y >= pos.getAbsoluteY() - (nodeSize + 4) && y <= pos.getAbsoluteY() - 4) {
+					if (pos.getScale() > 0.5) pos.setScale((float) (pos.getScale() - 0.1));
+				} else if (x >= pos.getAbsoluteX() + nodeSize + 4 && x <= pos.getAbsoluteX() + 2 * nodeSize + 4 && y >= pos.getAbsoluteY() - (nodeSize + 4) && y <= pos.getAbsoluteY() - 4) {
+					if (pos.getScale() < 2) pos.setScale((float) (pos.getScale() + 0.1));
+				}
 			}
 		}
 	}
@@ -177,19 +191,23 @@ public class HUDConfigScreen extends GuiScreen {
 
 		@Override
 		public boolean test(IRenderer renderer) {
-
-
 			ScreenPosition pos = renderers.get(renderer);
 
 			int absoluteX = pos.getAbsoluteX();
 			int absoluteY = pos.getAbsoluteY();
 
-			if(mouseX >= absoluteX && mouseX <= (absoluteX + (pos.getScale() *renderer.getWidth()))) {
-
-				if(mouseY >= absoluteY - (nodeSize + 4) && mouseY <= (absoluteY + (pos.getScale() * renderer.getHeight()))) {
-					return true;
+			if (renderer.shouldUsePadding()) {
+				if (mouseX >= absoluteX - padding && mouseX <= (absoluteX + (pos.getScale() * renderer.getWidth())) + padding) {
+					if (mouseY >= absoluteY - (nodeSize + 4) - padding && mouseY <= (absoluteY + (pos.getScale() * renderer.getHeight())) + padding) {
+						return true;
+					}
 				}
-
+			} else {
+				if(mouseX >= absoluteX && mouseX <= (absoluteX + (pos.getScale() *renderer.getWidth()))) {
+					if(mouseY >= absoluteY - (nodeSize + 4) && mouseY <= (absoluteY + (pos.getScale() * renderer.getHeight()))) {
+						return true;
+					}
+				}
 			}
 
 			return false;
