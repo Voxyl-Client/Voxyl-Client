@@ -17,7 +17,7 @@ public class ModPerspective extends ModDraggable {
 
     private float cameraPitch = 0F;
 
-    private boolean chroma = true;
+    private boolean chroma = false;
 
     private int previousPerspective = 0; //previous f5 state
 
@@ -94,12 +94,11 @@ public class ModPerspective extends ModDraggable {
     public void render(ScreenPosition pos) {
         if(perspectiveToggled){
             if(chroma){
-                Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), true);
+                Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
             }
             else {
 
-
-                font.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+                Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
             }
 
         }
@@ -109,11 +108,11 @@ public class ModPerspective extends ModDraggable {
     @Override
     public void renderDummy(ScreenPosition pos){
         if(chroma){
-            Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), true);
+            Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
         else {
 
-            font.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), -1);
+            Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
     }
 

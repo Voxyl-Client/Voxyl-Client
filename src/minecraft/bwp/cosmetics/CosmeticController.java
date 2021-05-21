@@ -6,7 +6,7 @@ public class CosmeticController {
 
     public static boolean shouldRenderTopHat(AbstractClientPlayer player){
         //TODO - Redo With checking
-        return true;
+        return false;
 
     }
     public static float[] getTopHatColor(AbstractClientPlayer player){
@@ -16,7 +16,7 @@ public class CosmeticController {
     }
 
     public static boolean shouldRenderEyes(AbstractClientPlayer player){
-        return true;
+        return false;
     }
 
 }

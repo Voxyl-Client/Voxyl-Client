@@ -11,7 +11,7 @@ public interface IRenderer extends IRenderConfig {
 		render(pos);
 	}
 
-	public default boolean isEnabled() {
+	default boolean isEnabled() {
 		return true;
 	}
 
