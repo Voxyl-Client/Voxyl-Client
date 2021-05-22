@@ -43,6 +43,7 @@ public class GuiReportScreen extends GuiScreen{
             this.username.drawTextBox();
             Gui.drawCenteredString(mc.fontRendererObj, "Gui Settings", (int) (this.width / 2F), sr.getScaledHeight() / 2 - 65, -1);
             super.drawScreen(x2, y2, z2);
+           
         }
 
         @Override
