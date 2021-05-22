@@ -39,7 +39,6 @@ public class RoundedRectangle {
     }
 
 	public void roundedRectangle(int x, int y, int width, int height, int cornerRadius, Color color) {
-		// TODO Auto-generated method stub
         Gui.drawRect(x, y + cornerRadius, x + cornerRadius, y + height - cornerRadius, color.getRGB());
         Gui.drawRect(x + cornerRadius, y, x + width - cornerRadius, y + height, color.getRGB());
         Gui.drawRect(x + width - cornerRadius, y + cornerRadius, x + width, y + height - cornerRadius, color.getRGB());
