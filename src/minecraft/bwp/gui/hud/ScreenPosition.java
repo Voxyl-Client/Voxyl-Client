@@ -11,6 +11,8 @@ public class ScreenPosition {
 
     private float scale;
 
+    private boolean enabled = true;
+
     public ScreenPosition(double x, double y, float scale) {
         setRelative(x, y, scale);
     }
@@ -66,4 +68,11 @@ public class ScreenPosition {
         this.scale = scale;
     }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean getEnabled() {
+        return enabled;
+    }
 }

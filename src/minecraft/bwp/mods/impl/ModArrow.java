@@ -24,7 +24,6 @@ public class ModArrow extends ModDraggable{
 
 	@Override
 	public void render(ScreenPosition pos) {
-		
 
 		if(this.getRemainingArrows() < 1) {
 			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), Color.RED.getRGB(), true);

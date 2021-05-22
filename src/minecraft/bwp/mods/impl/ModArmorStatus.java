@@ -1,6 +1,5 @@
 package bwp.mods.impl;
 
-import bwp.mods.OnToggle;
 import bwp.utils.Render;
 
 import org.lwjgl.opengl.GL11;

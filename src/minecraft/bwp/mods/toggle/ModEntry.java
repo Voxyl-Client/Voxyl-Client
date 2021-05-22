@@ -1,6 +1,8 @@
 package bwp.mods.toggle;
 
+import bwp.FileManager;
 import bwp.mods.Mod;
+import bwp.mods.ModInstances;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiListExtended;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +19,6 @@ public class ModEntry implements GuiListExtended.IGuiListEntry, Comparable<ModEn
         name = StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(mod.getClass().getSimpleName().replace("Mod", "").replaceAll("\\d+", "")), " ");
         checkbox = new GuiCheckBox(0, 0, 0, mod.isEnabled());
         this.gui = inGui;
-
     }
 
     @Override

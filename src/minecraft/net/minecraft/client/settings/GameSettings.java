@@ -260,7 +260,7 @@ public class GameSettings
     private File optionsFileOF;
 
     public KeyBinding CLIENT_GUI_MOD_POS = new KeyBinding("Mod Central Keybind",Keyboard.KEY_RSHIFT, "Bedwars Practice Client");
-    public KeyBinding CLIENT_PERSPECTIVE = new KeyBinding("Toggle Perspective", Keyboard.KEY_F, "Bedwars Practice Client");
+    public KeyBinding CLIENT_PERSPECTIVE = new KeyBinding("Toggle Perspective", Keyboard.KEY_G, "Bedwars Practice Client");
     public KeyBinding CLIENT_LOGIN = new KeyBinding("Open login screen", Keyboard.KEY_0, "Bedwars Practice Client");
 
     public GameSettings(Minecraft mcIn, File p_i46326_2_)

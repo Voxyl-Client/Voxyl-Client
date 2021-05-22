@@ -1,6 +1,7 @@
 package bwp.mods;
 
 import bwp.FileManager;
+import bwp.event.EventManager;
 import bwp.gui.hud.IRenderer;
 import bwp.gui.hud.ScreenPosition;
 
@@ -14,26 +15,28 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 		pos = loadPositionFromFile();
 	}
 
-
-
-
 	@Override
 	public void save(ScreenPosition pos) {
 		this.pos = pos;
 		savePositionToFile();
-
 	}
 
 	private File getBaseFolder() {
 		File file = new File(FileManager.getModsDirectory(), this.getClass().getSimpleName());
 		file.mkdirs();
 		return file;
-
 	}
 
 	private void savePositionToFile() {
 		FileManager.writeJsonToFile(new File(getBaseFolder(), "pos.json"), pos);
+	}
 
+	@Override
+	public void onToggle() {
+		if (pos != null) {
+			pos.setEnabled(isEnabled());
+			savePositionToFile();
+		}
 	}
 
 	@Override
@@ -41,24 +44,20 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 		return pos;
 	}
 	private ScreenPosition loadPositionFromFile() {
-
-
-
-			ScreenPosition loaded = FileManager.readFromJson(new File(getBaseFolder(), "pos.json"), ScreenPosition.class);
+		ScreenPosition loaded = FileManager.readFromJson(new File(getBaseFolder(), "pos.json"), ScreenPosition.class);
 
 		if(loaded == null){
 			loaded = ScreenPosition.fromRelativePosition(0.5, 0.5, 1F);
+			loaded.setEnabled(true);
 			this.pos = loaded;
 			savePositionToFile();
 		}
 
+		this.setEnabled(loaded.getEnabled());
+
 		return loaded;
 
 	}
-
-
-
-
 	
 	public final int getLineOffset(ScreenPosition pos, int lineNum) {
 		return pos.getAbsoluteY() + getLineOffset(lineNum);

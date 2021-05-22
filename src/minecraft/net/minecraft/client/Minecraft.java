@@ -5,7 +5,7 @@ import bwp.event.impl.ClientTickEvent;
 import bwp.event.impl.KeyPressEvent;
 import bwp.event.impl.WorldUnloadEvent;
 import bwp.gui.SplashProgress;
-import bwp.mods.impl.togglesprint.BWPMovementInput;
+import bwp.mods.impl.togglemotion.BWPMovementInput;
 import com.google.common.collect.*;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
