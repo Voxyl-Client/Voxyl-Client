@@ -21,9 +21,13 @@ public class ModPerspective extends ModDraggable {
 
     private int previousPerspective = 0; //previous f5 state
 
+    private long lastPressed = 0;
+
     @EventTarget
     public void keyBoardEvent(KeyPressEvent e) {
         if (e.getKey() == mc.gameSettings.CLIENT_PERSPECTIVE.getKeyCode()) {
+            if (this.lastPressed + 200 > System.currentTimeMillis()) return;
+            this.lastPressed = System.currentTimeMillis();
             if (Keyboard.getEventKeyState()) {
                 perspectiveToggled = !perspectiveToggled;
 
@@ -37,7 +41,6 @@ public class ModPerspective extends ModDraggable {
                     mc.gameSettings.thirdPersonView = previousPerspective;
                 }
             } else if (returnOnRelease) {
-
                 perspectiveToggled = false;
                 mc.gameSettings.thirdPersonView = previousPerspective;
             }

@@ -1,9 +1,12 @@
 package bwp.gui.hud;
 
+import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -16,6 +19,7 @@ public class HUDConfigScreen extends GuiScreen {
 	private final HashMap<IRenderer, ScreenPosition> renderers = new HashMap<IRenderer, ScreenPosition>();
 	
 	private Optional<IRenderer> selectedRenderer = Optional.empty();
+	private Optional<IRenderer> hoveredRenderer = Optional.empty();
 	
 	private int prevX, prevY;
 
@@ -48,6 +52,11 @@ public class HUDConfigScreen extends GuiScreen {
 			
 		final float zBackup = this.zLevel;
 		this.zLevel = 200;
+
+		int x = Mouse.getEventX() * this.width / this.mc.displayWidth;
+		int y = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
+
+		this.hoveredRenderer = renderers.keySet().stream().filter(new MouseOverFinder(x, y)).findFirst();
 			
 		this.drawHollowRect(0, 0, this.width - 1, this.height - 1, 0xFFFF0200);
 			
@@ -55,18 +64,20 @@ public class HUDConfigScreen extends GuiScreen {
 			if (renderer.shouldRender()) {
 				ScreenPosition pos = renderers.get(renderer);
 
-				renderer.renderDummy(pos);
-
 				int absX = pos.getAbsoluteX();
 				int absY = pos.getAbsoluteY();
 
 				int color;
+				int backgroundColor = 0x1400FFFF;
 
 				if (pos.getScale() > 0.5) color = 0xFF00FFFF;
 				else color = 0xFFFF0000;
 
 				if (renderer.shouldUsePadding()) {
 					this.drawHollowRect(pos.getAbsoluteX() - padding, pos.getAbsoluteY() - padding, (int) (renderer.getWidth() * pos.getScale()) + padding * 2, (int) (renderer.getHeight() * pos.getScale()) + padding * 2, 0xFF00FFFF);
+					if (this.hoveredRenderer.isPresent()) {
+						if (renderer == this.hoveredRenderer.get()) Gui.drawRect(pos.getAbsoluteX() - padding, pos.getAbsoluteY() - padding, (int) (renderer.getWidth() * pos.getScale()) + padding * 2, (int) (renderer.getHeight() * pos.getScale()) + padding * 2, backgroundColor);
+					}
 
 					this.drawHollowRect(absX - padding, absY - (nodeSize + 4) - padding, nodeSize, nodeSize, color);
 
@@ -75,6 +86,9 @@ public class HUDConfigScreen extends GuiScreen {
 					this.drawHollowRect(absX - padding + nodeSize + 4, absY - (nodeSize + 4) - padding, nodeSize, nodeSize, color);
 				} else {
 					this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), (int) (renderer.getWidth() * pos.getScale()), (int) (renderer.getHeight() * pos.getScale()), 0xFF00FFFF);
+					if (this.hoveredRenderer.isPresent()) {
+						if (renderer == this.hoveredRenderer.get()) Gui.drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), (int) (renderer.getWidth() * pos.getScale()), (int) (renderer.getHeight() * pos.getScale()), backgroundColor);
+					}
 
 					this.drawHollowRect(absX, absY - (nodeSize + 4), nodeSize, nodeSize, color);
 
@@ -82,6 +96,8 @@ public class HUDConfigScreen extends GuiScreen {
 					else color = 0xFFFF0000;
 					this.drawHollowRect(absX + nodeSize + 4, absY - (nodeSize + 4), nodeSize, nodeSize, color);
 				}
+
+				renderer.renderDummy(pos);
 			}
 		}
 		
