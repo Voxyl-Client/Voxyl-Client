@@ -1,13 +1,18 @@
 package bwp.gui.hud;
 
-import bwp.utils.Render;
+import bwp.utils.*;
+import bwp.utils.Rectangle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.IChatComponent;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL21;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -68,30 +73,38 @@ public class HUDConfigScreen extends GuiScreen {
 				int absY = pos.getAbsoluteY();
 
 				int color;
-				int backgroundColor = 0x1400FFFF;
 
 				if (pos.getScale() > 0.5) color = 0xFF00FFFF;
 				else color = 0xFFFF0000;
 
+				Color backgroundColor = ColorUtils.fromHex("#2400FFFF");
+				if (this.hoveredRenderer.isPresent()) {
+					if (renderer == this.hoveredRenderer.get()) backgroundColor = ColorUtils.fromHex("#3D00FFFF");
+				}
+
 				if (renderer.shouldUsePadding()) {
 					this.drawHollowRect(pos.getAbsoluteX() - padding, pos.getAbsoluteY() - padding, (int) (renderer.getWidth() * pos.getScale()) + padding * 2, (int) (renderer.getHeight() * pos.getScale()) + padding * 2, 0xFF00FFFF);
-					if (this.hoveredRenderer.isPresent()) {
-						if (renderer == this.hoveredRenderer.get()) Gui.drawRect(pos.getAbsoluteX() - padding, pos.getAbsoluteY() - padding, (int) (renderer.getWidth() * pos.getScale()) + padding * 2, (int) (renderer.getHeight() * pos.getScale()) + padding * 2, backgroundColor);
-					}
 
+					// Background
+					Rectangle.render(pos.getAbsoluteX() - padding, pos.getAbsoluteY() - padding, pos.getAbsoluteX() + (int) (renderer.getWidth() * pos.getScale()) + padding, pos.getAbsoluteY() + (int) (renderer.getHeight() * pos.getScale()) + padding, backgroundColor);
+
+					// Scale down
 					this.drawHollowRect(absX - padding, absY - (nodeSize + 4) - padding, nodeSize, nodeSize, color);
 
+					// Scale up
 					if (pos.getScale() < 2) color = 0xFF00FFFF;
 					else color = 0xFFFF0000;
 					this.drawHollowRect(absX - padding + nodeSize + 4, absY - (nodeSize + 4) - padding, nodeSize, nodeSize, color);
 				} else {
 					this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), (int) (renderer.getWidth() * pos.getScale()), (int) (renderer.getHeight() * pos.getScale()), 0xFF00FFFF);
-					if (this.hoveredRenderer.isPresent()) {
-						if (renderer == this.hoveredRenderer.get()) Gui.drawRect(pos.getAbsoluteX(), pos.getAbsoluteY(), (int) (renderer.getWidth() * pos.getScale()), (int) (renderer.getHeight() * pos.getScale()), backgroundColor);
-					}
 
+					// Background
+					Rectangle.render(pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getAbsoluteX() + (int) (renderer.getWidth() * pos.getScale()), pos.getAbsoluteY() + (int) (renderer.getHeight() * pos.getScale()), backgroundColor);
+
+					// Scale down
 					this.drawHollowRect(absX, absY - (nodeSize + 4), nodeSize, nodeSize, color);
 
+					// Scale up
 					if (pos.getScale() < 2) color = 0xFF00FFFF;
 					else color = 0xFFFF0000;
 					this.drawHollowRect(absX + nodeSize + 4, absY - (nodeSize + 4), nodeSize, nodeSize, color);

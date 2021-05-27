@@ -51,9 +51,6 @@ public class GuiModMain extends GuiScreen{
 
 
 	        Keyboard.enableRepeatEvents(true);
-
-
-
 	    }
 
 
