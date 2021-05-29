@@ -615,6 +615,7 @@ public abstract class ServerConfigurationManager
                 p_82448_4_.spawnEntityInWorld(entityIn);
                 p_82448_4_.updateEntityWithOptionalForce(entityIn, false);
             }
+
             p_82448_3_.theProfiler.endSection();
         }
 

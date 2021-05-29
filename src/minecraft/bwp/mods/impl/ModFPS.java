@@ -26,6 +26,7 @@ public class ModFPS extends ModDraggable{
 	public void render(ScreenPosition pos) {
 		if (isChroma) {
 
+
 			Render.drawChromaString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
 		}
 		else {

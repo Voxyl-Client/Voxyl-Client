@@ -8,6 +8,7 @@ import bwp.gui.GuiErrorLogin;
 import bwp.gui.GuiLogin;
 import bwp.gui.GuiModMain;
 import bwp.gui.GuiModRescale;
+import bwp.gui.main.MainGui;
 import bwp.mods.toggle.GuiModToggle;
 import com.google.common.collect.Sets;
 import com.mojang.authlib.exceptions.AuthenticationException;
@@ -134,9 +135,15 @@ public class HUDManager {
 
 	}
 	public void openMainScreen(){
+		/*
 		GuiModRescale guiModRescale = new GuiModRescale(mc.currentScreen);
 		guiModRescale.initGui();
 		mc.displayGuiScreen(guiModRescale);
+		*/
+		MainGui guiMain = new MainGui(mc.currentScreen);
+		guiMain.initGui();
+		mc.displayGuiScreen(guiMain);
+		
 	}
 
 	

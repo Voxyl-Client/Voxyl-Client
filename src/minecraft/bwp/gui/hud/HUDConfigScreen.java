@@ -1,18 +1,16 @@
 package bwp.gui.hud;
 
-import bwp.utils.*;
+import bwp.utils.ColorUtils;
 import bwp.utils.Rectangle;
+import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.IChatComponent;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL21;
 
-import java.awt.*;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -76,6 +74,8 @@ public class HUDConfigScreen extends GuiScreen {
 
 				if (pos.getScale() > 0.5) color = 0xFF00FFFF;
 				else color = 0xFFFF0000;
+				
+				
 
 				Color backgroundColor = ColorUtils.fromHex("#2400FFFF");
 				if (this.hoveredRenderer.isPresent()) {

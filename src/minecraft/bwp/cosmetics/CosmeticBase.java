@@ -16,6 +16,7 @@ public abstract class CosmeticBase implements LayerRenderer<AbstractClientPlayer
         if(player.hasPlayerInfo() && !player.isInvisible()){
             render(player, limbSwing,limbSwingRight, partialTicks,ageInTicks, netHeadYaw, headPitch,scale);
         }
+
     }
 
     public abstract void render(AbstractClientPlayer player, float limbSwing, float limbSwingRight, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale);

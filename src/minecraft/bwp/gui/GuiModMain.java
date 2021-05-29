@@ -2,6 +2,7 @@ package bwp.gui;
 
 
 import bwp.gui.hud.HUDManager;
+import bwp.utils.BWPUtils;
 import bwp.utils.ClientButtons;
 import bwp.utils.RoundedRect;
 import net.minecraft.client.Minecraft;
@@ -19,6 +20,7 @@ public class GuiModMain extends GuiScreen{
     private final GuiScreen previousScreen;
     private Minecraft mc = Minecraft.getMinecraft();
     private HUDManager hudManager = HUDManager.getInstance();
+    BWPUtils bwpUtils = new BWPUtils();
 
     
 
@@ -41,6 +43,8 @@ public class GuiModMain extends GuiScreen{
 
 	        Gui.drawCenteredString(mc.fontRendererObj, "Gui Settings", (int) (this.width / 2F), sr.getScaledHeight() / 2 - 65, -1);
 	        super.drawScreen(x2, y2, z2);
+
+	        bwpUtils.drawEntityOnScreen(100,100, 100, 1, mc.thePlayer);
 	    }
 
 	    @Override
@@ -48,9 +52,13 @@ public class GuiModMain extends GuiScreen{
 
 	        ScaledResolution sr = new ScaledResolution(mc);
 	        this.buttonList.clear();
+	        bwpUtils.drawEntityOnScreen(100,100, 100, 1, mc.thePlayer);
 
 
 	        Keyboard.enableRepeatEvents(true);
+
+
+
 	    }
 
 
