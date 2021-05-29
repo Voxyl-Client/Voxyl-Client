@@ -2,6 +2,8 @@ package bwp.gui.hud;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+import org.newdawn.slick.opengl.GLUtils;
 
 
 public class ScreenPosition {

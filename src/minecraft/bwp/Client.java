@@ -8,6 +8,7 @@ import bwp.gui.hud.HUDManager;
 import bwp.mods.ModInstances;
 import bwp.mods.toggle.ModEntry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 
 public class Client {
 	
