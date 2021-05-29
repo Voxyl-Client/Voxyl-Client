@@ -1,7 +1,6 @@
 package bwp.gui.hud;
 
 public interface IRenderer extends IRenderConfig {
-	
 	int getWidth();
 	int getHeight();
 	
