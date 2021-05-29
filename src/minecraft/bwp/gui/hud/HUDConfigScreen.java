@@ -1,15 +1,20 @@
 package bwp.gui.hud;
 
+
 import bwp.gui.hud.snapping.SnappingArea;
 import bwp.gui.hud.snapping.SnappingDirection;
 import bwp.gui.hud.snapping.SnappingZone;
 import bwp.utils.*;
+
 import bwp.utils.Rectangle;
+import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+
+
 
 import java.io.IOException;
 import java.awt.Color;
@@ -111,6 +116,8 @@ public class HUDConfigScreen extends GuiScreen {
 
 				if (pos.getScale() > 0.5) color = 0xFF00FFFF;
 				else color = 0xFFFF0000;
+				
+				
 
 				Color backgroundColor = ColorUtils.fromHex("#2400FFFF");
 				if (this.hoveredRenderer.isPresent()) {
@@ -376,4 +383,5 @@ public class HUDConfigScreen extends GuiScreen {
 			return false;
 		}
 	}
+
 }
