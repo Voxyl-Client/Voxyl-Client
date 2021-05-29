@@ -59,7 +59,6 @@ public class Client {
 
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
 			hudManager.openMainScreen();
-			System.out.println(mc.currentScreen);
 
 
 		}
@@ -68,10 +67,9 @@ public class Client {
 
 
 		}
-		
-		
 
 
-
+		prevPosX = mc.displayHeight;
+		prevPosY = mc.displayWidth;
 	}
 }

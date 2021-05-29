@@ -72,7 +72,7 @@ public class MainGui extends GuiScreen {
 	        
 	        
 	        
-	       //(newX , newY, newWidth, newHeight, 5, Color.decode("#3A3636"));
+	        //roundedRectangle(newX , newY, newWidth, newHeight, 5, Color.decode("#3A3636"));
 	        super.drawScreen(x2, y2, z2);
 	    }
 	    

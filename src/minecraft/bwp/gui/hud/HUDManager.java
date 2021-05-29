@@ -135,15 +135,11 @@ public class HUDManager {
 
 	}
 	public void openMainScreen(){
-		/*
-		GuiModRescale guiModRescale = new GuiModRescale(mc.currentScreen);
-		guiModRescale.initGui();
-		mc.displayGuiScreen(guiModRescale);
-		*/
+
 		MainGui guiMain = new MainGui(mc.currentScreen);
 		guiMain.initGui();
 		mc.displayGuiScreen(guiMain);
-		
+
 	}
 
 	
