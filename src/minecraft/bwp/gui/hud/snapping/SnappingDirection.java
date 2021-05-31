@@ -1,5 +1,5 @@
 package bwp.gui.hud.snapping;
 
 public enum SnappingDirection {
-    VERTICAL, HORIZONTAL
+    VERTICAL, HORIZONTAL, NONE
 }

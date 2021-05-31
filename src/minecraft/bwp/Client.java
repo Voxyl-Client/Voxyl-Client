@@ -9,6 +9,7 @@ import bwp.mods.ModInstances;
 import bwp.mods.toggle.ModEntry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import org.lwjgl.LWJGLUtil;
 
 public class Client {
 	

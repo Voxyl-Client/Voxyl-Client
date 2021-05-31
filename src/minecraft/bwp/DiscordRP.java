@@ -10,56 +10,53 @@ public class DiscordRP {
 	
 	private boolean running = true;
 	private long created = 0;
+
+	private boolean isMac = System.getProperty("os.name").equals("Mac OS X");
 	
 	public void start() {
-		this.created = System.currentTimeMillis();
-		
-		DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(new ReadyCallback() {
-			
-			@Override
-			public void apply(DiscordUser user) {
-				System.out.println("Welcome "+ user.username + "#"+ user.discriminator+".");
-				update("Booting up...","", "large");
-				
-				
-				
-			}
-		}).build();
-		
-		DiscordRPC.discordInitialize("832921057698512918", handlers, true);
-		
-		new Thread("Discord RPC Callback") {
-			
-			@Override
-			public void run() {
-				while(running) {
-					
-					DiscordRPC.discordRunCallbacks();
+		if (!isMac) {
+			this.created = System.currentTimeMillis();
+
+			DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(new ReadyCallback() {
+
+				@Override
+				public void apply(DiscordUser user) {
+					System.out.println("Welcome " + user.username + "#" + user.discriminator + ".");
+					update("Booting up...", "", "large");
 				}
-			}
-			
-		}.start();
-		
-			
+			}).build();
+
+			DiscordRPC.discordInitialize("832921057698512918", handlers, true);
+
+			new Thread("Discord RPC Callback") {
+
+				@Override
+				public void run() {
+					while (running) {
+						DiscordRPC.discordRunCallbacks();
+					}
+				}
+
+			}.start();
 		}
+	}
 		
 	public void shutdown() {
-		
-		running = false;
-		DiscordRPC.discordShutdown();
-		
-		
+		if (!isMac) {
+			running = false;
+			DiscordRPC.discordShutdown();
+		}
 	}
 	public void update(String firstLine, String secondLine, String image) {
-		
-		DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(secondLine);
-		b.setBigImage("large", "BWP Client");
-		b.setSmallImage(image, "Made by ambmt");
-		b.setDetails(firstLine);
-		b.setStartTimestamps(created);
-	
-		DiscordRPC.discordUpdatePresence(b.build());
-		
+		if (!isMac) {
+			DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(secondLine);
+			b.setBigImage("large", "BWP Client");
+			b.setSmallImage(image, "Made by ambmt");
+			b.setDetails(firstLine);
+			b.setStartTimestamps(created);
+
+			DiscordRPC.discordUpdatePresence(b.build());
+		}
 	}
 }
 

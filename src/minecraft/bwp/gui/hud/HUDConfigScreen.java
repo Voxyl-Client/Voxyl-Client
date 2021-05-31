@@ -31,34 +31,28 @@ public class HUDConfigScreen extends GuiScreen {
 	private Optional<IRenderer> selectedRenderer = Optional.empty();
 	private Optional<IRenderer> hoveredRenderer = Optional.empty();
 
-	private int lastScreenX;
-	private int lastScreenY;
-
 	int snappingLineColor = 0xFFFF0200;
 
 	// Deal with area of shape too.
 	private SnappingZone[] snappingZones = new SnappingZone[] {
-			new SnappingZone(0.0F, SnappingDirection.HORIZONTAL, SnappingArea.SIDES, snappingLineColor),
-			new SnappingZone(0.1F, SnappingDirection.HORIZONTAL, SnappingArea.SIDES, snappingLineColor),
-			new SnappingZone(0.25F, SnappingDirection.HORIZONTAL, SnappingArea.SIDES, snappingLineColor),
+			new SnappingZone(0F, SnappingDirection.HORIZONTAL, SnappingArea.SIDES, snappingLineColor),
 			new SnappingZone(0.5F, SnappingDirection.HORIZONTAL, SnappingArea.CENTER, snappingLineColor),
-			new SnappingZone(0.75F, SnappingDirection.HORIZONTAL, SnappingArea.SIDES, snappingLineColor),
-			new SnappingZone(0.9F, SnappingDirection.HORIZONTAL, SnappingArea.SIDES, snappingLineColor),
 			new SnappingZone(1F, SnappingDirection.HORIZONTAL, SnappingArea.SIDES, snappingLineColor),
-			new SnappingZone(0.0F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor),
-			new SnappingZone(0.1F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor),
-			new SnappingZone(0.25F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor),
+			new SnappingZone(0F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor),
 			new SnappingZone(0.5F, SnappingDirection.VERTICAL, SnappingArea.CENTER, snappingLineColor),
-			new SnappingZone(0.75F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor),
-			new SnappingZone(0.9F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor),
-			new SnappingZone(1F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor)
+			new SnappingZone(1F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor),
 	};
 	
 	private int prevX, prevY;
 
-	private int nodeSize = 8;
+	private final int nodeSize = 8;
 
-	private int padding = 8;
+	private final int padding = 5;
+
+	private final int halfSnapzoneWidth = 3;
+
+	private int displacementX = 0;
+	private int displacementY = 0;
 
 	public HUDConfigScreen(HUDManager api) {
 		
@@ -82,7 +76,7 @@ public class HUDConfigScreen extends GuiScreen {
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
 		super.drawDefaultBackground();
-			
+
 		final float zBackup = this.zLevel;
 		this.zLevel = 200;
 
@@ -116,12 +110,12 @@ public class HUDConfigScreen extends GuiScreen {
 
 				if (pos.getScale() > 0.5) color = 0xFF00FFFF;
 				else color = 0xFFFF0000;
-				
-				
 
 				Color backgroundColor = ColorUtils.fromHex("#2400FFFF");
 				if (this.hoveredRenderer.isPresent()) {
-					if (renderer == this.hoveredRenderer.get()) backgroundColor = ColorUtils.fromHex("#3D00FFFF");
+					if (renderer == this.hoveredRenderer.get()) {
+						backgroundColor = ColorUtils.fromHex("#3D00FFFF");
+					}
 				}
 
 				if (renderer.shouldUsePadding()) {
@@ -183,15 +177,24 @@ public class HUDConfigScreen extends GuiScreen {
 				if (this.hoveredRenderer.isPresent() && zone.getRendererToSnap() != null)
 					if (zone.getRendererToSnap().equals(this.hoveredRenderer.get())) { zone.removeRendererToSnap(); }
 			}
+
+			displacementX = 0;
+			displacementY = 0;
 		}
 	}
 
 	@Override
 	protected void mouseClickMove(int x, int y, int button, long time) {
+		int offsetX = x - prevX;
+		int offsetY = y - prevY;
+
 		if(selectedRenderer.isPresent()) {
-			moveSelectedRenderBy(x - prevX, y - prevY);
+			moveSelectedRenderBy(offsetX, offsetY);
 		}
-		
+
+		displacementX += offsetX;
+		displacementY += offsetY;
+
 		this.prevX = x;
 		this.prevY = y;
 	}
@@ -208,7 +211,13 @@ public class HUDConfigScreen extends GuiScreen {
 
 		boolean didSnap = false;
 
+		SnappingZone snappedZone = null;
+
 		adjustBounds(renderer, pos);
+
+		int adjPadding = padding;
+
+		if (!renderer.shouldUsePadding()) adjPadding = 0;
 
 		for (SnappingZone zone : snappingZones) {
 			if (zone.getSnappingArea() == SnappingArea.CENTER) {
@@ -216,64 +225,67 @@ public class HUDConfigScreen extends GuiScreen {
 				adjY = newY + (int) (renderer.getHeight() * pos.getScale()) / 2;
 			} else if (zone.getSnappingArea() == SnappingArea.SIDES) {
 				if (pos.getAbsoluteX() > screenWidth / 2) {
-					adjX = newX + (int) (renderer.getWidth() * pos.getScale()) + padding;
+					adjX = newX + (int) (renderer.getWidth() * pos.getScale()) + adjPadding;
 				} else {
-					adjX = newX - padding;
+					adjX = newX - adjPadding;
 				}
 				adjY = newY;
 			} else if (zone.getSnappingArea() == SnappingArea.T_SIDES) {
-				if (pos.getAbsoluteY() > screenHeight / 2) {
-					adjY = newY + (int) (renderer.getHeight() * pos.getScale()) + padding;
+				if (pos.getAbsoluteY() > screenHeight / halfSnapzoneWidth) {
+					adjY = newY + (int) (renderer.getHeight() * pos.getScale()) + adjPadding;
 				} else {
-					adjY = newY - padding;
+					adjY = newY - adjPadding;
 				}
 				adjX = newX;
 			}
 
 			boolean shouldBind = false;
 			if (zone.getDirection() == SnappingDirection.VERTICAL) {
-				if (Math.abs(adjY - zone.getPixelLoc()) <= 3) shouldBind = true;
+				if (Math.abs(adjY - zone.getPixelLoc()) <= halfSnapzoneWidth) shouldBind = true;
 				if (shouldBind) {
-					if (zone.getRendererSnapped() != renderer) {
-						int snappedY = zone.getPixelLoc();
+					int snappedY = zone.getPixelLoc();
 
-						if (zone.getSnappingArea() == SnappingArea.CENTER) {
-							snappedY = zone.getPixelLoc() - (int) (renderer.getHeight() * pos.getScale()) / 2;
-						} else if (zone.getSnappingArea() == SnappingArea.T_SIDES) {
-							if (pos.getAbsoluteX() > screenHeight / 2) {
-								snappedY = zone.getPixelLoc() - (int) (renderer.getHeight() * pos.getScale()) - padding;
-							} else {
-								snappedY = zone.getPixelLoc() + padding;
-							}
+					if (zone.getSnappingArea() == SnappingArea.CENTER) {
+						snappedY = zone.getPixelLoc() - (int) (renderer.getHeight() * pos.getScale()) / 2;
+					} else if (zone.getSnappingArea() == SnappingArea.T_SIDES) {
+						if (pos.getAbsoluteX() > screenHeight / 2) {
+							snappedY = zone.getPixelLoc() - (int) (renderer.getHeight() * pos.getScale()) - adjPadding;
+						} else {
+							snappedY = zone.getPixelLoc() + adjPadding;
 						}
+					}
+
+					if (zone.getRendererSnapped() != renderer) {
 						pos.setAbsolute(pos.getAbsoluteX(), snappedY, pos.getScale());
 						zone.setSnappedRenderer(renderer);
 						didSnap = true;
 					}
+					snappedZone = zone;
 				} else {
 					if (zone.getRendererSnapped() == renderer) {
 						zone.setSnappedRenderer(null);
 					}
 				}
 			} else if (zone.getDirection() == SnappingDirection.HORIZONTAL) {
-				if (Math.abs(adjX - zone.getPixelLoc()) <= 2) shouldBind = true;
+				if (Math.abs(adjX - zone.getPixelLoc()) <= halfSnapzoneWidth) shouldBind = true;
 				if (shouldBind) {
-					if (zone.getRendererSnapped() != renderer) {
-						int snappedX = zone.getPixelLoc();
+					int snappedX = zone.getPixelLoc();
 
-						if (zone.getSnappingArea() == SnappingArea.CENTER) {
-							snappedX = zone.getPixelLoc() - (int) (renderer.getWidth() * pos.getScale()) / 2;
-						} else if (zone.getSnappingArea() == SnappingArea.SIDES) {
-							if (pos.getAbsoluteX() > screenWidth / 2) {
-								snappedX = zone.getPixelLoc() - (int) (renderer.getWidth() * pos.getScale()) - padding;
-							} else {
-								snappedX = zone.getPixelLoc() + padding;
-							}
+					if (zone.getSnappingArea() == SnappingArea.CENTER) {
+						snappedX = zone.getPixelLoc() - (int) (renderer.getWidth() * pos.getScale()) / 2;
+					} else if (zone.getSnappingArea() == SnappingArea.SIDES) {
+						if (pos.getAbsoluteX() > screenWidth / 2) {
+							snappedX = zone.getPixelLoc() - (int) (renderer.getWidth() * pos.getScale()) - adjPadding;
+						} else {
+							snappedX = zone.getPixelLoc() + adjPadding;
 						}
+					}
+					if (zone.getRendererSnapped() != renderer) {
 						pos.setAbsolute(snappedX, pos.getAbsoluteY(), pos.getScale());
 						zone.setSnappedRenderer(renderer);
 						didSnap = true;
 					}
+					snappedZone = zone;
 				} else {
 					if (zone.getRendererSnapped() == renderer) {
 						zone.setSnappedRenderer(null);
@@ -290,7 +302,35 @@ public class HUDConfigScreen extends GuiScreen {
 		}
 
 		if (!didSnap) {
-			pos.setAbsolute(newX, newY, pos.getScale());
+			if (snappedZone != null) {
+				if (Math.abs(displacementY) >= halfSnapzoneWidth * 2 && snappedZone.getDirection() == SnappingDirection.VERTICAL) {
+					int movementOffset = 0;
+					if (displacementY > 0) {
+						movementOffset = halfSnapzoneWidth * 2;
+					} else if (displacementY < 0) {
+						movementOffset = - (halfSnapzoneWidth * 2);
+					}
+
+					pos.setAbsolute(newX, newY + movementOffset, pos.getScale());
+				} else if (Math.abs(displacementX) >= halfSnapzoneWidth * 2 && snappedZone.getDirection() == SnappingDirection.HORIZONTAL) {
+					int movementOffset = 0;
+					if (displacementX > 0) {
+						movementOffset = halfSnapzoneWidth * 2;
+					} else if (displacementX < 0) {
+						movementOffset = - (halfSnapzoneWidth * 2);
+					}
+					pos.setAbsolute(newX + movementOffset, newY, pos.getScale());
+				} else if (snappedZone.getDirection() == SnappingDirection.HORIZONTAL) {
+					pos.setAbsolute(pos.getAbsoluteX(), newY, pos.getScale());
+				} else {
+					pos.setAbsolute(newX, pos.getAbsoluteY(), pos.getScale());
+				}
+			} else {
+				pos.setAbsolute(newX, newY, pos.getScale());
+			}
+		} else {
+			displacementX = 0;
+			displacementY = 0;
 		}
 	}
 	
