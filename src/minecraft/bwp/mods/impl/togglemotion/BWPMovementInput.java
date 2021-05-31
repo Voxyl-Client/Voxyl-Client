@@ -179,10 +179,10 @@ public class BWPMovementInput extends MovementInput {
         else if(sprint && !isFlying && !isRiding){
             if(isHoldingSprint){
 
-                displayText += "[Sprinting (Key Held)]  ";
+                displayText += "[Sprinting (Held)]  ";
             }
             else{
-                displayText += "[Sprinting (Key Toggled)]  ";
+                displayText += "[Sprinting (Toggled)]  ";
             }
         }
 
@@ -203,9 +203,9 @@ public class BWPMovementInput extends MovementInput {
                 displayText += "[Dismounting]  ";
             }
             else if(isHoldingSneak){
-                displayText += "[Sneaking (Key Held)]  ";
+                displayText += "[Sneaking (Held)]  ";
             }else{
-                displayText += "[Sneaking (Key Toggled)]  ";
+                displayText += "[Sneaking (Toggled)]  ";
             }
         }
 
