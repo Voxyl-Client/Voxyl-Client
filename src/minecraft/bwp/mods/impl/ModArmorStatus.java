@@ -10,7 +10,10 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import java.awt.*;
+
 public class ModArmorStatus extends ModDraggable {
+	private int color = -1;
 	
 
 
@@ -41,7 +44,19 @@ public class ModArmorStatus extends ModDraggable {
 		renderItemStack(0, new ItemStack(Items.leather_boots), pos);
 	}
 
-	private void renderItemStack(int i, ItemStack is,ScreenPosition position) {
+	@Override
+	public void changeColor(int colorin) {
+		color = colorin;
+
+	}
+
+	@Override
+	public int getColor() {
+
+		return color;
+	}
+
+	private void renderItemStack(int i, ItemStack is, ScreenPosition position) {
 		if (is == null) {
 			return;
 		}
@@ -49,7 +64,7 @@ public class ModArmorStatus extends ModDraggable {
 		int yAdd = (-16 * i) + 48;
 		if (is.getItem().isDamageable()) {
 			double damage = ((is.getMaxDamage() + is.getItemDamage()) / (double) is.getMaxDamage()) * 100;
-			Render.drawString(String.format("%.2f%%", damage), position.getAbsoluteX() + (int) (20 * pos.getScale()), position.getAbsoluteY() + (int) ((yAdd + 5) * pos.getScale()), position.getScale(), true);
+			Render.drawString(String.format("%.2f%%", damage), position.getAbsoluteX() + (int) (20 * pos.getScale()), position.getAbsoluteY() + (int) ((yAdd + 5) * pos.getScale()), position.getScale(), true, color);
 		}
 
 		RenderHelper.enableGUIStandardItemLighting();

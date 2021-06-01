@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.Set;
 
-import bwp.gui.GuiErrorLogin;
+
 import bwp.gui.GuiLogin;
 import bwp.gui.GuiModMain;
 import bwp.gui.GuiModRescale;
@@ -116,16 +116,16 @@ public class HUDManager {
 	
 			} catch (AuthenticationException e) {
 				// TODO Auto-generated catch block
-				GuiErrorLogin guiError = new GuiErrorLogin(new GuiMainMenu());
+				GuiLogin guiError = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
 				guiError.initGui();
-				mc.displayGuiScreen(new GuiErrorLogin(new GuiMainMenu()));
+				mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
 			}
 
 		}
 		else {
-		GuiErrorLogin guiError = new GuiErrorLogin(new GuiMainMenu());
+		GuiLogin guiError = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
 		guiError.initGui();
-		mc.displayGuiScreen(new GuiErrorLogin(new GuiMainMenu()));
+		mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
 		}
 	}
 	public void openMainGui() {

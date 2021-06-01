@@ -17,6 +17,7 @@ public class ModCPS extends ModDraggable {
     private long lastPressed;
     private long lastPressedR;
     private boolean chroma = false;
+    private int color = -1;
 
     @Override
     public int getWidth() {
@@ -46,10 +47,11 @@ public class ModCPS extends ModDraggable {
                 this.clicksRight.add(this.lastPressedR);
             }
         }
+        //TODO - GETTERS AND SETTERS
         if(chroma){
             Render.drawChromaString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
         }else {
-            Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+            Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
         }
 
     }
@@ -60,7 +62,7 @@ public class ModCPS extends ModDraggable {
             Render.drawChromaString("CPS : 10 | 10" , pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
         }
         else {
-            Render.drawString("CPS : 10 | 10", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+            Render.drawString("CPS : 10 | 10", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
         }
     }
     private int getCPS(){

@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 public class ModTime extends ModDraggable{
 
 	private boolean isChroma = false;
+	private int color = -1;
+	//TODO - GETTERS + SETTERS
 
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -31,7 +33,7 @@ public class ModTime extends ModDraggable{
 			Render.drawChromaString(getCurrentTime(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
 		}
 		else {
-			Render.drawString(getCurrentTime(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+			Render.drawString(getCurrentTime(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
 		}
 	}
 

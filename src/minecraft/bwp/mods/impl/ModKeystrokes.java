@@ -146,8 +146,8 @@ public class ModKeystrokes extends ModDraggable {
 						adjX,
 						adjY,
 						pos.getScale(),
-						key.isDown() ? Color.BLACK.getRGB() : Color.WHITE.getRGB(),
-						true);
+						true,
+						key.isDown() ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
 			}
 		}
 	}

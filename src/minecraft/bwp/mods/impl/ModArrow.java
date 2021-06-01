@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public class ModArrow extends ModDraggable{
+	private int color = -1;
 
 	@Override
 	public int getWidth() {
@@ -26,13 +27,13 @@ public class ModArrow extends ModDraggable{
 	public void render(ScreenPosition pos) {
 
 		if(this.getRemainingArrows() < 1) {
-			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), Color.RED.getRGB(), true);
+			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true,color);
 
 		} else if(this.getRemainingArrows() < 33){
-			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), Color.WHITE.getRGB(), true);
+			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
 		}
 		else{
-			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), Color.GREEN.getRGB(), true);
+			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
 		}
 	}
 	

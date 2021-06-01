@@ -3,6 +3,10 @@ package bwp.gui.main;
 import java.awt.Color;
 import java.io.IOException;
 
+import bwp.utils.BWPUtils;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -13,9 +17,6 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,11 +69,13 @@ public class MainGui extends GuiScreen {
 	        int newX = (this.width / 2) - (this.width / 4) - (this.width / 5);
 	        int newY = (int) (this.height / 2 -  this.height / 3) - this.height /14;
 	        int newHeight = (int) ((int)this.height - this.height / 5);
+
+
 	        int newWidth = (int) ((int) this.width - (this.width / 9.8));
 	        
 	        
-	        
 	        //roundedRectangle(newX , newY, newWidth, newHeight, 5, Color.decode("#3A3636"));
+
 	        super.drawScreen(x2, y2, z2);
 	    }
 	    
@@ -85,6 +88,7 @@ public class MainGui extends GuiScreen {
 	        this.buttonList.clear();
 	        this.buttonList.add(new ClientButtons(0, this.width / 2 - 50, this.height / 2 - 20,  98, 20, I18n.format("Adjust Positions", new Object[0])));
 	        this.buttonList.add(new ClientButtons(1, this.width / 2 - 50, this.height / 2 + 5,  98, 20, I18n.format("Toggle Mods", new Object[0])));
+
 
 	        if(!(mc.gameSettings.ofFastRender) && OpenGlHelper.shadersSupported && this.mc.getRenderViewEntity() instanceof EntityPlayer) {
 	            if (this.mc.entityRenderer.theShaderGroup != null)
@@ -171,7 +175,48 @@ public class MainGui extends GuiScreen {
 
 			
 		}
-
+	public static void drawEntityOnScreen(int posX, int posY, int scale, float rotation, EntityLivingBase ent)
+	{
+		float rY = ent.rotationYaw % 360;
+		float rYH = ent.rotationYawHead % 360;
+		float rYO = ent.renderYawOffset;
+		ent.rotationYawHead = rotation + rYH - rYO;
+		ent.rotationYaw = rotation;
+		ent.renderYawOffset = rotation;
+		GlStateManager.enableColorMaterial();
+		GlStateManager.pushMatrix();
+		GlStateManager.translate((float)posX, (float)posY, 50.0F);
+		GlStateManager.scale((float)(-scale), (float)scale, (float)scale);
+		GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+		GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
+		RenderHelper.enableStandardItemLighting();
+		GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
+		GlStateManager.translate(0.0F, 0.0F, 0.0F);
+		RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
+		rendermanager.setPlayerViewY(180.0F);
+		rendermanager.setRenderShadow(false);
+		rendermanager.renderEntityWithPosYaw(ent, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+		rendermanager.setRenderShadow(true);
+		GlStateManager.popMatrix();
+		RenderHelper.disableStandardItemLighting();
+		GlStateManager.disableRescaleNormal();
+		GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GlStateManager.disableTexture2D();
+		GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
+		ent.rotationYaw = rY;
+		ent.rotationYawHead = rYH;
+		ent.renderYawOffset = rYO;
+	}
+	public void drawPlayerHead(int x, int y, int width) {
+		GlStateManager.pushMatrix();
+		float scale = width / 32;
+		GlStateManager.scale(scale, scale, scale);
+		mc.getTextureManager().bindTexture(mc.thePlayer.getLocationSkin());
+		GL11.glEnable(GL11.GL_BLEND);
+		this.drawTexturedModalRect(x / scale, y / scale, 32, 32, 32, 32);
+		GL11.glDisable(GL11.GL_BLEND);
+		GlStateManager.popMatrix();
+	}
 
 	
 }
