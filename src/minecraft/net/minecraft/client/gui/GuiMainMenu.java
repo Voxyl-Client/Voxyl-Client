@@ -10,6 +10,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,6 +26,7 @@ import net.minecraft.realms.RealmsBridge;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.demo.DemoWorldServer;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 import org.apache.commons.io.Charsets;
@@ -408,7 +411,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         this.drawDefaultBackground();
         this.mc.getTextureManager().bindTexture(new ResourceLocation("bwp/bg.png"));
         Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, width, height, width, height);
-        drawEntityOnScreen(this.width / 2, this.height / 2, 50 , 1 , mc.thePlayer);
+
 
         this.drawString(this.fontRendererObj, "Copyright " + EnumChatFormatting.RED + EnumChatFormatting.BOLD + "Mojang AB", this.width - this.fontRendererObj.getStringWidth("Copyright " + EnumChatFormatting.RED + EnumChatFormatting.BOLD + "M" + EnumChatFormatting.RESET + "ojang AB") - 2, this.height - 10, -1);
         this.drawCenteredString(mc.fontRendererObj, EnumChatFormatting.BOLD + "BWP " + EnumChatFormatting.RESET + "Client", width / 2 - 2, height / 2 - 30, -1);

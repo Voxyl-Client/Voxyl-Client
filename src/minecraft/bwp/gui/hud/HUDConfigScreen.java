@@ -25,9 +25,9 @@ public class HUDConfigScreen extends GuiScreen {
 	private ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
 	int screenWidth = res.getScaledWidth();
 	int screenHeight = res.getScaledHeight();
-	
+
 	private final HashMap<IRenderer, ScreenPosition> renderers = new HashMap<IRenderer, ScreenPosition>();
-	
+
 	private Optional<IRenderer> selectedRenderer = Optional.empty();
 	private Optional<IRenderer> hoveredRenderer = Optional.empty();
 
@@ -42,7 +42,7 @@ public class HUDConfigScreen extends GuiScreen {
 			new SnappingZone(0.5F, SnappingDirection.VERTICAL, SnappingArea.CENTER, snappingLineColor),
 			new SnappingZone(1F, SnappingDirection.VERTICAL, SnappingArea.T_SIDES, snappingLineColor),
 	};
-	
+
 	private int prevX, prevY;
 
 	private final int nodeSize = 8;
@@ -55,7 +55,7 @@ public class HUDConfigScreen extends GuiScreen {
 	private int displacementY = 0;
 
 	public HUDConfigScreen(HUDManager api) {
-		
+
 		Collection<IRenderer> registeredRenderers = api.getRegisteredRenderers();
 
 		for(IRenderer ren : registeredRenderers) {
@@ -63,7 +63,7 @@ public class HUDConfigScreen extends GuiScreen {
 				continue;
 			}
 			ScreenPosition pos = ren.load();
-			
+
 			if (pos == null) {
 				pos = ScreenPosition.fromRelativePosition(0.5, 0.5, 1F);
 			}
@@ -71,7 +71,7 @@ public class HUDConfigScreen extends GuiScreen {
 			this.renderers.put(ren, pos);
 		}
 	}
-		
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
@@ -84,7 +84,7 @@ public class HUDConfigScreen extends GuiScreen {
 		int y = this.height - Mouse.getEventY() * this.height / screenHeight - 1;
 
 		this.hoveredRenderer = renderers.keySet().stream().filter(new MouseOverFinder(x, y)).findFirst();
-			
+
 		this.drawHollowRect(0, 0, this.width - 1, this.height - 1, 0xFFFF0200);
 
 		// Draw snapping lines
@@ -98,7 +98,7 @@ public class HUDConfigScreen extends GuiScreen {
 				}
 			}
 		}
-			
+
 		for(IRenderer renderer : renderers.keySet()) {
 			if (renderer.shouldRender()) {
 				ScreenPosition pos = renderers.get(renderer);
@@ -149,7 +149,7 @@ public class HUDConfigScreen extends GuiScreen {
 				renderer.renderDummy(pos);
 			}
 		}
-		
+
 		this.zLevel = zBackup;
 	}
 
@@ -159,7 +159,7 @@ public class HUDConfigScreen extends GuiScreen {
 		this.drawVerticalLine(x, y + h, y, color);
 		this.drawVerticalLine(x + w, y + h, y, color);
 	}
-		
+
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException {
 		if(keyCode == Keyboard.KEY_ESCAPE) {
@@ -333,37 +333,37 @@ public class HUDConfigScreen extends GuiScreen {
 			displacementY = 0;
 		}
 	}
-	
+
 	@Override
 	public void onGuiClosed() {
 		for(IRenderer renderer: renderers.keySet()) {
 			renderer.save(renderers.get(renderer));
 		}
 	}
-	
+
 	@Override
 	public boolean doesGuiPauseGame() {
 		return true;
 	}
-	
+
 	private void adjustBounds(IRenderer renderer, ScreenPosition pos) {
-		
+
 		ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
-		
+
 		int screenWidth = res.getScaledWidth();
 		int screenHeight = res.getScaledHeight();
 
 		int absoluteX = Math.max(0, Math.min(pos.getAbsoluteX(), Math.max(screenWidth - (int) (renderer.getWidth() * pos.getScale()), 0)));
 		int absoluteY = Math.max(0, Math.min(pos.getAbsoluteY(), Math.max(screenHeight - (int) (renderer.getHeight() * pos.getScale()), 0)));
-		
+
 		pos.setAbsolute(absoluteX, absoluteY, pos.getScale());
 	}
-	
+
 	@Override
 	protected void mouseClicked(int x, int y, int button) throws IOException {
 		this.prevX = x;
 		this.prevY = y;
-		
+
 		loadMouseOver(x, y);
 
 		if (selectedRenderer.isPresent()) {
@@ -389,11 +389,11 @@ public class HUDConfigScreen extends GuiScreen {
 	private void loadMouseOver(int x, int y) {
 		this.selectedRenderer = renderers.keySet().stream().filter(new MouseOverFinder(x, y)).findFirst();
 	}
-	
+
 	private class MouseOverFinder implements Predicate<IRenderer> {
-		
+
 		private int mouseX, mouseY;
-		
+
 		public MouseOverFinder(int x, int y) {
 			this.mouseX = x;
 			this.mouseY = y;

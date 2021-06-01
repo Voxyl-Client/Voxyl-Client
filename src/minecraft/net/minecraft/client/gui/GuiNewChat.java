@@ -4,6 +4,8 @@ import bwp.mods.impl.AutoGG;
 import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
+
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -124,10 +126,28 @@ public class GuiNewChat extends Gui
         this.sentMessages.clear();
     }
 
-    public void printChatMessage(IChatComponent p_146227_1_)
+    private String lastMessage = "";
+    private int sameMessageAmount, line;
+
+    public void printChatMessage(IChatComponent chatComponent)
     {
-        this.printChatMessageWithOptionalDeletion(p_146227_1_, 0);
-        AutoGG.INSTANCE.onChat(p_146227_1_);
+        if (chatComponent.getUnformattedText().equals(lastMessage)) {
+            Minecraft.getMinecraft().ingameGUI.getChatGUI().deleteChatLine(line);
+            sameMessageAmount++;
+            lastMessage = chatComponent.getUnformattedText();
+            chatComponent.appendText(ChatFormatting.RED + " (" + sameMessageAmount + "x)");
+        } else {
+            sameMessageAmount = 1;
+            lastMessage = chatComponent.getUnformattedText();
+        }
+
+        line++;
+
+        if (line > 256) {
+            line = 0;
+        }
+
+        this.printChatMessageWithOptionalDeletion(chatComponent, line);
     }
 
     /**

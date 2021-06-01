@@ -19,6 +19,7 @@ temp/
 logs/
 *.sh
 *.bat
+intellij/
 
 eclipse/Client/bin
 
