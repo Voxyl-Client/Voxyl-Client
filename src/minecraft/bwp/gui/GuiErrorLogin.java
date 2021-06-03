@@ -12,15 +12,12 @@ import bwp.Client;
 import bwp.FileManager;
 import bwp.SessionChanger;
 import bwp.gui.hud.HUDManager;
-import bwp.utils.ClientButtons;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.EnumChatFormatting;
 
 public class GuiErrorLogin extends GuiScreen{
 	private GuiMainMenu guimainmenu;

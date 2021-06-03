@@ -13,6 +13,10 @@ public class ToggleSprint extends ModDraggable{
     public int keyHoldTicks = 7;
     private boolean chroma = false;
 
+    public ToggleSprint(String name) {
+        super(name);
+    }
+
     @Override
     public int getWidth() {
         return font.getStringWidth(textToRender);

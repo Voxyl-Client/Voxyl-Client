@@ -12,8 +12,10 @@ public class Mod {
 	protected final Minecraft mc;
 	protected final FontRenderer font;
 	protected final Client client;
+	protected final String name;
 	
-	public Mod() {
+	public Mod(String name) {
+		this.name = name;
 		this.mc = Minecraft.getMinecraft();
 		this.font = mc.fontRendererObj;
 		this.client = Client.getInstance();
@@ -40,5 +42,9 @@ public class Mod {
 	}
 
 	public void onToggle() {
+	}
+
+	public String getName() {
+		return name;
 	}
 }

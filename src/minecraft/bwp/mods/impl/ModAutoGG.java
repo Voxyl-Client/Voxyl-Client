@@ -5,6 +5,10 @@ import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
 
 public class ModAutoGG extends ModDraggable {
+    public ModAutoGG(String name) {
+        super(name);
+    }
+
     @Override
     public int getWidth() {
         return 0;

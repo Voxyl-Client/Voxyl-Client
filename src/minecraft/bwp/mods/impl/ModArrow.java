@@ -12,6 +12,10 @@ import java.awt.*;
 
 public class ModArrow extends ModDraggable{
 
+	public ModArrow(String name) {
+		super(name);
+	}
+
 	@Override
 	public int getWidth() {
 		return mc.fontRendererObj.getStringWidth("Arrows : " + this.getRemainingArrows()) + 3;

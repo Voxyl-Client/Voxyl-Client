@@ -1,7 +1,6 @@
 package bwp.gui;
 
 import bwp.gui.hud.HUDManager;
-import bwp.utils.ClientButtons;
 import bwp.utils.RoundedRectangle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;

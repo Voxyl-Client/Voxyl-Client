@@ -36,5 +36,4 @@ public class ScrollListModToggle extends GuiListExtended {
     protected int getSize() {
         return entrys.size();
     }
-
 }

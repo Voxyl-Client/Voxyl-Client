@@ -1,6 +1,6 @@
 package net.minecraft.client.gui;
 
-import bwp.utils.ClientButtons;
+import bwp.gui.ClientButtons;
 import com.google.common.collect.Lists;
 
 import bwp.Client;

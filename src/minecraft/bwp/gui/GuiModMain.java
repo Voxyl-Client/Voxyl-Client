@@ -3,11 +3,9 @@ package bwp.gui;
 
 import bwp.gui.hud.HUDManager;
 import bwp.utils.BWPUtils;
-import bwp.utils.ClientButtons;
 import bwp.utils.RoundedRect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 

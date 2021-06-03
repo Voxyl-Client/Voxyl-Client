@@ -7,6 +7,10 @@ import bwp.utils.Render;
 public class ModCoords extends ModDraggable {
 
 
+	public ModCoords(String name) {
+		super(name);
+	}
+
 	@Override
 	public int getWidth() {
 

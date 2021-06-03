@@ -34,40 +34,40 @@ public class ModInstances {
 	
 	public static void register(HUDManager api) {
 		
-		modArmorStatus = new ModArmorStatus();
+		modArmorStatus = new ModArmorStatus("Armor Status");
 		api.register(modArmorStatus);
 		
-		modFPS = new ModFPS();
+		modFPS = new ModFPS("FPS");
 		api.register(modFPS);
 		
-		modCoords = new ModCoords();
+		modCoords = new ModCoords("Coordinates");
 		api.register(modCoords);
 		
-		modArrow = new ModArrow();
+		modArrow = new ModArrow("Arrow HUD");
 		api.register(modArrow);
 		
-		modKeyStrokes = new ModKeystrokes();
+		modKeyStrokes = new ModKeystrokes("Keystrokes");
 		api.register(modKeyStrokes);
 
-		toggleSprint = new ToggleSprint();
+		toggleSprint = new ToggleSprint("Toggle Sprint");
 		api.register(toggleSprint);
 
-		toggleSneak = new ToggleSneak();
+		toggleSneak = new ToggleSneak("Toggle Sneak");
 		api.register(toggleSneak);
 
-		modCPS = new ModCPS();
+		modCPS = new ModCPS("CPS");
 		api.register(modCPS);
 
-		modPerspective = new ModPerspective();
+		modPerspective = new ModPerspective("Perspective");
 		api.register(modPerspective);
 
-		autoGG = new ModAutoGG();
+		autoGG = new ModAutoGG("Auto GG");
 		api.register(autoGG);
 
-		time = new ModTime();
+		time = new ModTime("Time Display");
 		api.register(time);
 
-		fullbright = new FullBright();
+		fullbright = new FullBright("Full Bright");
 		api.register(fullbright);
 	}
 

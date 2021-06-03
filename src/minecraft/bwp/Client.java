@@ -61,13 +61,9 @@ public class Client {
 
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
 			hudManager.openMainScreen();
-
-
 		}
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_LOGIN.isPressed()) {
 			hudManager.openLoginScreen();
-
-
 		}
 
 

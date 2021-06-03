@@ -1,9 +1,6 @@
 package bwp.gui;
 
 import bwp.gui.hud.HUDManager;
-import bwp.utils.ClientButtons;
-import bwp.utils.RoundedRect;
-import bwp.utils.RoundedRectangle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
@@ -19,8 +16,6 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.Color;
 import java.io.IOException;
-
-import javax.vecmath.Vector3d;
 
 public class GuiModSettings extends GuiScreen {
     private final GuiScreen previousScreen;

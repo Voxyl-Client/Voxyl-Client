@@ -18,6 +18,10 @@ public class ModCPS extends ModDraggable {
     private long lastPressedR;
     private boolean chroma = false;
 
+    public ModCPS(String name) {
+        super(name);
+    }
+
     @Override
     public int getWidth() {
         return font.getStringWidth("CPS: 00 | 00") + 5;

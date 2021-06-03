@@ -41,8 +41,6 @@ public class HUDManager {
 		EventManager.register(instance);
 		
 		return instance;
-		
-		
 	}
 	
 	private Set<IRenderer> registeredRenderers = Sets.newHashSet();
@@ -70,7 +68,7 @@ public class HUDManager {
 	public void openToggleScreen(){
 		GuiModToggle guiModToggle = new GuiModToggle();
 		guiModToggle.initGui();
-		mc.displayGuiScreen(new GuiModToggle());
+		mc.displayGuiScreen(guiModToggle);
 
 	}
 	public void openLoginScreen(){
@@ -135,11 +133,9 @@ public class HUDManager {
 
 	}
 	public void openMainScreen(){
-
-		MainGui guiMain = new MainGui(mc.currentScreen);
+		MainGui guiMain = new MainGui();
 		guiMain.initGui();
 		mc.displayGuiScreen(guiMain);
-
 	}
 
 	

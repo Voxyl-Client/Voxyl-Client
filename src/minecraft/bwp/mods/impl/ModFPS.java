@@ -12,6 +12,10 @@ public class ModFPS extends ModDraggable{
 	private boolean isChroma = false;
 	private boolean betterUI = false;
 
+	public ModFPS(String name) {
+		super(name);
+	}
+
 	@Override
 	public int getWidth() {
 		return 50;

@@ -11,7 +11,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.input.Keyboard;
@@ -23,8 +22,6 @@ import bwp.Client;
 import bwp.FileManager;
 import bwp.SessionChanger;
 import bwp.gui.hud.HUDManager;
-import bwp.gui.hud.ScreenPosition;
-import bwp.utils.ClientButtons;
 
 public class GuiLogin extends GuiScreen
 {

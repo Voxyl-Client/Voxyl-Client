@@ -1,12 +1,17 @@
 package bwp.mods.toggle;
 
+import bwp.gui.window.GuiWindow;
 import net.minecraft.client.gui.GuiScreen;
 
 import java.io.IOException;
 
-public class GuiModToggle extends GuiScreen {
+public class GuiModToggle extends GuiWindow {
 
     private ScrollListModToggle scrollPanel;
+
+    public GuiModToggle() {
+        super("Toggle Mods");
+    }
 
     @Override
     public void initGui() {

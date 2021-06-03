@@ -49,5 +49,4 @@ public class ModEntry implements GuiListExtended.IGuiListEntry, Comparable<ModEn
     public int compareTo(ModEntry o) {
         return this.name.compareTo(o.name);
     }
-
 }

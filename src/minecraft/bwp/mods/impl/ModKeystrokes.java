@@ -13,7 +13,11 @@ import java.awt.*;
 public class ModKeystrokes extends ModDraggable {
 
 	private boolean chrome = false;
-	
+
+	public ModKeystrokes(String name) {
+		super(name);
+	}
+
 	public static enum KeystrokesMode {
 		
 		WASD(Key.W, Key.A, Key.S, Key.D),
@@ -147,7 +151,8 @@ public class ModKeystrokes extends ModDraggable {
 						adjY,
 						pos.getScale(),
 						key.isDown() ? Color.BLACK.getRGB() : Color.WHITE.getRGB(),
-						true);
+						true
+				);
 			}
 		}
 	}

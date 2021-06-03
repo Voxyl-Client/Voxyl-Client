@@ -11,8 +11,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class ModArmorStatus extends ModDraggable {
-	
 
+
+	public ModArmorStatus(String name) {
+		super(name);
+	}
 
 	@Override
 	public int getWidth() {

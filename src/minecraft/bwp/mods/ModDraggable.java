@@ -11,7 +11,8 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 
 	protected ScreenPosition pos;
 
-	public ModDraggable() {
+	public ModDraggable(String name) {
+		super(name);
 		pos = loadPositionFromFile();
 	}
 

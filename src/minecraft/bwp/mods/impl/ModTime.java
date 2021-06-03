@@ -14,6 +14,10 @@ public class ModTime extends ModDraggable{
 
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
+	public ModTime(String name) {
+		super(name);
+	}
+
 	@Override
 	public int getWidth() {
 		return font.getStringWidth("12:00 AM");

@@ -23,6 +23,10 @@ public class ModPerspective extends ModDraggable {
 
     private long lastPressed = 0;
 
+    public ModPerspective(String name) {
+        super(name);
+    }
+
     @EventTarget
     public void keyBoardEvent(KeyPressEvent e) {
         if (e.getKey() == mc.gameSettings.CLIENT_PERSPECTIVE.getKeyCode()) {
@@ -96,7 +100,6 @@ public class ModPerspective extends ModDraggable {
                 Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
             }
             else {
-
                 Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
             }
 

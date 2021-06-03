@@ -10,6 +10,10 @@ import java.util.Arrays;
 
 public class FullBright extends ModDraggable {
 
+    public FullBright(String name) {
+        super(name);
+    }
+
     @Override
     public int getWidth() {
         return 0;
