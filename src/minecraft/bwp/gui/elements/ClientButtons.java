@@ -1,4 +1,4 @@
-package bwp.gui;
+package bwp.gui.elements;
 
 import java.awt.Color;
 

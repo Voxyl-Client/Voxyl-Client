@@ -3,6 +3,7 @@ package bwp.gui;
 import java.io.File;
 import java.io.IOException;
 
+import bwp.gui.elements.ClientButtons;
 import org.lwjgl.input.Keyboard;
 
 import com.mojang.authlib.exceptions.AuthenticationException;

@@ -1,9 +1,9 @@
 package bwp.gui.window;
 
-import bwp.gui.ClientButtons;
 import bwp.utils.ColorUtils;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -22,7 +22,7 @@ public class GuiWindow extends GuiScreen {
     protected int windowHeight;
     protected int windowWidth;
     protected final GuiWindow previous;
-    protected List<ClientButtons> buttons = new ArrayList<>();
+    protected final List<GuiButton> buttons = new ArrayList<>();
 
     public GuiWindow(String title, GuiWindow previous) {
         this.title = title;
@@ -37,6 +37,8 @@ public class GuiWindow extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
+
+        //Render.drawRect(0, 0, mc.displayWidth, mc.displayHeight, Color.RED);
 
         ScaledResolution sr = new ScaledResolution(mc);
 
@@ -64,7 +66,7 @@ public class GuiWindow extends GuiScreen {
         x = sr.getScaledWidth() / 8;
         y = sr.getScaledHeight() / 8;
 
-        GL11.glTranslatef((float) x + 10F, (float) y + 20F + fontRendererObj.FONT_HEIGHT, 0F);
+        //GL11.glTranslatef((float) x, (float) y, 0F);
     }
 
     @Override
