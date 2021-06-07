@@ -22,6 +22,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
+import javax.swing.*;
+
 public class MainGui extends GuiScreen {
 	
 	    private final GuiScreen previousScreen;
@@ -60,6 +62,10 @@ public class MainGui extends GuiScreen {
 
 	    @Override
 	    public void drawScreen(int x2, int y2, float z2) {
+
+
+
+
 
 
 	        ScaledResolution sr = new ScaledResolution(mc);

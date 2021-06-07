@@ -74,4 +74,7 @@ public class Client {
 		prevPosX = mc.displayHeight;
 		prevPosY = mc.displayWidth;
 	}
+	public String getClientVersion(){
+		return "Voxyl Client Beta-1.0";
+	}
 }
