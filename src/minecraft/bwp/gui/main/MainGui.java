@@ -11,6 +11,7 @@ import bwp.gui.hud.HUDManager;
 import bwp.mods.Mod;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.LWJGLUtil;
 import org.lwjgl.input.Mouse;
@@ -73,7 +74,7 @@ public class MainGui extends GuiWindow {
 
 		listHeight = yToSet - baseY;
 
-		heightOutOfFrame = listHeight - scrollAreaHeight;
+		heightOutOfFrame = listHeight - scrollAreaHeight + yOffset + modHeight;
 
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 	}
@@ -88,6 +89,23 @@ public class MainGui extends GuiWindow {
 		scroll -= scrollChange;
 		if (scroll < 0) scroll = 0;
 		if (scroll > heightOutOfFrame) scroll = heightOutOfFrame;
+
+		int mouseX = Mouse.getEventX() * this.width / this.mc.displayWidth;
+		int mouseY = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
+		int mButtonPressed = Mouse.getEventButton();
+		boolean mButtonState = Mouse.getEventButtonState();
+
+		for (GuiButton gButton : buttons) {
+			if (gButton instanceof ModButton) {
+				ModButton button = (ModButton) gButton;
+				if (mouseX >= button.xPosition && mouseY >= button.yPosition && mouseX < button.xPosition + button.getButtonWidth() && mouseY < button.yPosition + button.getButtonHeight()) {
+					button.drawButton(mc, mouseX, mouseY);
+					if (mButtonPressed == 0 && mButtonState) {
+						button.getMod().setEnabled(!button.getMod().isEnabled());
+					}
+				}
+			}
+		}
 	}
 
 	@Override
@@ -103,7 +121,6 @@ public class MainGui extends GuiWindow {
 			if(prevPosY != mc.displayHeight || prevPosX != mc.displayWidth) {
 				mc.displayGuiScreen(null);
 				HUDManager.getInstance().openMainScreen();
-
 			}
 
 

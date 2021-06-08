@@ -78,5 +78,4 @@ public class GuiCheckBox extends GuiButton {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
-
 }

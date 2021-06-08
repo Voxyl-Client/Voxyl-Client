@@ -49,10 +49,6 @@ public class Client {
 	@EventTarget
 	public void onTick(ClientTickEvent e) {
 
-
-		//TODO - REMOVE
-
-
 		Minecraft mc = Minecraft.getMinecraft();
 		int height = mc.displayHeight;
 		int width = mc.displayWidth;

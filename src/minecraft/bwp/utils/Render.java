@@ -145,21 +145,9 @@ public class Render {
     }
 
     public static void drawRoundedRectangle(int x, int y, int width, int height, int cornerRadius, Color color) {
-        Gui.drawRect(x, y + cornerRadius, x + cornerRadius, y + height - cornerRadius, color.getRGB());
-        Gui.drawRect(x + cornerRadius, y, x + width - cornerRadius, y + height, color.getRGB());
-        Gui.drawRect(x + width - cornerRadius, y + cornerRadius, x + width, y + height - cornerRadius, color.getRGB());
-
-        drawArc(x + cornerRadius, y + cornerRadius, cornerRadius, 0, 90, color);
-        drawArc(x + width - cornerRadius, y + cornerRadius, cornerRadius, 270, 360, color);
-        drawArc(x + width - cornerRadius, y + height - cornerRadius, cornerRadius, 180, 270, color);
-        drawArc(x + cornerRadius, y + height - cornerRadius, cornerRadius, 90, 180, color);
-    }
-
-    public static void drawHollowRoundedRect(int x, int y, int width, int height, int cornerRadius, Color color) {
-        drawVerticalLine(x, y + cornerRadius, y + height - cornerRadius, color);
-        drawHorizontalLine(x + cornerRadius, x + width - cornerRadius, y, color);
-        drawVerticalLine(x + width, y + cornerRadius, y + height - cornerRadius, color);
-        drawHorizontalLine(x + cornerRadius, x + width - cornerRadius, y + height, color);
+        drawRect(x, y + cornerRadius, x + cornerRadius, y + height - cornerRadius, color);
+        drawRect(x + cornerRadius, y, x + width - cornerRadius, y + height, color);
+        drawRect(x + width - cornerRadius, y + cornerRadius, x + width, y + height - cornerRadius, color);
 
         drawArc(x + cornerRadius, y + cornerRadius, cornerRadius, 0, 90, color);
         drawArc(x + width - cornerRadius, y + cornerRadius, cornerRadius, 270, 360, color);

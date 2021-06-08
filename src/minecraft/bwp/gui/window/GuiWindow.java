@@ -38,8 +38,6 @@ public class GuiWindow extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
 
-        //Render.drawRect(0, 0, mc.displayWidth, mc.displayHeight, Color.RED);
-
         ScaledResolution sr = new ScaledResolution(mc);
 
         x = sr.getScaledWidth() / 8;
@@ -65,8 +63,6 @@ public class GuiWindow extends GuiScreen {
 
         x = sr.getScaledWidth() / 8;
         y = sr.getScaledHeight() / 8;
-
-        //GL11.glTranslatef((float) x, (float) y, 0F);
     }
 
     @Override
