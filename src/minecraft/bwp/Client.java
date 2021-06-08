@@ -6,10 +6,7 @@ import bwp.event.impl.ClientTickEvent;
 import bwp.gui.SplashProgress;
 import bwp.gui.hud.HUDManager;
 import bwp.mods.ModInstances;
-import bwp.mods.toggle.ModEntry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
-import org.lwjgl.LWJGLUtil;
 
 public class Client {
 	
@@ -24,7 +21,6 @@ public class Client {
 	private int prevPosY = 0;
 
 	private HUDManager hudManager;
-	private ModEntry modEntry;
 
 	public void init() {
 		FileManager.init();

@@ -3,7 +3,7 @@ package bwp.gui;
 import java.io.File;
 import java.io.IOException;
 
-import bwp.gui.elements.ClientButtons;
+import bwp.gui.elements.ClientButton;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -62,8 +62,8 @@ public class GuiLogin extends GuiScreen
     	Client.getInstance().getDiscordRP().update("Signing In", "Login Menu", "large");
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
-        this.buttonList.add(new ClientButtons(0, this.width / 2 - 100, this.height / 4 + 96 + 18, 200, 20, I18n.format("Login", new Object[0])));
-        this.buttonList.add(new ClientButtons(1, this.width / 2 - 100, this.height / 4 + 120 + 18, 200, 20, I18n.format("Cancel", new Object[0])));
+        this.buttonList.add(new ClientButton(0, this.width / 2 - 100, this.height / 4 + 96 + 18, 200, 20, I18n.format("Login", new Object[0])));
+        this.buttonList.add(new ClientButton(1, this.width / 2 - 100, this.height / 4 + 120 + 18, 200, 20, I18n.format("Cancel", new Object[0])));
         this.loginNameField = new GuiTextField(0, this.fontRendererObj, this.width / 2 - 100, 66, 200, 20);
         this.loginNameField.setMaxStringLength(128);
         this.loginNameField.setFocused(true);

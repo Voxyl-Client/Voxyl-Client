@@ -13,9 +13,9 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
-public class ClientButtons extends GuiButton {
+public class ClientButton extends GuiButton {
 
-    public ClientButtons(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
+    public ClientButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
         super(buttonId, x, y, widthIn, heightIn, buttonText);
     }
 

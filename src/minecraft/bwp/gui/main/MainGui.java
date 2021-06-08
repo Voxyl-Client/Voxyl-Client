@@ -1,6 +1,5 @@
 package bwp.gui.main;
 
-import java.awt.*;
 import java.io.IOException;
 
 import bwp.gui.elements.ModButton;
@@ -9,11 +8,8 @@ import bwp.gui.window.GuiWindow;
 
 import bwp.gui.hud.HUDManager;
 import bwp.mods.Mod;
-import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
-import org.lwjgl.LWJGLUtil;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
@@ -21,12 +17,7 @@ public class MainGui extends GuiWindow {
 
 	private int prevPosX;
 	private int prevPosY;
-	private Minecraft mc = Minecraft.getMinecraft();
-
-	private int modWidth;
-	private int modHeight;
-
-	private int listHeight = 0;
+	private final Minecraft mc = Minecraft.getMinecraft();
 
 	private int scroll = 0;
 
@@ -44,8 +35,8 @@ public class MainGui extends GuiWindow {
 
 		ScaledResolution sr = new ScaledResolution(mc);
 
-		modWidth = this.windowWidth - 20;
-		modHeight = (this.windowHeight - 10) / 10;
+		int modWidth = this.windowWidth - 20;
+		int modHeight = (this.windowHeight - 10) / 10;
 
 		int scrollAreaHeight = windowHeight - fontRendererObj.FONT_HEIGHT - 15 - 5;
 
@@ -70,7 +61,7 @@ public class MainGui extends GuiWindow {
 			modsRendered ++;
 		}
 
-		listHeight = yToSet - baseY;
+		int listHeight = yToSet - baseY;
 
 		heightOutOfFrame = listHeight - scrollAreaHeight + yOffset + modHeight;
 
@@ -90,14 +81,9 @@ public class MainGui extends GuiWindow {
 
 		int mouseX = Mouse.getEventX() * this.width / this.mc.displayWidth;
 		int mouseY = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
-		int mButtonPressed = Mouse.getEventButton();
-		boolean mButtonState = Mouse.getEventButtonState();
 
 		for (ModButton button : buttons) {
-			if (mouseX >= button.x && mouseY >= button.y && mouseX < button.x + button.width && mouseY < button.y + button.height) {
-				button.draw(mc, mouseX, mouseY);
-				button.handleClick(mouseX, mouseY);
-			}
+			button.handleClick(mouseX, mouseY);
 		}
 	}
 
@@ -108,15 +94,11 @@ public class MainGui extends GuiWindow {
 
 	// Checking on a rescale, so Gui Screen can adjust.
 	public void updateScreen() {
-
 		if(prevPosX != 0 && prevPosY != 0) {
-
 			if(prevPosY != mc.displayHeight || prevPosX != mc.displayWidth) {
 				mc.displayGuiScreen(null);
 				HUDManager.getInstance().openMainScreen();
 			}
-
-
 		}
 		prevPosX = mc.displayWidth;
 		prevPosY = mc.displayHeight;

@@ -1,6 +1,6 @@
 package net.minecraft.client.gui;
 
-import bwp.gui.elements.ClientButtons;
+import bwp.gui.elements.ClientButton;
 import com.google.common.collect.Lists;
 
 import bwp.Client;
@@ -177,10 +177,10 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
     @Override
     public void initGui() {
         Client.getInstance().getDiscordRP().update("Idle", "Main Menu", "large");
-        this.buttonList.add(new ClientButtons(1, this.width / 2 - 50, height / 2 - 17, 98, 16, "Singleplayer"));
-        this.buttonList.add(new ClientButtons(2, this.width / 2 - 50, height / 2, 98, 16, "Multiplayer"));
-        this.buttonList.add(new ClientButtons(3, this.width / 2 - 50, height / 2 + 17, 98, 16, "Settings"));
-        this.buttonList.add(new ClientButtons(4, this.width - 21, 4, 16, 16, EnumChatFormatting.BOLD + "X"));
+        this.buttonList.add(new ClientButton(1, this.width / 2 - 50, height / 2 - 17, 98, 16, "Singleplayer"));
+        this.buttonList.add(new ClientButton(2, this.width / 2 - 50, height / 2, 98, 16, "Multiplayer"));
+        this.buttonList.add(new ClientButton(3, this.width / 2 - 50, height / 2 + 17, 98, 16, "Settings"));
+        this.buttonList.add(new ClientButton(4, this.width - 21, 4, 16, 16, EnumChatFormatting.BOLD + "X"));
         super.initGui();
     }
 

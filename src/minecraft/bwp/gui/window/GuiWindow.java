@@ -4,7 +4,6 @@ import bwp.gui.elements.ModButton;
 import bwp.utils.ColorUtils;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
