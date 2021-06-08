@@ -63,11 +63,9 @@ public class MainGui extends GuiWindow {
 
 			yToSet = baseY + (yOffset + modHeight) * modsRendered;
 
-			buttons.add(new ModButton(modsRendered, xToSet, yToSet - scroll, modWidth, modHeight, mod));
-
-			Render.drawRoundedRectangle(xToSet, yToSet - scroll, modWidth, modHeight, 5, Color.decode("#261e1d"));
-			Render.drawString(mod.getName(), xToSet + 5, yToSet + 10 - scroll, (float) (modHeight - 20) / fontRendererObj.FONT_HEIGHT, true);
-
+			ModButton button = new ModButton(xToSet, yToSet - scroll, modWidth, modHeight, mod);
+			buttons.add(button);
+			button.draw(mc, Mouse.getEventX() * this.width / Minecraft.getMinecraft().displayWidth, this.height - Mouse.getEventY() * this.height / Minecraft.getMinecraft().displayHeight - 1);
 
 			modsRendered ++;
 		}
@@ -95,15 +93,10 @@ public class MainGui extends GuiWindow {
 		int mButtonPressed = Mouse.getEventButton();
 		boolean mButtonState = Mouse.getEventButtonState();
 
-		for (GuiButton gButton : buttons) {
-			if (gButton instanceof ModButton) {
-				ModButton button = (ModButton) gButton;
-				if (mouseX >= button.xPosition && mouseY >= button.yPosition && mouseX < button.xPosition + button.getButtonWidth() && mouseY < button.yPosition + button.getButtonHeight()) {
-					button.drawButton(mc, mouseX, mouseY);
-					if (mButtonPressed == 0 && mButtonState) {
-						button.getMod().setEnabled(!button.getMod().isEnabled());
-					}
-				}
+		for (ModButton button : buttons) {
+			if (mouseX >= button.x && mouseY >= button.y && mouseX < button.x + button.width && mouseY < button.y + button.height) {
+				button.draw(mc, mouseX, mouseY);
+				button.handleClick(mouseX, mouseY);
 			}
 		}
 	}

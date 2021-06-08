@@ -24,7 +24,7 @@ public class ClientButtons extends GuiButton {
             FontRenderer fr = mc.fontRendererObj;
             this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
 
-            Render.drawRoundedRectangle(this.xPosition, this.yPosition, this.width, this.height, 3, 0xFFFFFFFF);
+            Render.drawRoundedRectangle(this.xPosition, this.yPosition, this.width, this.height, 3, Color.BLACK);
             int j = -1;
             if (this.hovered)
                 j = 0xFF5555FF;

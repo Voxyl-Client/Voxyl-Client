@@ -1,5 +1,6 @@
 package bwp.gui.window;
 
+import bwp.gui.elements.ModButton;
 import bwp.utils.ColorUtils;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
@@ -22,7 +23,7 @@ public class GuiWindow extends GuiScreen {
     protected int windowHeight;
     protected int windowWidth;
     protected final GuiWindow previous;
-    protected final List<GuiButton> buttons = new ArrayList<>();
+    protected final List<ModButton> buttons = new ArrayList<>();
 
     public GuiWindow(String title, GuiWindow previous) {
         this.title = title;
