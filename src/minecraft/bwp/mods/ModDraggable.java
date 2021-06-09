@@ -10,6 +10,7 @@ import java.io.File;
 public abstract class ModDraggable extends Mod implements IRenderer {
 
 	protected ScreenPosition pos;
+	protected boolean chroma;
 
 	public ModDraggable(String name) {
 		super(name);
@@ -67,4 +68,7 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 		return (font.FONT_HEIGHT + 3) * lineNum;
 	}
 
+	public boolean getChroma() {
+		return chroma;
+	}
 }

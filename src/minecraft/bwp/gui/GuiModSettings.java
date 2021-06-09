@@ -1,6 +1,6 @@
 package bwp.gui;
 
-import bwp.gui.elements.ClientButton;
+import bwp.gui.elements.template.ClientButton;
 import bwp.gui.hud.HUDManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

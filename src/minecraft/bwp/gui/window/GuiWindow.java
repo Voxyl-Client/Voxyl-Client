@@ -1,6 +1,7 @@
 package bwp.gui.window;
 
 import bwp.gui.elements.ModButton;
+import bwp.gui.hud.HUDManager;
 import bwp.utils.ColorUtils;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
@@ -10,8 +11,10 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,9 @@ public class GuiWindow extends GuiScreen {
     protected int windowWidth;
     protected final GuiWindow previous;
     protected final List<ModButton> buttons = new ArrayList<>();
+
+    protected int mouseX = 0;
+    protected int mouseY = 0;
 
     public GuiWindow(String title, GuiWindow previous) {
         this.title = title;
@@ -53,6 +59,7 @@ public class GuiWindow extends GuiScreen {
 
         drawWindowParts();
         // Pop the matrix made in drawWindowParts()
+        GL11.glDisable(GL11.GL_SCISSOR_TEST);
         GL11.glPopMatrix();
     }
 
@@ -63,6 +70,24 @@ public class GuiWindow extends GuiScreen {
 
         x = sr.getScaledWidth() / 8;
         y = sr.getScaledHeight() / 8;
+
+        GL11.glScissor(x * sr.getScaleFactor(), (height * sr.getScaleFactor()) - (y * sr.getScaleFactor() + windowHeight * sr.getScaleFactor()) + 10 * sr.getScaleFactor(), windowWidth * sr.getScaleFactor(), windowHeight * sr.getScaleFactor() - 20 * sr.getScaleFactor() - fontRendererObj.FONT_HEIGHT * sr.getScaleFactor() - 5 * sr.getScaleFactor());
+        GL11.glEnable(GL11.GL_SCISSOR_TEST);
+    }
+
+    @Override
+    public void handleMouseInput() throws IOException {
+        super.handleMouseInput();
+
+        mouseX = Mouse.getEventX() * this.width / this.mc.displayWidth;
+        mouseY = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
+
+        if (mouseX < x || mouseX > x + windowWidth || mouseY < y || mouseY > y + windowHeight) {
+            if (Mouse.getEventButton() == 0 && Mouse.getEventButtonState()) {
+                HUDManager.getInstance().openConfigScreen();
+            }
+            return;
+        }
     }
 
     @Override

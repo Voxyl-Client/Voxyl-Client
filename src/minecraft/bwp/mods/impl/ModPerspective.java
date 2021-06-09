@@ -17,8 +17,6 @@ public class ModPerspective extends ModDraggable {
 
     private float cameraPitch = 0F;
 
-    private boolean chroma = false;
-
     private int previousPerspective = 0; //previous f5 state
 
     private long lastPressed = 0;

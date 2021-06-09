@@ -16,7 +16,6 @@ public class ModCPS extends ModDraggable {
     private boolean wasPressedR;
     private long lastPressed;
     private long lastPressedR;
-    private boolean chroma = false;
 
     public ModCPS(String name) {
         super(name);

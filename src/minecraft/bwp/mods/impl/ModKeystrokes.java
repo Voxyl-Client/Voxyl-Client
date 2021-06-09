@@ -12,8 +12,6 @@ import java.awt.*;
 
 public class ModKeystrokes extends ModDraggable {
 
-	private boolean chrome = false;
-
 	public ModKeystrokes(String name) {
 		super(name);
 	}
@@ -137,7 +135,7 @@ public class ModKeystrokes extends ModDraggable {
 			int adjX = (int) (pos.getAbsoluteX() + ((key.getX()) * pos.getScale()) + ((key.getWidth()) * pos.getScale()) / 2 - (textWidth * pos.getScale()) / 2);
 			int adjY = (int) (pos.getAbsoluteY() + ((key.getY()) * pos.getScale()) + ((key.getHeight()) * pos.getScale()) / 2 - (4 * pos.getScale()));
 
-			if (chrome) {
+			if (chroma) {
 				Render.drawChromaString(
 						key.getName(),
 						adjX,

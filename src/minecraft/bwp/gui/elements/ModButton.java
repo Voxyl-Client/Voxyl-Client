@@ -1,5 +1,7 @@
 package bwp.gui.elements;
 
+import bwp.gui.elements.template.CustomButton;
+import bwp.gui.main.ModSettingsGui;
 import bwp.mods.Mod;
 import bwp.utils.ColorUtils;
 import bwp.utils.Render;
@@ -46,7 +48,12 @@ public class ModButton extends CustomButton {
 
     @Override
     public void onLeftClick(int mouseX, int mouseY) {
-        checkBox.handleClick(mouseX, mouseY);
-        mod.setEnabled(checkBox.isChecked());
+        if (!checkBox.handleClick(mouseX, mouseY)) {
+            ModSettingsGui modSettingsGui = new ModSettingsGui(mod);
+            modSettingsGui.initGui();
+            Minecraft.getMinecraft().displayGuiScreen(modSettingsGui);
+        } else {
+            mod.setEnabled(checkBox.isChecked());
+        }
     }
 }

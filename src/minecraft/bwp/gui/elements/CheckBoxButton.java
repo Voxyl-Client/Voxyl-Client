@@ -1,10 +1,8 @@
 package bwp.gui.elements;
 
-import bwp.gui.elements.CustomButton;
+import bwp.gui.elements.template.CustomButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 
 import java.awt.*;
