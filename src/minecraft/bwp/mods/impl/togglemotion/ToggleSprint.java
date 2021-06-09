@@ -12,6 +12,7 @@ public class ToggleSprint extends ModDraggable{
     public float flyBoostFactor = 4;
     public int keyHoldTicks = 7;
     private boolean chroma = false;
+    private int color = -1;
 
     public ToggleSprint(String name) {
         super(name);
@@ -34,13 +35,14 @@ public class ToggleSprint extends ModDraggable{
 
         }else{
             textToRender = "[Sprinting] (Toggled)";
-            Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+            Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
         }
     }
 
+    //TODO - GETTERS AND SETTERS
     @Override
     public void render(ScreenPosition pos) {
         textToRender = mc.thePlayer.movementInput.getSprintText();
-        Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+        Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
     }
 }

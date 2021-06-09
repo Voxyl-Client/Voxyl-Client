@@ -5,6 +5,7 @@ import bwp.event.EventManager;
 import bwp.gui.hud.IRenderer;
 import bwp.gui.hud.ScreenPosition;
 
+import java.awt.*;
 import java.io.File;
 
 public abstract class ModDraggable extends Mod implements IRenderer {
@@ -15,6 +16,13 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 	public ModDraggable(String name) {
 		super(name);
 		pos = loadPositionFromFile();
+	}
+
+	public void changeColor(int colorin){
+
+	}
+	public int getColor(){
+		return 0;
 	}
 
 	@Override

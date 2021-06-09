@@ -36,6 +36,7 @@ public class GuiModMain extends GuiScreen{
 
 	        ScaledResolution sr = new ScaledResolution(mc);
 	        this.buttonList.clear();
+
 	        RoundedRect roundedRect = new RoundedRect();
 	        roundedRect.renderRoundedQuad(new Vector3d(5,5,0), new Vector3d(50,50,0), 10, Color.WHITE);
 

@@ -32,6 +32,7 @@ public class GuiLogin extends GuiScreen
 	private String loginName;
 	private String loginPass;
 	private UnicodeFontRenderer ufr;
+	private boolean errored = false;
 
     public GuiLogin(GuiMultiplayer guiMultiplayer ) {
 		this.guiMultiplayer  = guiMultiplayer;
@@ -97,23 +98,27 @@ public class GuiLogin extends GuiScreen
                 try {
                 SessionChanger.getInstance().setUser(this.loginName, this.loginPass);
                 }catch(InvalidCredentialsException e) {
-                	HUDManager.getInstance().openLoginScreen();
+                	errored = true;
+                	
 
 				} catch (AuthenticationException e) {
 					// TODO Auto-generated catch block
 					
-					HUDManager.getInstance().openErrorScreen();
-					System.out.println("fuck me ");
+					errored = true;
+
 				}
-                if(!FileManager.doesLoginFileExist()) {
-        		FileManager.writeJsonToFile(new File(FileManager.getCacheDirectory(), "temp_name.json"), this.loginName);
-        		FileManager.writeJsonToFile(new File(FileManager.getCacheDirectory(), "temp_pass.json"), this.loginPass);
+     
+                
+                if(errored) {
+                	HUDManager.getInstance().openErrorScreen();
                 }
-
-                
-                
-
+                else {
+                if(!FileManager.doesLoginFileExist()) {
+                	FileManager.writeJsonToFile(new File(FileManager.getCacheDirectory(), "temp_name.json"), this.loginName);
+                	FileManager.writeJsonToFile(new File(FileManager.getCacheDirectory(), "temp_pass.json"), this.loginPass);
+                }
                 this.mc.displayGuiScreen(new GuiMultiplayer(new GuiMainMenu()));
+                }
             }
             }
         

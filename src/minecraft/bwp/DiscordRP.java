@@ -7,12 +7,12 @@ import net.arikia.dev.drpc.DiscordUser;
 import net.arikia.dev.drpc.callbacks.ReadyCallback;
 
 public class DiscordRP {
-	
+
 	private boolean running = true;
 	private long created = 0;
 
 	private boolean isMac = System.getProperty("os.name").equals("Mac OS X");
-	
+
 	public void start() {
 		if (!isMac) {
 			this.created = System.currentTimeMillis();
@@ -40,7 +40,7 @@ public class DiscordRP {
 			}.start();
 		}
 	}
-		
+
 	public void shutdown() {
 		if (!isMac) {
 			running = false;

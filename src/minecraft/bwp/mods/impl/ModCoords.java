@@ -5,6 +5,7 @@ import bwp.mods.ModDraggable;
 import bwp.utils.Render;
 
 public class ModCoords extends ModDraggable {
+	private int color = -1;
 
 
 	public ModCoords(String name) {
@@ -25,7 +26,7 @@ public class ModCoords extends ModDraggable {
 
 	@Override
 	public void render(ScreenPosition pos) {
-		Render.drawString(getXYZString(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+		Render.drawString(getXYZString(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
 	}
 
 	private String getXYZString() {
