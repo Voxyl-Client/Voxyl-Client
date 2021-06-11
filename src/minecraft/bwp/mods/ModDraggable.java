@@ -7,6 +7,7 @@ import bwp.gui.hud.ScreenPosition;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 
 public abstract class ModDraggable extends Mod implements IRenderer {
 
@@ -14,7 +15,7 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 	protected boolean chroma;
 
 	public ModDraggable(String name) {
-		super(name);
+		super(name, new ArrayList<>());
 		pos = loadPositionFromFile();
 	}
 

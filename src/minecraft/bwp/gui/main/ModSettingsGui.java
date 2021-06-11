@@ -34,6 +34,8 @@ public class ModSettingsGui extends GuiWindow {
 
 		buttons.clear();
 
+
+
 		ScaledResolution sr = new ScaledResolution(mc);
 	}
 
