@@ -8,6 +8,10 @@ public class ModCoords extends ModDraggable {
 	private int color = -1;
 
 
+	public ModCoords(String name) {
+		super(name);
+	}
+
 	@Override
 	public int getWidth() {
 

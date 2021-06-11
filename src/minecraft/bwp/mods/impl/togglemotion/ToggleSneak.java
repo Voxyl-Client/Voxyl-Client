@@ -14,6 +14,10 @@ public class ToggleSneak extends ModDraggable{
     private boolean chroma = false;
     private int color = -1;
 
+    public ToggleSneak(String name) {
+        super(name);
+    }
+
     @Override
     public int getWidth() {
         return font.getStringWidth(textToRender);

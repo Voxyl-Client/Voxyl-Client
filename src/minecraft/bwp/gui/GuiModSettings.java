@@ -1,9 +1,7 @@
 package bwp.gui;
 
+import bwp.gui.elements.template.ClientButton;
 import bwp.gui.hud.HUDManager;
-import bwp.utils.ClientButtons;
-import bwp.utils.RoundedRect;
-import bwp.utils.RoundedRectangle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
@@ -19,8 +17,6 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.Color;
 import java.io.IOException;
-
-import javax.vecmath.Vector3d;
 
 public class GuiModSettings extends GuiScreen {
     private final GuiScreen previousScreen;
@@ -65,8 +61,8 @@ public class GuiModSettings extends GuiScreen {
         ScaledResolution sr = new ScaledResolution(mc);
         this.buttonList.clear();
         //TODO - ADD
-        this.buttonList.add(new ClientButtons(0, this.width / 2 - 50, this.height / 2 - 20,  98, 20, I18n.format("Adjust Positions", new Object[0])));
-        this.buttonList.add(new ClientButtons(1, this.width / 2 - 50, this.height / 2 + 5,  98, 20, I18n.format("Toggle Mods", new Object[0])));
+        this.buttonList.add(new ClientButton(0, this.width / 2 - 50, this.height / 2 - 20,  98, 20, I18n.format("Adjust Positions", new Object[0])));
+        this.buttonList.add(new ClientButton(1, this.width / 2 - 50, this.height / 2 + 5,  98, 20, I18n.format("Toggle Mods", new Object[0])));
         System.out.println("hello this is working now");
 
         roundedRectangle(100, 100, 100,100, 100, Color.WHITE);

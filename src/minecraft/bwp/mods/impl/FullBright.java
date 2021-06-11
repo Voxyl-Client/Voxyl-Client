@@ -12,6 +12,10 @@ import java.util.Arrays;
 public class FullBright extends ModDraggable {
     private int color = -1;
 
+    public FullBright(String name) {
+        super(name);
+    }
+
     @Override
     public int getWidth() {
         return 0;

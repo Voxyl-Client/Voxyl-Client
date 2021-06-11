@@ -1,7 +1,7 @@
 package bwp.gui;
 
+import bwp.gui.elements.template.ClientButton;
 import bwp.gui.hud.HUDManager;
-import bwp.utils.ClientButtons;
 import bwp.utils.RoundedRectangle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
@@ -34,9 +34,6 @@ public class GuiModRescale extends GuiScreen{
         {
             hudManager.openToggleScreen();
         }
-        if(button.id == 2) {
-        	hudManager.openMainGui();
-        }
     }
 
     @Override
@@ -52,13 +49,11 @@ public class GuiModRescale extends GuiScreen{
 
     @Override
     public void initGui() {
-
-        ScaledResolution sr = new ScaledResolution(mc);
         this.buttonList.clear();
         //TODO - ADD
-        this.buttonList.add(new ClientButtons(0, this.width / 2 - 50, this.height / 2 - 20,  98, 20, I18n.format("Adjust Positions", new Object[0])));
-        this.buttonList.add(new ClientButtons(1, this.width / 2 - 50, this.height / 2 + 5,  98, 20, I18n.format("Toggle Mods", new Object[0])));
-        this.buttonList.add(new ClientButtons(2, this.width / 2 - 50, this.height / 2 - 45,  98, 20, I18n.format("Main Menu", new Object[0])));
+        this.buttonList.add(new ClientButton(0, this.width / 2 - 50, this.height / 2 - 20,  98, 20, I18n.format("Adjust Positions", new Object[0])));
+        this.buttonList.add(new ClientButton(1, this.width / 2 - 50, this.height / 2 + 5,  98, 20, I18n.format("Toggle Mods", new Object[0])));
+        this.buttonList.add(new ClientButton(2, this.width / 2 - 50, this.height / 2 - 45,  98, 20, I18n.format("Main Menu", new Object[0])));
         Gui.drawRect(100, 100, 100, 100, 100);
         RoundedRectangle roundedRect = new RoundedRectangle();
         roundedRect.roundedRectangle(100, 100, 100,100, 100, Color.WHITE);

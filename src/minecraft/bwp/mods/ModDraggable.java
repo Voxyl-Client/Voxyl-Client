@@ -7,12 +7,15 @@ import bwp.gui.hud.ScreenPosition;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 
 public abstract class ModDraggable extends Mod implements IRenderer {
 
 	protected ScreenPosition pos;
+	protected boolean chroma;
 
-	public ModDraggable() {
+	public ModDraggable(String name) {
+		super(name, new ArrayList<>());
 		pos = loadPositionFromFile();
 	}
 
@@ -74,4 +77,7 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 		return (font.FONT_HEIGHT + 3) * lineNum;
 	}
 
+	public boolean getChroma() {
+		return chroma;
+	}
 }

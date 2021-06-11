@@ -1,29 +1,31 @@
 package bwp.gui.main;
 
-import java.io.IOException;
-
 import bwp.gui.elements.ModButton;
-import bwp.gui.elements.ScrollBox;
+import bwp.gui.hud.HUDManager;
 import bwp.gui.hud.IRenderer;
 import bwp.gui.window.GuiWindow;
-
-import bwp.gui.hud.HUDManager;
 import bwp.mods.Mod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 
-public class MainGui extends GuiWindow {
+import java.io.IOException;
+
+public class ModSettingsGui extends GuiWindow {
 
 	private int prevPosX;
 	private int prevPosY;
 	private final Minecraft mc = Minecraft.getMinecraft();
+	private final Mod mod;
 
-	private int heightOutOfFrame = 0;
 	private int scroll = 0;
 
-	public MainGui() {
-		super("Mods");
+	private int heightOutOfFrame = 0;
+
+	public ModSettingsGui(Mod mod) {
+		super(mod.getName() + " Settings");
+		this.mod = mod;
 	}
 
 	@Override
@@ -32,39 +34,15 @@ public class MainGui extends GuiWindow {
 
 		buttons.clear();
 
+
+
 		ScaledResolution sr = new ScaledResolution(mc);
-
-		int modWidth = this.windowWidth - 20;
-		int modHeight = (this.windowHeight - 10) / 10;
-
-		int scrollAreaHeight = windowHeight - fontRendererObj.FONT_HEIGHT - 15 - 5;
-
-		int baseY = y + fontRendererObj.FONT_HEIGHT + 15;
-		int yToSet = 0;
-		int xToSet = x + 10;
-
-		int yOffset = modHeight / 5;
-		int modsRendered = 0;
-		for (IRenderer renderer : HUDManager.getInstance().getRegisteredRenderers()) {
-			Mod mod = (Mod) renderer;
-
-			yToSet = baseY + (yOffset + modHeight) * modsRendered;
-
-			ModButton button = new ModButton(xToSet, yToSet - scroll, modWidth, modHeight, mod);
-			buttons.add(button);
-			button.draw(mc, Mouse.getEventX() * this.width / Minecraft.getMinecraft().displayWidth, this.height - Mouse.getEventY() * this.height / Minecraft.getMinecraft().displayHeight - 1);
-
-			modsRendered ++;
-		}
-
-		int listHeight = yToSet - baseY;
-
-		heightOutOfFrame = listHeight - scrollAreaHeight + yOffset + modHeight;
 	}
 
 	@Override
 	public void handleMouseInput() throws IOException {
 		super.handleMouseInput();
+
 		int dWheel = Mouse.getEventDWheel();
 		int scrollChange = dWheel / 10;
 

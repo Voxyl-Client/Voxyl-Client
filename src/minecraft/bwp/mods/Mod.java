@@ -2,8 +2,11 @@ package bwp.mods;
 
 import bwp.Client;
 import bwp.event.EventManager;
+import bwp.mods.settings.ModSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+
+import java.util.List;
 
 public class Mod {
 	
@@ -12,11 +15,17 @@ public class Mod {
 	protected final Minecraft mc;
 	protected final FontRenderer font;
 	protected final Client client;
+	protected final String name;
+
+	protected final List<ModSetting> settings;
 	
-	public Mod() {
+	public Mod(String name, List<ModSetting> settings) {
+		this.name = name;
 		this.mc = Minecraft.getMinecraft();
 		this.font = mc.fontRendererObj;
 		this.client = Client.getInstance();
+
+		this.settings = settings;
 		
 		setEnabled(isEnabled);
 	}
@@ -40,5 +49,9 @@ public class Mod {
 	}
 
 	public void onToggle() {
+	}
+
+	public String getName() {
+		return name;
 	}
 }

@@ -9,7 +9,6 @@ import bwp.gui.GuiLogin;
 import bwp.gui.GuiModMain;
 import bwp.gui.GuiModRescale;
 import bwp.gui.main.MainGui;
-import bwp.mods.toggle.GuiModToggle;
 import com.google.common.collect.Sets;
 import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.exceptions.InvalidCredentialsException;
@@ -41,8 +40,6 @@ public class HUDManager {
 		EventManager.register(instance);
 		
 		return instance;
-		
-		
 	}
 	
 	private Set<IRenderer> registeredRenderers = Sets.newHashSet();
@@ -68,9 +65,9 @@ public class HUDManager {
 		
 	}
 	public void openToggleScreen(){
-		GuiModToggle guiModToggle = new GuiModToggle();
+		/*GuiModToggle guiModToggle = new GuiModToggle();
 		guiModToggle.initGui();
-		mc.displayGuiScreen(new GuiModToggle());
+		mc.displayGuiScreen(guiModToggle);*/
 
 	}
 	public void openLoginScreen(){
@@ -128,18 +125,10 @@ public class HUDManager {
 		mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
 		}
 	}
-	public void openMainGui() {
-		GuiModMain guiModMain = new GuiModMain(mc.currentScreen);
-		guiModMain.initGui();
-		mc.displayGuiScreen(new GuiModToggle());
-
-	}
 	public void openMainScreen(){
-
-		MainGui guiMain = new MainGui(mc.currentScreen);
+		MainGui guiMain = new MainGui();
 		guiMain.initGui();
 		mc.displayGuiScreen(guiMain);
-
 	}
 
 	

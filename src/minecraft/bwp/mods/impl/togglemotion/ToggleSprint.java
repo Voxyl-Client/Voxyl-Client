@@ -14,6 +14,10 @@ public class ToggleSprint extends ModDraggable{
     private boolean chroma = false;
     private int color = -1;
 
+    public ToggleSprint(String name) {
+        super(name);
+    }
+
     @Override
     public int getWidth() {
         return font.getStringWidth(textToRender);
