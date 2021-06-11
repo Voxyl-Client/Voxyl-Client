@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import bwp.gui.elements.ModButton;
 import bwp.gui.elements.ScrollBox;
+import bwp.gui.elements.template.CustomButton;
 import bwp.gui.hud.IRenderer;
 import bwp.gui.window.GuiWindow;
 
@@ -31,8 +32,6 @@ public class MainGui extends GuiWindow {
 		super.drawWindowParts();
 
 		buttons.clear();
-
-		ScaledResolution sr = new ScaledResolution(mc);
 
 		int modWidth = this.windowWidth - 20;
 		int modHeight = (this.windowHeight - 10) / 10;
@@ -72,7 +71,7 @@ public class MainGui extends GuiWindow {
 		if (scroll < 0) scroll = 0;
 		if (scroll > heightOutOfFrame) scroll = heightOutOfFrame;
 
-		for (ModButton button : buttons) {
+		for (CustomButton button : buttons) {
 			button.handleClick(mouseX, mouseY);
 		}
 	}

@@ -4,10 +4,12 @@ import bwp.FileManager;
 import bwp.event.EventManager;
 import bwp.gui.hud.IRenderer;
 import bwp.gui.hud.ScreenPosition;
+import bwp.mods.settings.ModSetting;
 
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ModDraggable extends Mod implements IRenderer {
 
@@ -16,6 +18,11 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 
 	public ModDraggable(String name) {
 		super(name, new ArrayList<>());
+		pos = loadPositionFromFile();
+	}
+
+	public ModDraggable(String name, List<ModSetting> settings) {
+		super(name, settings);
 		pos = loadPositionFromFile();
 	}
 

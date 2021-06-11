@@ -54,4 +54,12 @@ public class Mod {
 	public String getName() {
 		return name;
 	}
+
+	public List<ModSetting> getSettings() {
+		return settings;
+	}
+
+	public void addSetting(ModSetting setting) {
+		settings.add(setting);
+	}
 }

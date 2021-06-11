@@ -2,6 +2,8 @@ package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
+import bwp.mods.settings.ModSetting;
+import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
 import org.lwjgl.input.Mouse;
 
@@ -19,6 +21,7 @@ public class ModCPS extends ModDraggable {
 
     public ModCPS(String name) {
         super(name);
+        this.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, this.chroma));
     }
 
     @Override
