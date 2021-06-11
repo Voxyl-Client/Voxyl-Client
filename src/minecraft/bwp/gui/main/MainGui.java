@@ -3,6 +3,7 @@ package bwp.gui.main;
 import java.io.IOException;
 
 import bwp.gui.elements.ModButton;
+import bwp.gui.elements.ScrollBox;
 import bwp.gui.hud.IRenderer;
 import bwp.gui.window.GuiWindow;
 
@@ -18,9 +19,8 @@ public class MainGui extends GuiWindow {
 	private int prevPosY;
 	private final Minecraft mc = Minecraft.getMinecraft();
 
-	private int scroll = 0;
-
 	private int heightOutOfFrame = 0;
+	private int scroll = 0;
 
 	public MainGui() {
 		super("Mods");
@@ -65,7 +65,6 @@ public class MainGui extends GuiWindow {
 	@Override
 	public void handleMouseInput() throws IOException {
 		super.handleMouseInput();
-
 		int dWheel = Mouse.getEventDWheel();
 		int scrollChange = dWheel / 10;
 

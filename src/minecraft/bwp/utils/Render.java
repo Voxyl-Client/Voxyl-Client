@@ -33,12 +33,17 @@ public class Render {
         GL11.glPopMatrix();
     }
 
+    public static void drawString(String string, int x, int y, float scale, boolean shadow)
+    {
+        drawString(string, x, y, scale, -1, shadow);
+    }
+
     public static void drawString(String string, int x, int y, float scale, boolean shadow, int color)
     {
         drawString(string, x, y, scale, color, shadow);
     }
 
-    private static void drawString(String string, int x, int y, float scale, int color, boolean shadow)
+    public static void drawString(String string, int x, int y, float scale, int color, boolean shadow)
     {
         GL11.glPushMatrix();
         GL11.glTranslatef(x + 1, y + 1, 1F);
