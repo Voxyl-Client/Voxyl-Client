@@ -2,6 +2,7 @@ package bwp.mods;
 
 import bwp.Client;
 import bwp.event.EventManager;
+import bwp.gui.elements.template.CustomButton;
 import bwp.mods.settings.ModSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -53,5 +54,17 @@ public class Mod {
 
 	public String getName() {
 		return name;
+	}
+
+	public List<ModSetting> getSettings() {
+		return settings;
+	}
+
+	public void addSetting(ModSetting setting) {
+		settings.add(setting);
+	}
+
+	public void onSettingChange(int settingId, CustomButton button) {
+
 	}
 }

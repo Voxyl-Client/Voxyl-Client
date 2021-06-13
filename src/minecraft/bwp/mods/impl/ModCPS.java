@@ -1,8 +1,11 @@
 package bwp.mods.impl;
 
+import bwp.gui.elements.CheckBoxButton;
+import bwp.gui.elements.template.CustomButton;
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
 import bwp.utils.Render;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
@@ -66,6 +69,15 @@ public class ModCPS extends ModDraggable {
             Render.drawString("CPS : 10 | 10", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
     }
+
+    @Override
+    public void onSettingChange(int settingId, CustomButton button) {
+        if (settingId == 0) {
+            chroma = ((CheckBoxButton) button).isChecked();
+            settings.get(0).setValue(chroma);
+        }
+    }
+
     private int getCPS(){
         final long time = System.currentTimeMillis();
         this.clicks.removeIf(aLong -> aLong + 1000 < time);
