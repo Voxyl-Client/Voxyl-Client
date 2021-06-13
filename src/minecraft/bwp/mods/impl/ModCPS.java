@@ -4,6 +4,8 @@ import bwp.gui.elements.CheckBoxButton;
 import bwp.gui.elements.template.CustomButton;
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
+import bwp.mods.settings.ModSetting;
+import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Mouse;
@@ -22,6 +24,7 @@ public class ModCPS extends ModDraggable {
 
     public ModCPS(String name) {
         super(name);
+        addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, chroma));
     }
 
     @Override
