@@ -4,15 +4,25 @@ import bwp.FileManager;
 import bwp.event.EventManager;
 import bwp.gui.hud.IRenderer;
 import bwp.gui.hud.ScreenPosition;
+import bwp.mods.settings.ModSetting;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ModDraggable extends Mod implements IRenderer {
 
 	protected ScreenPosition pos;
+	protected boolean chroma;
 
-	public ModDraggable() {
+	public ModDraggable(String name) {
+		super(name, new ArrayList<>());
+		pos = loadPositionFromFile();
+	}
+
+	public ModDraggable(String name, List<ModSetting> settings) {
+		super(name, settings);
 		pos = loadPositionFromFile();
 	}
 
@@ -74,4 +84,7 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 		return (font.FONT_HEIGHT + 3) * lineNum;
 	}
 
+	public boolean getChroma() {
+		return chroma;
+	}
 }

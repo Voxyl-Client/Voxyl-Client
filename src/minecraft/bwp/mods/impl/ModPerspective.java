@@ -17,18 +17,18 @@ public class ModPerspective extends ModDraggable {
 
     private float cameraPitch = 0F;
 
-    private boolean chroma = false;
-
     private int previousPerspective = 0; //previous f5 state
 
     private long lastPressed = 0;
 
-    private int color = -1;
+    public ModPerspective(String name) {
+        super(name);
+    }
 
     @EventTarget
     public void keyBoardEvent(KeyPressEvent e) {
         if (e.getKey() == mc.gameSettings.CLIENT_PERSPECTIVE.getKeyCode()) {
-            if (this.lastPressed + 100 > System.currentTimeMillis()) return;
+            if (this.lastPressed + 200 > System.currentTimeMillis()) return;
             this.lastPressed = System.currentTimeMillis();
             if (Keyboard.getEventKeyState()) {
                 perspectiveToggled = !perspectiveToggled;
@@ -98,8 +98,7 @@ public class ModPerspective extends ModDraggable {
                 Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
             }
             else {
-
-                Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+                Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
             }
 
         }
@@ -113,7 +112,7 @@ public class ModPerspective extends ModDraggable {
         }
         else {
 
-            Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+            Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
     }
 

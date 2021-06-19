@@ -8,8 +8,6 @@ import bwp.gui.hud.HUDManager;
 import bwp.mods.ModInstances;
 import bwp.mods.toggle.ModEntry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
-import org.lwjgl.LWJGLUtil;
 
 public class Client {
 	
@@ -17,7 +15,6 @@ public class Client {
 	public static final Client getInstance() {
 		return INSTANCE;
 	}
-	
 	private DiscordRP discordRP = new DiscordRP();
 
 	private int prevPosX = 0;
@@ -25,6 +22,7 @@ public class Client {
 
 	private HUDManager hudManager;
 	private ModEntry modEntry;
+	private volatile boolean isBanned = false;
 
 	public void init() {
 		FileManager.init();

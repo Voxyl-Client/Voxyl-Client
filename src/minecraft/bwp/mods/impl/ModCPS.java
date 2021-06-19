@@ -2,6 +2,8 @@ package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
 import bwp.mods.ModDraggable;
+import bwp.mods.settings.ModSetting;
+import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
 import org.lwjgl.input.Mouse;
 
@@ -16,8 +18,11 @@ public class ModCPS extends ModDraggable {
     private boolean wasPressedR;
     private long lastPressed;
     private long lastPressedR;
-    private boolean chroma = false;
-    private int color = -1;
+
+    public ModCPS(String name) {
+        super(name);
+        this.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, this.chroma));
+    }
 
     @Override
     public int getWidth() {
@@ -47,11 +52,10 @@ public class ModCPS extends ModDraggable {
                 this.clicksRight.add(this.lastPressedR);
             }
         }
-        //TODO - GETTERS AND SETTERS
         if(chroma){
             Render.drawChromaString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
         }else {
-            Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+            Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
 
     }
@@ -62,7 +66,7 @@ public class ModCPS extends ModDraggable {
             Render.drawChromaString("CPS : 10 | 10" , pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
         }
         else {
-            Render.drawString("CPS : 10 | 10", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+            Render.drawString("CPS : 10 | 10", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
     }
     private int getCPS(){
