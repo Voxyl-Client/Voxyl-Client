@@ -50,8 +50,8 @@ public class DiscordRP {
 	public void update(String firstLine, String secondLine, String image) {
 		if (!isMac) {
 			DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(secondLine);
-			b.setBigImage("large", "BWP Client");
-			b.setSmallImage(image, "Made by ambmt");
+			b.setBigImage("large", "Voxyl Client");
+			b.setSmallImage(image, "Made with <3");
 			b.setDetails(firstLine);
 			b.setStartTimestamps(created);
 

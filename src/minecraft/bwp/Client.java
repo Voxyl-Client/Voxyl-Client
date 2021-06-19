@@ -6,6 +6,7 @@ import bwp.event.impl.ClientTickEvent;
 import bwp.gui.SplashProgress;
 import bwp.gui.hud.HUDManager;
 import bwp.mods.ModInstances;
+import bwp.mods.toggle.ModEntry;
 import net.minecraft.client.Minecraft;
 
 public class Client {
@@ -14,13 +15,14 @@ public class Client {
 	public static final Client getInstance() {
 		return INSTANCE;
 	}
-	
 	private DiscordRP discordRP = new DiscordRP();
 
 	private int prevPosX = 0;
 	private int prevPosY = 0;
 
 	private HUDManager hudManager;
+	private ModEntry modEntry;
+	private volatile boolean isBanned = false;
 
 	public void init() {
 		FileManager.init();
@@ -45,19 +47,32 @@ public class Client {
 	@EventTarget
 	public void onTick(ClientTickEvent e) {
 
+
+		//TODO - REMOVE
+
+
 		Minecraft mc = Minecraft.getMinecraft();
 		int height = mc.displayHeight;
 		int width = mc.displayWidth;
 
+
+
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
 			hudManager.openMainScreen();
-		}
 
+
+		}
 		if(Minecraft.getMinecraft().gameSettings.CLIENT_LOGIN.isPressed()) {
 			hudManager.openLoginScreen();
+
+
 		}
+
 
 		prevPosX = mc.displayHeight;
 		prevPosY = mc.displayWidth;
+	}
+	public String getClientVersion(){
+		return "Voxyl Client Beta-1.0";
 	}
 }
