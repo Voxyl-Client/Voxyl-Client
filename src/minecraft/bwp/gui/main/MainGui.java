@@ -12,7 +12,6 @@ import bwp.gui.hud.HUDManager;
 import bwp.mods.Mod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
-import org.lwjgl.input.Mouse;
 
 public class MainGui extends GuiWindow {
 
