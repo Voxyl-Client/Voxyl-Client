@@ -3,14 +3,12 @@ package bwp.gui.main;
 import java.io.IOException;
 
 import bwp.gui.elements.ModButton;
-import bwp.gui.elements.ScrollBox;
-import bwp.gui.hud.IRenderer;
 import bwp.gui.window.GuiWindow;
 
 import bwp.gui.hud.HUDManager;
 import bwp.mods.Mod;
+import bwp.mods.ModAPI;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 
 public class MainGui extends GuiWindow {
@@ -32,8 +30,6 @@ public class MainGui extends GuiWindow {
 
 		buttons.clear();
 
-		ScaledResolution sr = new ScaledResolution(mc);
-
 		int modWidth = this.windowWidth - 20;
 		int modHeight = (this.windowHeight - 10) / 10;
 
@@ -45,8 +41,7 @@ public class MainGui extends GuiWindow {
 
 		int yOffset = modHeight / 5;
 		int modsRendered = 0;
-		for (IRenderer renderer : HUDManager.getInstance().getRegisteredRenderers()) {
-			Mod mod = (Mod) renderer;
+		for (Mod mod : ModAPI.getInstance().getRegisteredMods()) {
 
 			yToSet = baseY + (yOffset + modHeight) * modsRendered;
 
@@ -73,7 +68,7 @@ public class MainGui extends GuiWindow {
 		if (scroll > heightOutOfFrame) scroll = heightOutOfFrame;
 
 		for (ModButton button : buttons) {
-			button.handleClick(mouseX, mouseY);
+			button.handleInteract(mouseX, mouseY);
 		}
 	}
 

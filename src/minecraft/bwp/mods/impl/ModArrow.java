@@ -1,20 +1,16 @@
 package bwp.mods.impl;
 
-import bwp.gui.hud.HUDConfigScreen;
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
 import bwp.utils.Render;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.lwjgl.opengl.GL11;
 
-import java.awt.*;
-
-public class ModArrow extends ModDraggable{
+public class ModArrow extends HUDMod {
 	private int color = -1;
 
-	public ModArrow(String name) {
-		super(name);
+	public ModArrow() {
+		super("Arrow HUD");
 	}
 
 	@Override
@@ -28,7 +24,7 @@ public class ModArrow extends ModDraggable{
 	}
 
 	@Override
-	public void render(ScreenPosition pos) {
+	public void render() {
 
 		if(this.getRemainingArrows() < 1) {
 			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true,color);
@@ -41,21 +37,15 @@ public class ModArrow extends ModDraggable{
 		}
 	}
 	
-	
-	@Override
-	public void renderDummy(ScreenPosition pos) {
-		render(pos);
-	}
-	
-	   private int getRemainingArrows() {
-		  int i = 0;
+   private int getRemainingArrows() {
+	  int i = 0;
 
-		  for(ItemStack itemstack : this.mc.thePlayer.inventory.mainInventory) {
-			 if(itemstack != null && itemstack.getItem().equals(Items.arrow)) {
-				i += itemstack.stackSize;
-			 }
-		  }
+	  for(ItemStack itemstack : this.mc.thePlayer.inventory.mainInventory) {
+		 if(itemstack != null && itemstack.getItem().equals(Items.arrow)) {
+			i += itemstack.stackSize;
+		 }
+	  }
 
-		  return i;
-	   }
+	  return i;
+   }
 }

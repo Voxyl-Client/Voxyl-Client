@@ -42,7 +42,7 @@ public class SettingFrame extends CustomButton {
 
     @Override
     public void onLeftClick(int mouseX, int mouseY) {
-        if (checkBox.handleClick(mouseX, mouseY)) {
+        if (checkBox.handleInteract(mouseX, mouseY)) {
             //checkBox.draw(Minecraft.getMinecraft(), mouseX, mouseY);
             //setting.getMod().onSettingChange(setting.getId(), checkBox.isChecked());
         }

@@ -12,7 +12,7 @@ public class AutoGG {
     private long lastTrigger;
 
     public void onChat(IChatComponent message) {
-        if (ModInstances.getModAutoGG().isEnabled()) {
+        if (ModInstances.getModAutoGG().getSettings().getEnabled()) {
             if (Minecraft.getMinecraft().getCurrentServerData() != null && Minecraft.getMinecraft().getCurrentServerData().serverIP != null) {
                 if (System.currentTimeMillis() > lastTrigger + 1000L && Arrays.asList(getHypixelTrigger().split("\n")).stream().anyMatch(trigger -> message.getUnformattedText().contains(trigger))) {
                     Minecraft.getMinecraft().thePlayer.sendChatMessage("gg");

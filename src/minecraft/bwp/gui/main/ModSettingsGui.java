@@ -1,7 +1,8 @@
 package bwp.gui.main;
 
 import bwp.gui.elements.CheckBoxButton;
-import bwp.gui.elements.template.CustomButton;
+import bwp.gui.elements.GuiIntractable;
+import bwp.gui.elements.SettingSlider;
 import bwp.gui.hud.HUDManager;
 import bwp.gui.window.GuiWindow;
 import bwp.mods.Mod;
@@ -12,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Mouse;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +23,7 @@ public class ModSettingsGui extends GuiWindow {
 	private int prevPosY;
 	private final Minecraft mc = Minecraft.getMinecraft();
 	private final Mod mod;
-	private final HashMap<CustomButton, Integer> buttons = new HashMap<>();
+	private final HashMap<GuiIntractable, Integer> buttons = new HashMap<>();
 
 	private int scroll = 0;
 
@@ -49,16 +51,24 @@ public class ModSettingsGui extends GuiWindow {
 
 		int yOffset = settingHeight / 5;
 		int settingsRendered = 0;
-		for (ModSetting setting : mod.getSettings()) {
+		for (ModSetting setting : mod.getSettings().getSettings()) {
 
 			yToSet = baseY + (yOffset + settingHeight) * settingsRendered;
 
+			Render.drawString(setting.getName(), xToSet + 5, yToSet - scroll + 10, (float) (settingHeight - 20) / fontRendererObj.FONT_HEIGHT, true);
+
 			if (setting.getType() == ModSettingType.CHECKBOX) {
 				int checkBoxSize = 20;
-				Render.drawString(setting.getName(), xToSet + 5, yToSet - scroll + 10, (float) (settingHeight - 20) / fontRendererObj.FONT_HEIGHT, true);
 				CheckBoxButton button = new CheckBoxButton(xToSet + settingWidth - ((settingHeight - checkBoxSize) / 2), yToSet - scroll + ((settingHeight - checkBoxSize) / 2), checkBoxSize, checkBoxSize, (boolean) setting.getValue());
 				buttons.put(button, setting.getId());
 				button.draw(mc, Mouse.getEventX() * this.width / Minecraft.getMinecraft().displayWidth, this.height - Mouse.getEventY() * this.height / Minecraft.getMinecraft().displayHeight - 1);
+			} else if (setting.getType() == ModSettingType.SLIDER) {
+				int sliderWidth = 200;
+				int sliderHeight = 20;
+				SettingSlider slider = new SettingSlider(xToSet + settingWidth - sliderWidth, yToSet - scroll + ((settingHeight - sliderHeight) / 2), sliderWidth, sliderHeight, 0, 10, 4, (float) ((double) setting.getValue()));
+				buttons.put(slider, setting.getId());
+				slider.draw(mc, Mouse.getEventX() * this.width / Minecraft.getMinecraft().displayWidth, this.height - Mouse.getEventY() * this.height / Minecraft.getMinecraft().displayHeight - 1);
+
 			}
 
 			settingsRendered ++;
@@ -80,17 +90,12 @@ public class ModSettingsGui extends GuiWindow {
 		if (scroll < 0) scroll = 0;
 		if (scroll > heightOutOfFrame) scroll = heightOutOfFrame;
 
-		for (Map.Entry<CustomButton, Integer> entry: buttons.entrySet()) {
-			if (entry.getKey().handleClick(mouseX, mouseY)) {
-				//checkBox.draw(Minecraft.getMinecraft(), mouseX, mouseY);
+		for (Map.Entry<GuiIntractable, Integer> entry: buttons.entrySet()) {
+			if (entry.getKey().handleInteract(mouseX, mouseY)) {
 				mod.onSettingChange(entry.getValue(), entry.getKey());
+				mod.saveDataToFile();
 			}
 		}
-	}
-
-	@Override
-	public void initGui() {
-		super.initGui();
 	}
 
 	// Checking on a rescale, so Gui Screen can adjust.

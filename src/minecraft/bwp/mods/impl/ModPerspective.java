@@ -1,14 +1,15 @@
 package bwp.mods.impl;
 
+import bwp.event.EventManager;
 import bwp.event.EventTarget;
 import bwp.event.impl.KeyPressEvent;
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
 import bwp.utils.Render;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
-public class ModPerspective extends ModDraggable {
+public class ModPerspective extends HUDMod {
 
     private boolean returnOnRelease = true; //this means you have to hold down key
     private boolean perspectiveToggled = false;
@@ -19,17 +20,14 @@ public class ModPerspective extends ModDraggable {
 
     private int previousPerspective = 0; //previous f5 state
 
-    private long lastPressed = 0;
-
-    public ModPerspective(String name) {
-        super(name);
+    public ModPerspective() {
+        super("Freelook");
+        EventManager.register(this);
     }
 
     @EventTarget
     public void keyBoardEvent(KeyPressEvent e) {
-        if (e.getKey() == mc.gameSettings.CLIENT_PERSPECTIVE.getKeyCode()) {
-            if (this.lastPressed + 200 > System.currentTimeMillis()) return;
-            this.lastPressed = System.currentTimeMillis();
+        if (e.getKey() == mc.gameSettings.CLIENT_PERSPECTIVE.getKeyCode() && settings.getEnabled()) {
             if (Keyboard.getEventKeyState()) {
                 perspectiveToggled = !perspectiveToggled;
 
@@ -92,7 +90,7 @@ public class ModPerspective extends ModDraggable {
     }
 
     @Override
-    public void render(ScreenPosition pos) {
+    public void render() {
         if(perspectiveToggled){
             if(chroma){
                 Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
@@ -106,7 +104,7 @@ public class ModPerspective extends ModDraggable {
     }
 
     @Override
-    public void renderDummy(ScreenPosition pos){
+    public void renderDummy(){
         if(chroma){
             Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }

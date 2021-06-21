@@ -1,19 +1,19 @@
 package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
 
-public class ModFPS extends ModDraggable{
+public class ModFPS extends HUDMod {
 
 
 
 	private boolean betterUI = false;
 	private int color = -1;
 
-	public ModFPS(String name) {
-		super(name);
+	public ModFPS() {
+		super("FPS");
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class ModFPS extends ModDraggable{
 	}
 
 	@Override
-	public void render(ScreenPosition pos) {
+	public void render() {
 		if (chroma) {
 
 
@@ -51,8 +51,5 @@ public class ModFPS extends ModDraggable{
 	public void setBetterUI(boolean betterUI) {
 		this.betterUI = betterUI;
 	}
-
-
-
 
 }

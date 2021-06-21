@@ -1,6 +1,6 @@
 package bwp.gui.hud.snapping;
 
-import bwp.gui.hud.IRenderer;
+import bwp.mods.HUDMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 
@@ -12,8 +12,8 @@ public class SnappingZone {
     public final float relativeLoc;
     private final SnappingDirection direction;
     private final SnappingArea snappingArea;
-    private IRenderer rendererToSnap = null;
-    private IRenderer rendererSnapped = null;
+    private HUDMod modToSnap = null;
+    private HUDMod modSnapped = null;
     private int pixelLoc;
     private int color;
 
@@ -33,22 +33,22 @@ public class SnappingZone {
         }
     }
 
-    public IRenderer getRendererToSnap() {
-        return rendererToSnap;
+    public HUDMod getModToSnap() {
+        return modToSnap;
     }
 
-    public void setRendererToSnap(IRenderer rendererToSnap) {
-        this.rendererToSnap = rendererToSnap;
+    public void setModToSnap(HUDMod modToSnap) {
+        this.modToSnap = modToSnap;
     }
 
-    public void setSnappedRenderer(IRenderer renderer) { this.rendererSnapped = renderer; }
+    public void setSnappedRenderer(HUDMod renderer) { this.modSnapped = renderer; }
 
     public void setColor(int color) {
         this.color = color;
     }
 
     public void removeRendererToSnap() {
-        this.rendererToSnap = null;
+        this.modToSnap = null;
     }
 
     public int getPixelLoc() {
@@ -67,7 +67,7 @@ public class SnappingZone {
         return color;
     }
 
-    public IRenderer getRendererSnapped() {
-        return rendererSnapped;
+    public HUDMod getModSnapped() {
+        return modSnapped;
     }
 }

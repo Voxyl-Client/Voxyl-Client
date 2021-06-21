@@ -3,7 +3,7 @@ package bwp.gui;
 
 import bwp.gui.hud.HUDManager;
 import bwp.utils.BWPUtils;
-import bwp.utils.RoundedRect;
+import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.util.ResourceLocation;
@@ -37,8 +37,7 @@ public class GuiModMain extends GuiScreen{
 	        ScaledResolution sr = new ScaledResolution(mc);
 	        this.buttonList.clear();
 
-	        RoundedRect roundedRect = new RoundedRect();
-	        roundedRect.renderRoundedQuad(new Vector3d(5,5,0), new Vector3d(50,50,0), 10, Color.WHITE);
+			Render.drawRoundedRectFromV3D(new Vector3d(5,5,0), new Vector3d(50,50,0), 10, Color.WHITE);
 
 	        Gui.drawCenteredString(mc.fontRendererObj, "Gui Settings", (int) (this.width / 2F), sr.getScaledHeight() / 2 - 65, -1);
 	        super.drawScreen(x2, y2, z2);
@@ -77,9 +76,6 @@ public class GuiModMain extends GuiScreen{
 	        super.onGuiClosed();
 	        Keyboard.enableRepeatEvents(false);
 	    }
-
-
-
 }
 
 

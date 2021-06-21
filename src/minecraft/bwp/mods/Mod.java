@@ -1,52 +1,31 @@
 package bwp.mods;
 
 import bwp.Client;
-import bwp.event.EventManager;
-import bwp.gui.elements.template.CustomButton;
-import bwp.mods.settings.ModSetting;
+import bwp.FileManager;
+import bwp.gui.elements.GuiIntractable;
+import bwp.mods.settings.ModSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 
-import java.util.List;
+import java.io.File;
 
-public class Mod {
-	
-	private boolean isEnabled = true;
+public abstract class Mod {
 	
 	protected final Minecraft mc;
 	protected final FontRenderer font;
 	protected final Client client;
 	protected final String name;
+	protected boolean chroma = false;
 
-	protected final List<ModSetting> settings;
+	protected ModSettings settings;
 	
-	public Mod(String name, List<ModSetting> settings) {
+	public Mod(String name) {
 		this.name = name;
 		this.mc = Minecraft.getMinecraft();
 		this.font = mc.fontRendererObj;
 		this.client = Client.getInstance();
 
-		this.settings = settings;
-		
-		setEnabled(isEnabled);
-	}
-
-	public void setEnabled(boolean isEnabled) {
-
-		boolean oldStatus = this.isEnabled;
-		this.isEnabled = isEnabled;
-
-		if(isEnabled) {
-			EventManager.register(this);
-		}else {
-			EventManager.unregister(this);
-		}
-
-		if (oldStatus != this.isEnabled)
-			onToggle();
-	}
-	public boolean isEnabled() {
-		return isEnabled;
+		this.settings = new ModSettings();
 	}
 
 	public void onToggle() {
@@ -56,15 +35,33 @@ public class Mod {
 		return name;
 	}
 
-	public List<ModSetting> getSettings() {
+	public ModSettings getSettings() {
 		return settings;
 	}
 
-	public void addSetting(ModSetting setting) {
-		settings.add(setting);
+	private File getBaseFolder() {
+		File file = new File(FileManager.getModsDirectory(), this.getClass().getSimpleName());
+		file.mkdirs();
+		return file;
 	}
 
-	public void onSettingChange(int settingId, CustomButton button) {
+	public void saveDataToFile() {
+		FileManager.writeJsonToFile(new File(getBaseFolder(), "settings.json"), settings);
+	}
+
+	public void loadDataFromFile() {
+		ModSettings loaded = FileManager.readFromJson(new File(getBaseFolder(), "settings.json"), ModSettings.class);
+
+		if (loaded == null){
+			loaded = new ModSettings();
+			loaded.setEnabled(false);
+			saveDataToFile();
+		}
+
+		settings = loaded;
+	}
+
+	public void onSettingChange(int settingId, GuiIntractable intractable) {
 
 	}
 }

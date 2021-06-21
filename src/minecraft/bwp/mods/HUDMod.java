@@ -1,35 +1,31 @@
 package bwp.mods;
 
 import bwp.FileManager;
-import bwp.event.EventManager;
-import bwp.gui.hud.IRenderer;
 import bwp.gui.hud.ScreenPosition;
+import bwp.mods.settings.ModSettings;
 
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 
-public abstract class ModDraggable extends Mod implements IRenderer {
+public abstract class HUDMod extends Mod {
 
 	protected ScreenPosition pos;
-	protected boolean chroma;
 
-	public ModDraggable(String name) {
-		super(name, new ArrayList<>());
-		pos = loadPositionFromFile();
+	public HUDMod(String name) {
+		super(name);
+		loadPosFromFile();
 	}
 
-	public void changeColor(int colorin){
+	public void changeColor(int colorIn){
 
 	}
+
 	public int getColor(){
 		return 0;
 	}
 
-	@Override
-	public void save(ScreenPosition pos) {
+	public void setPos(ScreenPosition pos) {
 		this.pos = pos;
-		savePositionToFile();
 	}
 
 	private File getBaseFolder() {
@@ -38,36 +34,36 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 		return file;
 	}
 
-	private void savePositionToFile() {
+	@Override
+	public void saveDataToFile() {
+		super.saveDataToFile();
 		FileManager.writeJsonToFile(new File(getBaseFolder(), "pos.json"), pos);
 	}
 
 	@Override
 	public void onToggle() {
-		if (pos != null) {
-			pos.setEnabled(isEnabled());
-			savePositionToFile();
+		if (settings != null) {
+			saveDataToFile();
 		}
 	}
 
 	@Override
-	public ScreenPosition load() {
-		return pos;
+	public void loadDataFromFile() {
+		super.loadDataFromFile();
+
+		loadPosFromFile();
 	}
-	private ScreenPosition loadPositionFromFile() {
+
+	public void loadPosFromFile() {
 		ScreenPosition loaded = FileManager.readFromJson(new File(getBaseFolder(), "pos.json"), ScreenPosition.class);
 
 		if(loaded == null){
 			loaded = ScreenPosition.fromRelativePosition(0.5, 0.5, 1F);
-			loaded.setEnabled(false);
 			this.pos = loaded;
-			savePositionToFile();
+			FileManager.writeJsonToFile(new File(getBaseFolder(), "pos.json"), pos);
+		} else {
+			this.pos = loaded;
 		}
-
-		this.setEnabled(loaded.getEnabled());
-
-		return loaded;
-
 	}
 	
 	public final int getLineOffset(ScreenPosition pos, int lineNum) {
@@ -77,7 +73,27 @@ public abstract class ModDraggable extends Mod implements IRenderer {
 		return (font.FONT_HEIGHT + 3) * lineNum;
 	}
 
-	public boolean getChroma() {
-		return chroma;
+	public boolean shouldUsePadding() {
+		return true;
 	}
+
+	public ScreenPosition getPos() {
+		return pos;
+	}
+
+	public int getWidth() {
+		return 0;
+	}
+
+	public int getHeight() {
+		return 0;
+	}
+
+	public void renderDummy() {
+		render();
+	}
+
+	public void render() {
+
+	};
 }

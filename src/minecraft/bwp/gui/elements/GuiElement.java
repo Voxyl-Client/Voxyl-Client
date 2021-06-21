@@ -8,6 +8,7 @@ public abstract class GuiElement extends Gui {
     protected int y;
     protected int width;
     protected int height;
+    protected boolean hovered = false;
 
     public GuiElement(int x, int y, int widthIn, int heightIn) {
         this.x = x;
@@ -17,5 +18,9 @@ public abstract class GuiElement extends Gui {
     }
 
     public void draw(Minecraft mc, int mouseX, int mouseY) {
+    }
+
+    public boolean isHovered() {
+        return hovered;
     }
 }

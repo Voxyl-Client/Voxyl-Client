@@ -67,7 +67,7 @@ public class ScrollBox extends GuiElement {
         if (scroll > heightOutOfFrame) scroll = heightOutOfFrame;
 
         for (CustomButton button : buttons) {
-            button.handleClick(Mouse.getEventX() * this.width / Minecraft.getMinecraft().displayWidth, this.height - Mouse.getEventY() * this.height / Minecraft.getMinecraft().displayHeight - 1);
+            button.handleInteract(Mouse.getEventX() * this.width / Minecraft.getMinecraft().displayWidth, this.height - Mouse.getEventY() * this.height / Minecraft.getMinecraft().displayHeight - 1);
         }
     }
 }

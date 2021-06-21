@@ -5,16 +5,16 @@ import bwp.utils.Render;
 import org.lwjgl.opengl.GL11;
 
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class ModArmorStatus extends ModDraggable {
+public class ModArmorStatus extends HUDMod {
 
 
-	public ModArmorStatus(String name) {
-		super(name);
+	public ModArmorStatus() {
+		super("Armor Status");
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class ModArmorStatus extends ModDraggable {
 	}
 
 	@Override
-	public void render(ScreenPosition pos) {
+	public void render() {
 	
 		for(int i = 0; i< mc.thePlayer.inventory.armorInventory.length; i++) {
 		ItemStack itemStack = mc.thePlayer.inventory.armorInventory[i];
@@ -37,7 +37,9 @@ public class ModArmorStatus extends ModDraggable {
 		}
 		
 	}
-	public void renderDummy(ScreenPosition pos) {
+
+	@Override
+	public void renderDummy() {
 		renderItemStack(3, new ItemStack(Items.leather_helmet), pos);
 		renderItemStack(2, new ItemStack(Items.leather_chestplate), pos);
 		renderItemStack(1, new ItemStack(Items.leather_leggings), pos);

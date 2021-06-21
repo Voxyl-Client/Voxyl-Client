@@ -1,8 +1,8 @@
 package bwp.gui.elements;
 
-import bwp.Client;
 import bwp.gui.elements.template.CustomButton;
 import bwp.gui.main.ModSettingsGui;
+import bwp.mods.HUDMod;
 import bwp.mods.Mod;
 import bwp.utils.ColorUtils;
 import bwp.utils.Render;
@@ -21,7 +21,7 @@ public class ModButton extends CustomButton {
     public ModButton(int x, int y, int widthIn, int heightIn, Mod mod) {
         super(x, y, widthIn, heightIn);
         this.mod = mod;
-        this.checkBox = new CheckBoxButton(this.x + width - ((height - checkBoxSize) / 2) - checkBoxSize, this.y + ((height - checkBoxSize) / 2), checkBoxSize, checkBoxSize, mod.isEnabled());
+        this.checkBox = new CheckBoxButton(this.x + width - ((height - checkBoxSize) / 2) - checkBoxSize, this.y + ((height - checkBoxSize) / 2), checkBoxSize, checkBoxSize, mod.getSettings().getEnabled());
     }
 
     public void setPosition(int x, int y, int width, int height) {
@@ -58,12 +58,18 @@ public class ModButton extends CustomButton {
 
     @Override
     public void onLeftClick(int mouseX, int mouseY) {
-        if (!checkBox.handleClick(mouseX, mouseY)) {
+        if (!checkBox.handleInteract(mouseX, mouseY)) {
             ModSettingsGui modSettingsGui = new ModSettingsGui(mod);
             modSettingsGui.initGui();
             Minecraft.getMinecraft().displayGuiScreen(modSettingsGui);
         } else {
-            mod.setEnabled(checkBox.isChecked());
+            mod.getSettings().setEnabled(checkBox.isChecked());
+            if (mod instanceof HUDMod) {
+                HUDMod hudMod = (HUDMod) mod;
+                hudMod.saveDataToFile();
+            } else {
+                mod.saveDataToFile();
+            }
         }
     }
 }

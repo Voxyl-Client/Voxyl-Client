@@ -11,16 +11,13 @@ import net.minecraft.client.Minecraft;
 public class Client {
 	
 	private static final Client INSTANCE = new Client();
-	public static final Client getInstance() {
+	public static Client getInstance() {
 		return INSTANCE;
 	}
 	
 	private DiscordRP discordRP = new DiscordRP();
 
-	private int prevPosX = 0;
-	private int prevPosY = 0;
-
-	private HUDManager hudManager;
+	private final HUDManager hudManager = HUDManager.getInstance();
 
 	public void init() {
 		FileManager.init();
@@ -29,9 +26,7 @@ public class Client {
 		EventManager.register(this);
 	}
 	public void start() {
-		hudManager = HUDManager.getInstance();
-
-		ModInstances.register(hudManager);
+		ModInstances.register();
 	}
 	public void shutdown() {
 		discordRP.shutdown();
@@ -46,18 +41,13 @@ public class Client {
 	public void onTick(ClientTickEvent e) {
 
 		Minecraft mc = Minecraft.getMinecraft();
-		int height = mc.displayHeight;
-		int width = mc.displayWidth;
 
-		if(Minecraft.getMinecraft().gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
+		if(mc.gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
 			hudManager.openMainScreen();
 		}
 
-		if(Minecraft.getMinecraft().gameSettings.CLIENT_LOGIN.isPressed()) {
+		if(mc.gameSettings.CLIENT_LOGIN.isPressed()) {
 			hudManager.openLoginScreen();
 		}
-
-		prevPosX = mc.displayHeight;
-		prevPosY = mc.displayWidth;
 	}
 }

@@ -4,6 +4,10 @@ import bwp.gui.hud.HUDManager;
 import bwp.mods.impl.*;
 import bwp.mods.impl.togglemotion.ToggleSneak;
 import bwp.mods.impl.togglemotion.ToggleSprint;
+import bwp.mods.settings.ModSetting;
+import bwp.mods.settings.ModSettingType;
+
+import java.util.Arrays;
 
 
 public class ModInstances {
@@ -32,43 +36,48 @@ public class ModInstances {
 
 	private static FullBright fullbright;
 	
-	public static void register(HUDManager api) {
+	public static void register() {
+		ModAPI api = ModAPI.getInstance();
 		
-		modArmorStatus = new ModArmorStatus("Armor Status");
+		modArmorStatus = new ModArmorStatus();
 		api.register(modArmorStatus);
 		
-		modFPS = new ModFPS("FPS");
+		modFPS = new ModFPS();
 		api.register(modFPS);
 		
-		modCoords = new ModCoords("Coordinates");
+		modCoords = new ModCoords();
 		api.register(modCoords);
 		
-		modArrow = new ModArrow("Arrow HUD");
+		modArrow = new ModArrow();
 		api.register(modArrow);
 		
-		modKeyStrokes = new ModKeystrokes("Keystrokes");
+		modKeyStrokes = new ModKeystrokes();
 		api.register(modKeyStrokes);
 
-		toggleSprint = new ToggleSprint("Toggle Sprint");
+		toggleSprint = new ToggleSprint();
 		api.register(toggleSprint);
 
-		toggleSneak = new ToggleSneak("Toggle Sneak");
+		toggleSneak = new ToggleSneak();
 		api.register(toggleSneak);
 
-		modCPS = new ModCPS("CPS");
+		modCPS = new ModCPS();
 		api.register(modCPS);
 
-		modPerspective = new ModPerspective("Perspective");
+		modPerspective = new ModPerspective();
 		api.register(modPerspective);
 
-		autoGG = new ModAutoGG("Auto GG");
+		autoGG = new ModAutoGG();
 		api.register(autoGG);
 
-		time = new ModTime("Time Display");
+		time = new ModTime();
 		api.register(time);
 
-		fullbright = new FullBright("Full Bright");
+		fullbright = new FullBright();
 		api.register(fullbright);
+
+		for (Mod mod : api.getRegisteredMods()) {
+			mod.loadDataFromFile();
+		}
 	}
 
 	public static ToggleSprint getToggleSprint() {

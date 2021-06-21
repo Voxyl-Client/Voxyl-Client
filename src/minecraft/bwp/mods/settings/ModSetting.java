@@ -3,11 +3,11 @@ package bwp.mods.settings;
 import bwp.mods.Mod;
 
 public class ModSetting {
-    final int id;
-    final String name;
-    final ModSettingType type;
-    final Mod mod;
-    Object value;
+    private final int id;
+    private final String name;
+    private final ModSettingType type;
+    private transient final Mod mod;
+    private Object value;
 
     public ModSetting(int id, String name, ModSettingType type, Mod mod, Object value) {
         this.id = id;
