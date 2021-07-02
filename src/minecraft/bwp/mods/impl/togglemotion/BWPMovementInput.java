@@ -183,19 +183,16 @@ public class BWPMovementInput extends MovementInput {
         boolean isRiding = mc.thePlayer.isRiding();
         boolean isHoldingSprint = gameSettings.keyBindSprint.isKeyDown();
 
-        if(isFlying){
-            if(originalFlySpeed > 0.0F){
-                displayText = "[Flying (" + df.format(boostedFlySpeed / originalFlySpeed ) + "x Boost)]  ";
+        if(isFlying) {
+            if (originalFlySpeed > 0.0F) {
+                displayText = "[Flying (" + df.format(boostedFlySpeed / originalFlySpeed) + "x Boost)]  ";
 
-            }else{
+            } else {
                 displayText = "[Flying]  ";
             }
-        }
-        if(isRiding){
+        } else if(isRiding){
             displayText += "[Riding  ";
-        }
-
-        else if(sprint && !isFlying && !isRiding){
+        } else if(sprint){
             if(isHoldingSprint){
 
                 displayText += "[Sprinting (Held)]  ";

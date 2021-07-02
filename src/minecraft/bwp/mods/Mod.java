@@ -3,6 +3,7 @@ package bwp.mods;
 import bwp.Client;
 import bwp.FileManager;
 import bwp.gui.elements.GuiIntractable;
+import bwp.mods.settings.ModSetting;
 import bwp.mods.settings.ModSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -26,6 +27,10 @@ public abstract class Mod {
 		this.client = Client.getInstance();
 
 		this.settings = new ModSettings();
+
+		loadDataFromFile();
+
+		onToggle();
 	}
 
 	public void onToggle() {
@@ -56,9 +61,32 @@ public abstract class Mod {
 			loaded = new ModSettings();
 			loaded.setEnabled(false);
 			saveDataToFile();
-		}
 
-		settings = loaded;
+			settings = loaded;
+		} else {
+			ModSettings compromisedSettings = new ModSettings();
+
+			compromisedSettings.setEnabled(loaded.getEnabled());
+
+			for (ModSetting settingLocal : settings.getSettings()) {
+				boolean wasFoundLocal = false;
+				for (ModSetting setting : loaded.getSettings()) {
+					if (setting.getId() == settingLocal.getId()) {
+						wasFoundLocal = true;
+						settingLocal.setValue(setting.getValue());
+						compromisedSettings.addSetting(settingLocal);
+					}
+				}
+
+				if (!wasFoundLocal) {
+					compromisedSettings.addSetting(settingLocal);
+				}
+			}
+
+			settings = compromisedSettings;
+
+			saveDataToFile();
+		}
 	}
 
 	public void onSettingChange(int settingId, GuiIntractable intractable) {

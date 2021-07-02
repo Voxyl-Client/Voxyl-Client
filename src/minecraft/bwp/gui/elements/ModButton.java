@@ -64,6 +64,7 @@ public class ModButton extends CustomButton {
             Minecraft.getMinecraft().displayGuiScreen(modSettingsGui);
         } else {
             mod.getSettings().setEnabled(checkBox.isChecked());
+            mod.onToggle();
             if (mod instanceof HUDMod) {
                 HUDMod hudMod = (HUDMod) mod;
                 hudMod.saveDataToFile();

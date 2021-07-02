@@ -22,6 +22,7 @@ public class ToggleSprint extends HUDMod {
         super("Toggle Sprint");
         settings.addSetting(new ModSetting(0, "Fly Boost", ModSettingType.CHECKBOX, this, true));
         settings.addSetting(new ModSetting(1, "Fly Boost Factor", ModSettingType.SLIDER, this, 4.0));
+        settings.addSetting(new ModSetting(2, "Fly FeFDSdEFdSFdc", ModSettingType.CHECKBOX, this, true));
     }
 
     @Override

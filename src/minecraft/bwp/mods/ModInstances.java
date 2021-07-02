@@ -74,10 +74,6 @@ public class ModInstances {
 
 		fullbright = new FullBright();
 		api.register(fullbright);
-
-		for (Mod mod : api.getRegisteredMods()) {
-			mod.loadDataFromFile();
-		}
 	}
 
 	public static ToggleSprint getToggleSprint() {
