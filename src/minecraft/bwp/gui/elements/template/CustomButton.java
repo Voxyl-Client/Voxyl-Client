@@ -1,13 +1,12 @@
 package bwp.gui.elements.template;
 
 import bwp.gui.elements.GuiElement;
+import bwp.gui.elements.GuiIntractable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 
-public abstract class CustomButton extends GuiElement {
-    protected boolean hovered = false;
-
+public abstract class CustomButton extends GuiElement implements GuiIntractable {
     protected static final ResourceLocation buttonTextures = new ResourceLocation("textures/gui/widgets.png");
 
     public CustomButton(int x, int y, int widthIn, int heightIn) {
@@ -27,7 +26,7 @@ public abstract class CustomButton extends GuiElement {
         this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
     }
 
-    public boolean handleClick(int mouseX, int mouseY) {
+    public boolean handleInteract(int mouseX, int mouseY) {
         int mButtonPressed = Mouse.getEventButton();
         boolean mButtonState = Mouse.getEventButtonState();
 
@@ -38,6 +37,7 @@ public abstract class CustomButton extends GuiElement {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -59,9 +59,5 @@ public abstract class CustomButton extends GuiElement {
 
     public int getHeight() {
         return height;
-    }
-
-    public boolean isHovered() {
-        return hovered;
     }
 }

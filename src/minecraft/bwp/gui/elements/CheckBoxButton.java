@@ -1,6 +1,8 @@
 package bwp.gui.elements;
 
 import bwp.gui.elements.template.CustomButton;
+import bwp.utils.ColorUtils;
+import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -26,17 +28,11 @@ public class CheckBoxButton extends CustomButton {
         mc.getTextureManager().bindTexture(buttonTextures);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        int i = 1;
-
         if (hovered) {
-            i = 2;
+            Render.drawRoundedRectangle(x - 1, y - 1, width + 2, height + 2, mc.displayWidth / 384, Color.BLACK);
+        } else {
+            Render.drawRoundedRectangle(x, y, width, height, mc.displayWidth / 384, Color.BLACK);
         }
-
-        GlStateManager.enableBlend();
-        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-        GlStateManager.blendFunc(770, 771);
-        this.drawTexturedModalRect(this.x, this.y, 0, 46 + i * 20, this.width / 2, this.height);
-        this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + i * 20, this.width / 2, this.height);
 
         String displayString = X;
         int color = X_COLOR.getRGB();
@@ -47,7 +43,8 @@ public class CheckBoxButton extends CustomButton {
             color = CHECK_COLOR.getRGB();
         }
 
-        drawCenteredString(fontrenderer, displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, color);
+        float textScale = ((float) height - (((float) height / 5F) * 2F)) / (float) fontrenderer.FONT_HEIGHT;
+        Render.drawString(displayString, this.x + (width / 5), this.y + (height / 5), textScale, true, color);
     }
 
     @Override

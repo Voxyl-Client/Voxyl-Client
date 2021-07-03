@@ -1,5 +1,5 @@
 package bwp.mods.settings;
 
 public enum ModSettingType {
-    CHECKBOX
+    CHECKBOX, SLIDER
 }

@@ -1,19 +1,19 @@
 package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class ModTime extends ModDraggable{
+public class ModTime extends HUDMod {
 
 	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
 
-	public ModTime(String name) {
-		super(name);
+	public ModTime() {
+		super("Time Display");
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class ModTime extends ModDraggable{
 	}
 
 	@Override
-	public void render(ScreenPosition pos) {
+	public void render() {
 
 		if (chroma) {
 			Render.drawChromaString(getCurrentTime(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);

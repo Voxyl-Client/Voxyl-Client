@@ -3,18 +3,18 @@ package bwp.mods.settings;
 import bwp.mods.Mod;
 
 public class ModSetting {
-    final int id;
-    final String name;
-    final ModSettingType type;
-    final Mod mod;
-    final Object baseValue;
+    private final int id;
+    private final String name;
+    private final ModSettingType type;
+    private transient final Mod mod;
+    private Object value;
 
-    public ModSetting(int id, String name, ModSettingType type, Mod mod, Object baseValue) {
+    public ModSetting(int id, String name, ModSettingType type, Mod mod, Object value) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.mod = mod;
-        this.baseValue = baseValue;
+        this.value = value;
     }
 
     public int getId() {
@@ -33,7 +33,11 @@ public class ModSetting {
         return mod;
     }
 
-    public Object getBaseValue() {
-        return baseValue;
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
     }
 }

@@ -3,15 +3,13 @@ package bwp.gui.main;
 import java.io.IOException;
 
 import bwp.gui.elements.ModButton;
-import bwp.gui.elements.ScrollBox;
-import bwp.gui.elements.template.CustomButton;
-import bwp.gui.hud.IRenderer;
 import bwp.gui.window.GuiWindow;
 
 import bwp.gui.hud.HUDManager;
 import bwp.mods.Mod;
+import bwp.mods.ModAPI;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
+import org.lwjgl.input.Mouse;
 
 public class MainGui extends GuiWindow {
 
@@ -43,8 +41,7 @@ public class MainGui extends GuiWindow {
 
 		int yOffset = modHeight / 5;
 		int modsRendered = 0;
-		for (IRenderer renderer : HUDManager.getInstance().getRegisteredRenderers()) {
-			Mod mod = (Mod) renderer;
+		for (Mod mod : ModAPI.getInstance().getRegisteredMods()) {
 
 			yToSet = baseY + (yOffset + modHeight) * modsRendered;
 
@@ -70,8 +67,8 @@ public class MainGui extends GuiWindow {
 		if (scroll < 0) scroll = 0;
 		if (scroll > heightOutOfFrame) scroll = heightOutOfFrame;
 
-		for (CustomButton button : buttons) {
-			button.handleClick(mouseX, mouseY);
+		for (ModButton button : buttons) {
+			button.handleInteract(mouseX, mouseY);
 		}
 	}
 

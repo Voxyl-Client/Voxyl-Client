@@ -1,30 +1,11 @@
 package bwp.mods.impl;
 
-import bwp.gui.hud.HUDConfigScreen;
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
+import bwp.mods.Mod;
 
-public class ModAutoGG extends ModDraggable {
-    public ModAutoGG(String name) {
-        super(name);
-    }
-
-    @Override
-    public int getWidth() {
-        return 0;
-    }
-
-    @Override
-    public int getHeight() {
-        return 0;
-    }
-
-    @Override
-    public void render(ScreenPosition pos) {
-    }
-
-    @Override
-    public boolean shouldRender() {
-        return false;
+public class ModAutoGG extends Mod {
+    public ModAutoGG() {
+        super("Auto GG");
     }
 }

@@ -5,16 +5,15 @@ import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
 import net.arikia.dev.drpc.DiscordUser;
 import net.arikia.dev.drpc.callbacks.ReadyCallback;
+import net.minecraft.client.Minecraft;
 
 public class DiscordRP {
 
 	private boolean running = true;
 	private long created = 0;
 
-	private boolean isMac = System.getProperty("os.name").equals("Mac OS X");
-
 	public void start() {
-		if (!isMac) {
+		if (!Minecraft.isRunningOnMac) {
 			this.created = System.currentTimeMillis();
 
 			DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(new ReadyCallback() {
@@ -42,16 +41,16 @@ public class DiscordRP {
 	}
 
 	public void shutdown() {
-		if (!isMac) {
+		if (!Minecraft.isRunningOnMac) {
 			running = false;
 			DiscordRPC.discordShutdown();
 		}
 	}
 	public void update(String firstLine, String secondLine, String image) {
-		if (!isMac) {
+		if (!Minecraft.isRunningOnMac) {
 			DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(secondLine);
-			b.setBigImage("large", "Voxyl Client");
-			b.setSmallImage(image, "Made with <3");
+			b.setBigImage("large", "BWP Client");
+			b.setSmallImage(image, "Made by ambmt");
 			b.setDetails(firstLine);
 			b.setStartTimestamps(created);
 

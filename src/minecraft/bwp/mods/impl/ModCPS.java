@@ -1,7 +1,8 @@
 package bwp.mods.impl;
 
-import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.gui.elements.CheckBoxButton;
+import bwp.gui.elements.GuiIntractable;
+import bwp.mods.HUDMod;
 import bwp.mods.settings.ModSetting;
 import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
@@ -10,7 +11,7 @@ import org.lwjgl.input.Mouse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModCPS extends ModDraggable {
+public class ModCPS extends HUDMod {
 
     private List<Long> clicks = new ArrayList<Long>();
     private List<Long> clicksRight = new ArrayList<Long>();
@@ -19,9 +20,9 @@ public class ModCPS extends ModDraggable {
     private long lastPressed;
     private long lastPressedR;
 
-    public ModCPS(String name) {
-        super(name);
-        this.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, this.chroma));
+    public ModCPS() {
+        super("CPS");
+        settings.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, false));
     }
 
     @Override
@@ -35,7 +36,7 @@ public class ModCPS extends ModDraggable {
     }
 
     @Override
-    public void render(ScreenPosition pos) {
+    public void render() {
         final boolean pressed = Mouse.isButtonDown(0);
         if(pressed != this.wasPressed){
             this.lastPressed = System.currentTimeMillis();
@@ -52,7 +53,7 @@ public class ModCPS extends ModDraggable {
                 this.clicksRight.add(this.lastPressedR);
             }
         }
-        if(chroma){
+        if((boolean) settings.getSetting(0).getValue()){
             Render.drawChromaString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
         }else {
             Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
@@ -61,14 +62,22 @@ public class ModCPS extends ModDraggable {
     }
 
     @Override
-    public void renderDummy(ScreenPosition pos) {
-        if(chroma){
+    public void renderDummy() {
+        if((boolean) settings.getSetting(0).getValue()){
             Render.drawChromaString("CPS : 10 | 10" , pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
         }
         else {
             Render.drawString("CPS : 10 | 10", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
         }
     }
+
+    @Override
+    public void onSettingChange(int settingId, GuiIntractable intractable) {
+        if (settingId == 0) {
+            settings.getSetting(0).setValue(((CheckBoxButton) intractable).isChecked());
+        }
+    }
+
     private int getCPS(){
         final long time = System.currentTimeMillis();
         this.clicks.removeIf(aLong -> aLong + 1000 < time);

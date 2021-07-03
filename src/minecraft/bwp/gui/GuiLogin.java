@@ -123,7 +123,33 @@ public class GuiLogin extends GuiScreen
             }
         
     }
-    
+    public void openErrorScreen() {
+        if(FileManager.doesLoginFileExist()) {
+            String user = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_name.json"), String.class);
+            String pass = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_pass.json"), String.class);
+
+            try {
+
+                SessionChanger sessionChanger = new SessionChanger();
+                sessionChanger.setUser(user, pass);
+
+
+
+
+            } catch (AuthenticationException e) {
+                // TODO Auto-generated catch block
+                GuiLogin guiError = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
+                guiError.initGui();
+                mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
+            }
+
+        }
+        else {
+            GuiLogin guiError = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
+            guiError.initGui();
+            mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
+        }
+    }
 
     /**
      * Fired when a key is typed (except F11 who toggle full screen). This is the equivalent of

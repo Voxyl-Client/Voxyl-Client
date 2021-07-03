@@ -1,19 +1,18 @@
 package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.settings.KeyBinding;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
-public class ModKeystrokes extends ModDraggable {
+public class ModKeystrokes extends HUDMod {
 
-	public ModKeystrokes(String name) {
-		super(name);
+	public ModKeystrokes() {
+		super("Keystrokes");
 	}
 
 	public static enum KeystrokesMode {
@@ -121,7 +120,7 @@ public class ModKeystrokes extends ModDraggable {
 	}
 
 	@Override
-	public void render(ScreenPosition pos) {
+	public void render() {
 
 		for(Key key : mode.getKeys()) {
 			int textWidth = font.getStringWidth(key.getName());

@@ -1,15 +1,15 @@
 package bwp.mods.impl;
 
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
-public class ModCoords extends ModDraggable {
+public class ModCoords extends HUDMod {
 	private int color = -1;
 
 
-	public ModCoords(String name) {
-		super(name);
+	public ModCoords() {
+		super("Coords Display");
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class ModCoords extends ModDraggable {
 	}
 
 	@Override
-	public void render(ScreenPosition pos) {
+	public void render() {
 		Render.drawString(getXYZString(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
 	}
 

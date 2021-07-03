@@ -1,10 +1,10 @@
 package bwp.mods.impl.togglemotion;
 
 import bwp.gui.hud.ScreenPosition;
-import bwp.mods.ModDraggable;
+import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
-public class ToggleSneak extends ModDraggable{
+public class ToggleSneak extends HUDMod {
     private String textToRender = "";
 
     //settings
@@ -14,8 +14,8 @@ public class ToggleSneak extends ModDraggable{
     private boolean chroma = false;
     private int color = -1;
 
-    public ToggleSneak(String name) {
-        super(name);
+    public ToggleSneak() {
+        super("Toggle Sneak");
     }
 
     @Override
@@ -38,7 +38,8 @@ public class ToggleSneak extends ModDraggable{
         color = colorin;
     }
 
-    public void renderDummy(ScreenPosition pos) {
+    @Override
+    public void renderDummy() {
         if (chroma) {
             textToRender = "[Sneaking] (Toggled)";
 
@@ -51,7 +52,7 @@ public class ToggleSneak extends ModDraggable{
     }
 
     @Override
-    public void render(ScreenPosition pos) {
+    public void render() {
         textToRender = mc.thePlayer.movementInput.getSneakText();
         Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
     }

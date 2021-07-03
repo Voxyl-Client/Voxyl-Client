@@ -4,6 +4,13 @@ package bwp.mods.impl.togglemotion;
 import bwp.mods.ModInstances;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiShareToLan;
+import net.minecraft.client.gui.inventory.GuiChest;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.network.NetHandlerLoginClient;
+import net.minecraft.client.renderer.InventoryEffectRenderer;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MovementInput;
@@ -20,6 +27,7 @@ public class BWPMovementInput extends MovementInput {
     private float originalFlySpeed = -1.0F;
     private float boostedFlySpeed = 0;
     private boolean sprintingToggled = false;
+    private boolean sneakingToggled = false;
     private Minecraft mc;
     float f = 0.8F;
 
@@ -28,6 +36,11 @@ public class BWPMovementInput extends MovementInput {
         this.mc = Minecraft.getMinecraft();
 
     }
+
+    public void disableSprint() {
+        sprintingToggled = false;
+    }
+
     //Sneak
     @Override
     public void updatePlayerMoveState(){
@@ -53,10 +66,10 @@ public class BWPMovementInput extends MovementInput {
         }
         jump = gameSettings.keyBindJump.isKeyDown();
 
-        if(ModInstances.getToggleSneak().isEnabled()){
+        if(ModInstances.getToggleSneak().getSettings().getEnabled()){
             if(gameSettings.keyBindSneak.isKeyDown()){
                 if(sneakWasPressed == 0){
-                    if(sneak){
+                    if(sneakingToggled){
                         sneakWasPressed = -1;
                     }
                     else if(player.isRiding() || player.capabilities.isFlying){
@@ -65,7 +78,7 @@ public class BWPMovementInput extends MovementInput {
                     else{
                         sneakWasPressed = 1;
                     }
-                    sneak = !sneak;
+                    sneakingToggled = !sneakingToggled;
                 }
                 else if(sneakWasPressed > 0){
                     sneakWasPressed++;
@@ -73,23 +86,29 @@ public class BWPMovementInput extends MovementInput {
             }
             else{
                 if((ModInstances.getToggleSneak().keyHoldTicks > 0) && (sneakWasPressed > ModInstances.getToggleSneak().keyHoldTicks)){
-                    sneak = false;
-
+                    sneakingToggled = false;
                 }
                 sneakWasPressed = 0;
             }
-
+            boolean sneakingFlags = mc.currentScreen instanceof InventoryEffectRenderer ||
+                    mc.currentScreen instanceof GuiContainer;
+            if (sneakingFlags && sneakingToggled) {
+                sneak = false;
+            } else {
+                sneak = sneakingToggled;
+            }
         }
         else{
             sneak = gameSettings.keyBindSneak.isKeyDown();
         }
+
         if(sneak){
             moveStrafe *= 0.3F;
             moveForward *= 0.3F;
         }
 
         //Sprint module
-        if(ModInstances.getToggleSprint().isEnabled()){
+        if(ModInstances.getToggleSprint().getSettings().getEnabled()){
             if(gameSettings.keyBindSprint.isKeyDown()){
                 if(sprintWasPressed == 0){
                     if(sprint){
@@ -119,7 +138,7 @@ public class BWPMovementInput extends MovementInput {
         else{
             sprint = false;
         }
-        if(mc.gameSettings.keyBindSprint.isPressed()) {
+        if(mc.gameSettings.keyBindSprint.isPressed() && ModInstances.getToggleSprint().getSettings().getEnabled()) {
             if(mc.thePlayer.isSprinting() && !sprintingToggled) sprintingToggled = true;
             else if(!mc.thePlayer.isSprinting()) sprintingToggled = !sprintingToggled;
         }
@@ -134,19 +153,19 @@ public class BWPMovementInput extends MovementInput {
                 sprintingToggled;
         if (flags) { mc.thePlayer.setSprinting(true); }
 
-        if(ModInstances.getToggleSprint().flyBoost && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) == sprint){
+        if((boolean) ModInstances.getToggleSprint().getSettings().getSetting(0).getValue() && player.capabilities.isCreativeMode && player.capabilities.isFlying && (mc.getRenderViewEntity() == player) == sprint){
             if(originalFlySpeed < 0.0F || this.player.capabilities.getFlySpeed() != boostedFlySpeed){
                 originalFlySpeed = this.player.capabilities.getFlySpeed();
 
             }
-            boostedFlySpeed = originalFlySpeed * ModInstances.getToggleSprint().flyBoostFactor;
+            boostedFlySpeed = originalFlySpeed * (float) (double) ModInstances.getToggleSprint().getSettings().getSetting(1).getValue();
             player.capabilities.setFlySpeed(boostedFlySpeed);
 
             if(sneak){
-                player.motionY -= 0.15D * (double)(ModInstances.getToggleSprint().flyBoostFactor - 1.0F);
+                player.motionY -= 0.15D * (double) ModInstances.getToggleSprint().getSettings().getSetting(1).getValue() - 1.0F;
             }
             if(jump){
-                player.motionY += 0.15D * (double)(ModInstances.getToggleSprint().flyBoostFactor - 1.0F);
+                player.motionY += 0.15D * (double) ModInstances.getToggleSprint().getSettings().getSetting(1).getValue() - 1.0F;
             }
         }
         else{
@@ -164,19 +183,16 @@ public class BWPMovementInput extends MovementInput {
         boolean isRiding = mc.thePlayer.isRiding();
         boolean isHoldingSprint = gameSettings.keyBindSprint.isKeyDown();
 
-        if(isFlying){
-            if(originalFlySpeed > 0.0F){
-                displayText = "[Flying (" + df.format(boostedFlySpeed / originalFlySpeed ) + "x Boost)]  ";
+        if(isFlying) {
+            if (originalFlySpeed > 0.0F) {
+                displayText = "[Flying (" + df.format(boostedFlySpeed / originalFlySpeed) + "x Boost)]  ";
 
-            }else{
+            } else {
                 displayText = "[Flying]  ";
             }
-        }
-        if(isRiding){
+        } else if(isRiding){
             displayText += "[Riding  ";
-        }
-
-        else if(sprint && !isFlying && !isRiding){
+        } else if(sprint){
             if(isHoldingSprint){
 
                 displayText += "[Sprinting (Held)]  ";

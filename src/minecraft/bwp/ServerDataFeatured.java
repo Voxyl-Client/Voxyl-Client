@@ -10,10 +10,5 @@ public class ServerDataFeatured extends ServerData{
 
 	public ServerDataFeatured(String serverName, String serverIP) {
 		super(serverName,serverIP,false);
-		
-
 	}
-	
-	
-
 }

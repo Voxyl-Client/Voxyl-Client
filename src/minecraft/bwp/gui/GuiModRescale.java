@@ -2,7 +2,7 @@ package bwp.gui;
 
 import bwp.gui.elements.template.ClientButton;
 import bwp.gui.hud.HUDManager;
-import bwp.utils.RoundedRectangle;
+import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.resources.I18n;
@@ -55,8 +55,7 @@ public class GuiModRescale extends GuiScreen{
         this.buttonList.add(new ClientButton(1, this.width / 2 - 50, this.height / 2 + 5,  98, 20, I18n.format("Toggle Mods", new Object[0])));
         this.buttonList.add(new ClientButton(2, this.width / 2 - 50, this.height / 2 - 45,  98, 20, I18n.format("Main Menu", new Object[0])));
         Gui.drawRect(100, 100, 100, 100, 100);
-        RoundedRectangle roundedRect = new RoundedRectangle();
-        roundedRect.roundedRectangle(100, 100, 100,100, 100, Color.WHITE);
+        Render.drawRoundedRectangle(100, 100, 100,100, 100, Color.WHITE);
 
         Keyboard.enableRepeatEvents(true);
 
