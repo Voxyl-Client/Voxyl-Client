@@ -68,7 +68,6 @@ public class HUDConfigScreen extends GuiScreen {
 				if (!hudMod.getSettings().getEnabled()) {
 					continue;
 				}
-				hudMod.loadDataFromFile();
 				adjustBounds(hudMod);
 				this.mods.add(hudMod);
 			}
@@ -105,8 +104,8 @@ public class HUDConfigScreen extends GuiScreen {
 		for(HUDMod mod : mods) {
 			ScreenPosition pos = mod.getPos();
 
-			int absX = pos.getAbsoluteX();
-			int absY = pos.getAbsoluteY();
+			int absX = pos.getX();
+			int absY = pos.getY();
 
 			int color;
 
@@ -121,10 +120,10 @@ public class HUDConfigScreen extends GuiScreen {
 			}
 
 			if (mod.shouldUsePadding()) {
-				this.drawHollowRect(pos.getAbsoluteX() - padding, pos.getAbsoluteY() - padding, (int) (mod.getWidth() * pos.getScale()) + padding * 2, (int) (mod.getHeight() * pos.getScale()) + padding * 2, 0xFF00FFFF);
+				this.drawHollowRect(pos.getX() - padding, pos.getY() - padding, (int) (mod.getWidth() * pos.getScale()) + padding * 2, (int) (mod.getHeight() * pos.getScale()) + padding * 2, 0xFF00FFFF);
 
 				// Background
-				Rectangle.render(pos.getAbsoluteX() - padding, pos.getAbsoluteY() - padding, pos.getAbsoluteX() + (int) (mod.getWidth() * pos.getScale()) + padding, pos.getAbsoluteY() + (int) (mod.getHeight() * pos.getScale()) + padding, backgroundColor);
+				Rectangle.render(pos.getX() - padding, pos.getY() - padding, pos.getX() + (int) (mod.getWidth() * pos.getScale()) + padding, pos.getY() + (int) (mod.getHeight() * pos.getScale()) + padding, backgroundColor);
 
 				// Scale down
 				this.drawHollowRect(absX - padding, absY - (nodeSize + 4) - padding, nodeSize, nodeSize, color);
@@ -134,10 +133,10 @@ public class HUDConfigScreen extends GuiScreen {
 				else color = 0xFFFF0000;
 				this.drawHollowRect(absX - padding + nodeSize + 4, absY - (nodeSize + 4) - padding, nodeSize, nodeSize, color);
 			} else {
-				this.drawHollowRect(pos.getAbsoluteX(), pos.getAbsoluteY(), (int) (mod.getWidth() * pos.getScale()), (int) (mod.getHeight() * pos.getScale()), 0xFF00FFFF);
+				this.drawHollowRect(pos.getX(), pos.getY(), (int) (mod.getWidth() * pos.getScale()), (int) (mod.getHeight() * pos.getScale()), 0xFF00FFFF);
 
 				// Background
-				Rectangle.render(pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getAbsoluteX() + (int) (mod.getWidth() * pos.getScale()), pos.getAbsoluteY() + (int) (mod.getHeight() * pos.getScale()), backgroundColor);
+				Rectangle.render(pos.getX(), pos.getY(), pos.getX() + (int) (mod.getWidth() * pos.getScale()), pos.getY() + (int) (mod.getHeight() * pos.getScale()), backgroundColor);
 
 				// Scale down
 				this.drawHollowRect(absX, absY - (nodeSize + 4), nodeSize, nodeSize, color);
@@ -164,7 +163,7 @@ public class HUDConfigScreen extends GuiScreen {
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException {
 		if(keyCode == Keyboard.KEY_ESCAPE) {
-			mods.forEach(HUDMod::saveDataToFile);
+			onGuiClosed();
 			this.mc.displayGuiScreen(null);
 		}
 	}
@@ -202,8 +201,8 @@ public class HUDConfigScreen extends GuiScreen {
 		HUDMod mod = selectedMod.get();
 		ScreenPosition pos = mod.getPos();
 
-		int newX = pos.getAbsoluteX() + offsetX;
-		int newY = pos.getAbsoluteY() + offsetY;
+		int newX = pos.getX() + offsetX;
+		int newY = pos.getY() + offsetY;
 
 		int adjX = newX;
 		int adjY = newY;
@@ -223,14 +222,14 @@ public class HUDConfigScreen extends GuiScreen {
 				adjX = newX + (int) (mod.getWidth() * pos.getScale()) / 2;
 				adjY = newY + (int) (mod.getHeight() * pos.getScale()) / 2;
 			} else if (zone.getSnappingArea() == SnappingArea.SIDES) {
-				if (pos.getAbsoluteX() > screenWidth / 2) {
+				if (pos.getX() > screenWidth / 2) {
 					adjX = newX + (int) (mod.getWidth() * pos.getScale()) + adjPadding;
 				} else {
 					adjX = newX - adjPadding;
 				}
 				adjY = newY;
 			} else if (zone.getSnappingArea() == SnappingArea.T_SIDES) {
-				if (pos.getAbsoluteY() > screenHeight / halfSnapzoneWidth) {
+				if (pos.getY() > screenHeight / halfSnapzoneWidth) {
 					adjY = newY + (int) (mod.getHeight() * pos.getScale()) + adjPadding;
 				} else {
 					adjY = newY - adjPadding;
@@ -247,7 +246,7 @@ public class HUDConfigScreen extends GuiScreen {
 					if (zone.getSnappingArea() == SnappingArea.CENTER) {
 						snappedY = zone.getPixelLoc() - (int) (mod.getHeight() * pos.getScale()) / 2;
 					} else if (zone.getSnappingArea() == SnappingArea.T_SIDES) {
-						if (pos.getAbsoluteX() > screenHeight / 2) {
+						if (pos.getX() > screenHeight / 2) {
 							snappedY = zone.getPixelLoc() - (int) (mod.getHeight() * pos.getScale()) - adjPadding;
 						} else {
 							snappedY = zone.getPixelLoc() + adjPadding;
@@ -255,7 +254,7 @@ public class HUDConfigScreen extends GuiScreen {
 					}
 
 					if (zone.getModSnapped() != mod) {
-						pos.setAbsolute(pos.getAbsoluteX(), snappedY, pos.getScale());
+						pos.setPos(pos.getX(), snappedY, pos.getScale());
 						zone.setSnappedRenderer(mod);
 						didSnap = true;
 					}
@@ -273,14 +272,14 @@ public class HUDConfigScreen extends GuiScreen {
 					if (zone.getSnappingArea() == SnappingArea.CENTER) {
 						snappedX = zone.getPixelLoc() - (int) (mod.getWidth() * pos.getScale()) / 2;
 					} else if (zone.getSnappingArea() == SnappingArea.SIDES) {
-						if (pos.getAbsoluteX() > screenWidth / 2) {
+						if (pos.getX() > screenWidth / 2) {
 							snappedX = zone.getPixelLoc() - (int) (mod.getWidth() * pos.getScale()) - adjPadding;
 						} else {
 							snappedX = zone.getPixelLoc() + adjPadding;
 						}
 					}
 					if (zone.getModSnapped() != mod) {
-						pos.setAbsolute(snappedX, pos.getAbsoluteY(), pos.getScale());
+						pos.setPos(snappedX, pos.getY(), pos.getScale());
 						zone.setSnappedRenderer(mod);
 						didSnap = true;
 					}
@@ -310,7 +309,7 @@ public class HUDConfigScreen extends GuiScreen {
 						movementOffset = - (halfSnapzoneWidth * 2);
 					}
 
-					pos.setAbsolute(newX, newY + movementOffset, pos.getScale());
+					pos.setPos(newX, newY + movementOffset, pos.getScale());
 				} else if (Math.abs(displacementX) >= halfSnapzoneWidth * 2 && snappedZone.getDirection() == SnappingDirection.HORIZONTAL) {
 					int movementOffset = 0;
 					if (displacementX > 0) {
@@ -318,14 +317,14 @@ public class HUDConfigScreen extends GuiScreen {
 					} else if (displacementX < 0) {
 						movementOffset = - (halfSnapzoneWidth * 2);
 					}
-					pos.setAbsolute(newX + movementOffset, newY, pos.getScale());
+					pos.setPos(newX + movementOffset, newY, pos.getScale());
 				} else if (snappedZone.getDirection() == SnappingDirection.HORIZONTAL) {
-					pos.setAbsolute(pos.getAbsoluteX(), newY, pos.getScale());
+					pos.setPos(pos.getX(), newY, pos.getScale());
 				} else {
-					pos.setAbsolute(newX, pos.getAbsoluteY(), pos.getScale());
+					pos.setPos(newX, pos.getY(), pos.getScale());
 				}
 			} else {
-				pos.setAbsolute(newX, newY, pos.getScale());
+				pos.setPos(newX, newY, pos.getScale());
 			}
 		} else {
 			displacementX = 0;
@@ -353,10 +352,10 @@ public class HUDConfigScreen extends GuiScreen {
 		int screenWidth = res.getScaledWidth();
 		int screenHeight = res.getScaledHeight();
 
-		int absoluteX = Math.max(0, Math.min(pos.getAbsoluteX(), Math.max(screenWidth - (int) (mod.getWidth() * pos.getScale()), 0)));
-		int absoluteY = Math.max(0, Math.min(pos.getAbsoluteY(), Math.max(screenHeight - (int) (mod.getHeight() * pos.getScale()), 0)));
+		int absoluteX = Math.max(0, Math.min(pos.getX(), Math.max(screenWidth - (int) (mod.getWidth() * pos.getScale()), 0)));
+		int absoluteY = Math.max(0, Math.min(pos.getY(), Math.max(screenHeight - (int) (mod.getHeight() * pos.getScale()), 0)));
 
-		pos.setAbsolute(absoluteX, absoluteY, pos.getScale());
+		pos.setPos(absoluteX, absoluteY, pos.getScale());
 	}
 
 	@Override
@@ -370,15 +369,15 @@ public class HUDConfigScreen extends GuiScreen {
 			ScreenPosition pos = selectedMod.get().getPos();
 
 			if (selectedMod.get().shouldUsePadding()) {
-				if (x >= pos.getAbsoluteX() - padding && x <= pos.getAbsoluteX() - padding + nodeSize && y >= pos.getAbsoluteY() - padding - (nodeSize + 4) && y <= pos.getAbsoluteY() - padding - 4) {
+				if (x >= pos.getX() - padding && x <= pos.getX() - padding + nodeSize && y >= pos.getY() - padding - (nodeSize + 4) && y <= pos.getY() - padding - 4) {
 					if (pos.getScale() > 0.5) pos.setScale((float) (pos.getScale() - 0.1));
-				} else if (x >= pos.getAbsoluteX() - padding + nodeSize + 4 && x <= pos.getAbsoluteX() - padding + 2 * nodeSize + 4 && y >= pos.getAbsoluteY() - padding - (nodeSize + 4) && y <= pos.getAbsoluteY() - padding - 4) {
+				} else if (x >= pos.getX() - padding + nodeSize + 4 && x <= pos.getX() - padding + 2 * nodeSize + 4 && y >= pos.getY() - padding - (nodeSize + 4) && y <= pos.getY() - padding - 4) {
 					if (pos.getScale() < 2) pos.setScale((float) (pos.getScale() + 0.1));
 				}
 			} else {
-				if (x >= pos.getAbsoluteX() && x <= pos.getAbsoluteX() + nodeSize && y >= pos.getAbsoluteY() - (nodeSize + 4) && y <= pos.getAbsoluteY() - 4) {
+				if (x >= pos.getX() && x <= pos.getX() + nodeSize && y >= pos.getY() - (nodeSize + 4) && y <= pos.getY() - 4) {
 					if (pos.getScale() > 0.5) pos.setScale((float) (pos.getScale() - 0.1));
-				} else if (x >= pos.getAbsoluteX() + nodeSize + 4 && x <= pos.getAbsoluteX() + 2 * nodeSize + 4 && y >= pos.getAbsoluteY() - (nodeSize + 4) && y <= pos.getAbsoluteY() - 4) {
+				} else if (x >= pos.getX() + nodeSize + 4 && x <= pos.getX() + 2 * nodeSize + 4 && y >= pos.getY() - (nodeSize + 4) && y <= pos.getY() - 4) {
 					if (pos.getScale() < 2) pos.setScale((float) (pos.getScale() + 0.1));
 				}
 			}
@@ -402,8 +401,8 @@ public class HUDConfigScreen extends GuiScreen {
 		public boolean test(HUDMod mod) {
 			ScreenPosition pos = mod.getPos();
 
-			int absoluteX = pos.getAbsoluteX();
-			int absoluteY = pos.getAbsoluteY();
+			int absoluteX = pos.getX();
+			int absoluteY = pos.getY();
 
 			if (mod.shouldUsePadding()) {
 				if (mouseX >= absoluteX - padding && mouseX <= (absoluteX + (pos.getScale() * mod.getWidth())) + padding) {

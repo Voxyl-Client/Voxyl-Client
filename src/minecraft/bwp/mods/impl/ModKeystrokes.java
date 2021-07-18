@@ -126,13 +126,13 @@ public class ModKeystrokes extends HUDMod {
 			int textWidth = font.getStringWidth(key.getName());
 
 
-			Gui.drawRect(pos.getAbsoluteX() + (int) ((key.getX()) * pos.getScale()), pos.getAbsoluteY()  + (int) ((key.getY()) * pos.getScale()) ,
-				pos.getAbsoluteX()  + (int) ((key.getX()) * pos.getScale())  + (int) ((key.getWidth()) * pos.getScale()),
-				pos.getAbsoluteY()+ (int) ((key.getY()) * pos.getScale())+ (int) ((key.getHeight()) * pos.getScale()),
+			Gui.drawRect(pos.getX() + (int) ((key.getX()) * pos.getScale()), pos.getY()  + (int) ((key.getY()) * pos.getScale()) ,
+				pos.getX()  + (int) ((key.getX()) * pos.getScale())  + (int) ((key.getWidth()) * pos.getScale()),
+				pos.getY()+ (int) ((key.getY()) * pos.getScale())+ (int) ((key.getHeight()) * pos.getScale()),
 				key.isDown() ? new Color(255, 255, 255).getRGB() : new Color(0, 0,0, 102).getRGB());
 
-			int adjX = (int) (pos.getAbsoluteX() + ((key.getX()) * pos.getScale()) + ((key.getWidth()) * pos.getScale()) / 2 - (textWidth * pos.getScale()) / 2);
-			int adjY = (int) (pos.getAbsoluteY() + ((key.getY()) * pos.getScale()) + ((key.getHeight()) * pos.getScale()) / 2 - (4 * pos.getScale()));
+			int adjX = (int) (pos.getX() + ((key.getX()) * pos.getScale()) + ((key.getWidth()) * pos.getScale()) / 2 - (textWidth * pos.getScale()) / 2);
+			int adjY = (int) (pos.getY() + ((key.getY()) * pos.getScale()) + ((key.getHeight()) * pos.getScale()) / 2 - (4 * pos.getScale()));
 
 			if (chroma) {
 				Render.drawChromaString(

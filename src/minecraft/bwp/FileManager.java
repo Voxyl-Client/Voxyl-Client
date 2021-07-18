@@ -33,53 +33,42 @@ public class FileManager {
     public static boolean doesLoginFileExist() {
     	return LOGIN_CACHE.exists();
     }
-    public static boolean writeJsonToFile(File file, Object obj) {
 
-
+    public static void writeJsonToFile(File file, Object obj) {
         try {
             if (!file.exists()) {
-                file.createNewFile();
+                if (!file.createNewFile()) {
+                    return;
+                }
             }
-            FileOutputStream outPutStream = new FileOutputStream(file);
-            outPutStream.write(gson.toJson(obj).getBytes());
-            outPutStream.flush();
-            outPutStream.close();
 
-            return true;
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(gson.toJson(obj));
+
+            writer.flush();
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
-
-
-
-
     }
-    public static <T extends Object> T readFromJson(File file, Class<T> c){
-
+    public static <T> T readFromJson(File file, Class<T> c){
         try{
-            FileInputStream fileInputStream = new FileInputStream(file);
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader buffer = new BufferedReader(inputStreamReader);
-
             StringBuilder builder = new StringBuilder();
-            String line;
 
-            while((line = buffer.readLine()) != null){
+            BufferedReader reader = new BufferedReader(new FileReader(file));
 
-                builder.append(line);
-
+            String nextLine;
+            while((nextLine = reader.readLine()) != null ){
+                builder.append(nextLine);
+                System.out.println(nextLine);
             }
-            buffer.close();
-            inputStreamReader.close();
-            fileInputStream.close();
+
+            reader.close();
+
             return gson.fromJson(builder.toString(), c);
         }catch(IOException e){
-            e.printStackTrace();
             return null;
         }
 
     }
-
-
 }

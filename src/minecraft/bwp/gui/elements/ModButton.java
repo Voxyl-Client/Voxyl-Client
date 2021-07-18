@@ -65,12 +65,7 @@ public class ModButton extends CustomButton {
         } else {
             mod.getSettings().setEnabled(checkBox.isChecked());
             mod.onToggle();
-            if (mod instanceof HUDMod) {
-                HUDMod hudMod = (HUDMod) mod;
-                hudMod.saveDataToFile();
-            } else {
-                mod.saveDataToFile();
-            }
+            mod.saveDataToFile();
         }
     }
 }

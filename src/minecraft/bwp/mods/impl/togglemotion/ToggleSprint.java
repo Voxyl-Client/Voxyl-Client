@@ -2,13 +2,10 @@ package bwp.mods.impl.togglemotion;
 
 import bwp.gui.elements.CheckBoxButton;
 import bwp.gui.elements.GuiIntractable;
-import bwp.gui.hud.ScreenPosition;
 import bwp.mods.HUDMod;
 import bwp.mods.settings.ModSetting;
 import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
-
-import java.util.Arrays;
 
 public class ToggleSprint extends HUDMod {
     private String textToRender = "";
@@ -20,9 +17,12 @@ public class ToggleSprint extends HUDMod {
 
     public ToggleSprint() {
         super("Toggle Sprint");
+    }
+
+    @Override
+    protected void init() {
         settings.addSetting(new ModSetting(0, "Fly Boost", ModSettingType.CHECKBOX, this, true));
         settings.addSetting(new ModSetting(1, "Fly Boost Factor", ModSettingType.SLIDER, this, 4.0));
-        settings.addSetting(new ModSetting(2, "Fly FeFDSdEFdSFdc", ModSettingType.CHECKBOX, this, true));
     }
 
     @Override
@@ -40,18 +40,18 @@ public class ToggleSprint extends HUDMod {
         if (chroma) {
             textToRender = "[Sprinting] (Toggled)";
 
-            Render.drawChromaString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+            Render.drawChromaString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
 
         }else{
             textToRender = "[Sprinting] (Toggled)";
-            Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+            Render.drawString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
         }
     }
 
     @Override
     public void render() {
         textToRender = mc.thePlayer.movementInput.getSprintText();
-        Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+        Render.drawString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
     }
 
     @Override

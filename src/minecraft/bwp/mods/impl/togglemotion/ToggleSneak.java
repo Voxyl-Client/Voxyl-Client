@@ -1,6 +1,5 @@
 package bwp.mods.impl.togglemotion;
 
-import bwp.gui.hud.ScreenPosition;
 import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
@@ -8,8 +7,6 @@ public class ToggleSneak extends HUDMod {
     private String textToRender = "";
 
     //settings
-    public boolean flyBoost = true;
-    public float flyBoostFactor = 4;
     public int keyHoldTicks = 7;
     private boolean chroma = false;
     private int color = -1;
@@ -43,17 +40,17 @@ public class ToggleSneak extends HUDMod {
         if (chroma) {
             textToRender = "[Sneaking] (Toggled)";
 
-            Render.drawChromaString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+            Render.drawChromaString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
 
         }else{
             textToRender = "[Sneaking] (Toggled)";
-            Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+            Render.drawString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
         }
     }
 
     @Override
     public void render() {
         textToRender = mc.thePlayer.movementInput.getSneakText();
-        Render.drawString(textToRender, pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+        Render.drawString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
     }
 }

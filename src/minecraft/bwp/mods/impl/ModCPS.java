@@ -22,6 +22,10 @@ public class ModCPS extends HUDMod {
 
     public ModCPS() {
         super("CPS");
+    }
+
+    @Override
+    protected void init() {
         settings.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, false));
     }
 
@@ -53,22 +57,12 @@ public class ModCPS extends HUDMod {
                 this.clicksRight.add(this.lastPressedR);
             }
         }
-        if((boolean) settings.getSetting(0).getValue()){
-            Render.drawChromaString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
-        }else {
-            Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+        if ((boolean) settings.getSetting(0).getValue()){
+            Render.drawChromaString("CPS : " + getCPS() + " | " + getRightCPS(), renderInfo.getX() , renderInfo.getY(), renderInfo.getScale(), true);
+        } else {
+            Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
         }
 
-    }
-
-    @Override
-    public void renderDummy() {
-        if((boolean) settings.getSetting(0).getValue()){
-            Render.drawChromaString("CPS : 10 | 10" , pos.getAbsoluteX() , pos.getAbsoluteY(), pos.getScale(), true);
-        }
-        else {
-            Render.drawString("CPS : 10 | 10", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
-        }
     }
 
     @Override

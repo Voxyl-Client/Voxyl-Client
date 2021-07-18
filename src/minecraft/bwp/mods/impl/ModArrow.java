@@ -1,6 +1,5 @@
 package bwp.mods.impl;
 
-import bwp.gui.hud.ScreenPosition;
 import bwp.mods.HUDMod;
 import bwp.utils.Render;
 import net.minecraft.init.Items;
@@ -27,13 +26,13 @@ public class ModArrow extends HUDMod {
 	public void render() {
 
 		if(this.getRemainingArrows() < 1) {
-			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true,color);
+			Render.drawString("Arrows : " + this.getRemainingArrows(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true,color);
 
 		} else if(this.getRemainingArrows() < 33){
-			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+			Render.drawString("Arrows : " + this.getRemainingArrows(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
 		}
 		else{
-			Render.drawString("Arrows : " + this.getRemainingArrows(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+			Render.drawString("Arrows : " + this.getRemainingArrows(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
 		}
 	}
 	

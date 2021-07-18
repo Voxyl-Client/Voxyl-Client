@@ -3,7 +3,6 @@ package bwp.mods.impl;
 import bwp.event.EventManager;
 import bwp.event.EventTarget;
 import bwp.event.impl.KeyPressEvent;
-import bwp.gui.hud.ScreenPosition;
 import bwp.mods.HUDMod;
 import bwp.utils.Render;
 import org.lwjgl.input.Keyboard;
@@ -93,10 +92,10 @@ public class ModPerspective extends HUDMod {
     public void render() {
         if(perspectiveToggled){
             if(chroma){
-                Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+                Render.drawChromaString("[Perspective Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
             }
             else {
-                Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+                Render.drawString("[Perspective Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
             }
 
         }
@@ -106,11 +105,11 @@ public class ModPerspective extends HUDMod {
     @Override
     public void renderDummy(){
         if(chroma){
-            Render.drawChromaString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+            Render.drawChromaString("[Perspective Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
         }
         else {
 
-            Render.drawString("[Perspective Toggled]", pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+            Render.drawString("[Perspective Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
         }
     }
 

@@ -12,8 +12,6 @@ public class FullBright extends Mod {
 
     @Override
     public void onToggle() {
-        System.out.println("uwu my owo");
-        System.out.println(settings.getEnabled());
         if (settings.getEnabled()) {
             mc.gameSettings.gammaSetting = (((mc.gameSettings.gammaSetting+13)%28) + 1);
         } else {

@@ -1,6 +1,5 @@
 package bwp.mods.impl;
 
-import bwp.gui.hud.ScreenPosition;
 import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
@@ -26,7 +25,7 @@ public class ModCoords extends HUDMod {
 
 	@Override
 	public void render() {
-		Render.drawString(getXYZString(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true, color);
+		Render.drawString(getXYZString(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
 	}
 
 	private String getXYZString() {

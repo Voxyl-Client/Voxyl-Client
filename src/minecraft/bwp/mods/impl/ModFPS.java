@@ -1,6 +1,5 @@
 package bwp.mods.impl;
 
-import bwp.gui.hud.ScreenPosition;
 import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
@@ -41,10 +40,10 @@ public class ModFPS extends HUDMod {
 		if (chroma) {
 
 
-			Render.drawChromaString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+			Render.drawChromaString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
 		}
 		else {
-			Render.drawString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), color, true);
+			Render.drawString(betterUI ? mc.getDebugFPS() + " FPS" : "FPS: " + mc.getDebugFPS(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), color, true);
 		}
 	}
 

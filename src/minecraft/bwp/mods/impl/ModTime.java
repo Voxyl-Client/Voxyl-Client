@@ -1,6 +1,5 @@
 package bwp.mods.impl;
 
-import bwp.gui.hud.ScreenPosition;
 import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
@@ -30,10 +29,10 @@ public class ModTime extends HUDMod {
 	public void render() {
 
 		if (chroma) {
-			Render.drawChromaString(getCurrentTime(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+			Render.drawChromaString(getCurrentTime(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
 		}
 		else {
-			Render.drawString(getCurrentTime(), pos.getAbsoluteX(), pos.getAbsoluteY(), pos.getScale(), true);
+			Render.drawString(getCurrentTime(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
 		}
 	}
 
