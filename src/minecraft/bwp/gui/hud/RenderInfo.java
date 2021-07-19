@@ -3,14 +3,14 @@ package bwp.gui.hud;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 
-public class ScreenPosition {
+public class RenderInfo {
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     private double x, y;
 
     private float scale;
 
-    public ScreenPosition(double x, double y, float scale) {
+    public RenderInfo(double x, double y, float scale) {
         setRelativePos(x, y, scale);
     }
 

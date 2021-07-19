@@ -1,20 +1,21 @@
 package bwp.mods;
 
 import bwp.FileManager;
-import bwp.gui.hud.ScreenPosition;
+import bwp.gui.hud.RenderInfo;
+import com.google.gson.Gson;
 
 import java.io.*;
 
 public abstract class HUDMod extends Mod {
 
-	protected ScreenPosition renderInfo;
+	protected RenderInfo renderInfo;
 
 	protected File renderInfoFile;
 
 	public HUDMod(String name) {
 		super(name);
 
-		renderInfoFile = new File(FileManager.getModsDirectory(), name + "Position.json");
+		if (renderInfoFile == null) renderInfoFile = new File(FileManager.getModsDirectory(), name.replaceAll(" ", "") + "Position.json");
 	}
 
 	public void changeColor(int colorIn){
@@ -25,7 +26,7 @@ public abstract class HUDMod extends Mod {
 		return 0;
 	}
 
-	public void setPos(ScreenPosition pos) {
+	public void setPos(RenderInfo pos) {
 		renderInfo = pos;
 	}
 
@@ -44,29 +45,28 @@ public abstract class HUDMod extends Mod {
 	@Override
 	public void saveDataToFile() {
 		super.saveDataToFile();
-		//FileManager.writeJsonToFile(renderInfoFile, renderInfo);
+		if (renderInfoFile == null) renderInfoFile = new File(FileManager.getModsDirectory(), name.replaceAll(" ", "") + "Position.json");
+
+		FileManager.writeJsonToFile(renderInfoFile, renderInfo);
 	}
 
 	public void loadPosFromFile() {
 
-		//ScreenPosition loaded = FileManager.readFromJson(renderInfoFile, ScreenPosition.class);
+		if (renderInfoFile == null) renderInfoFile = new File(FileManager.getModsDirectory(), name.replaceAll(" ", "") + "Position.json");
+		RenderInfo loaded = FileManager.readFromJson(renderInfoFile, RenderInfo.class);
 
-		ScreenPosition loaded = null;
 		if (loaded == null) {
-			loaded = new ScreenPosition(0.0D, 0.4D, 1F);
-			System.out.println("s: " + loaded.getY());
+			loaded = new RenderInfo(0.0D, 0.0D, 1F);
 		}
 
 		renderInfo = loaded;
-
-		saveDataToFile();
 	}
 
 	public boolean shouldUsePadding() {
 		return true;
 	}
 
-	public ScreenPosition getPos() {
+	public RenderInfo getPos() {
 		return renderInfo;
 	}
 
@@ -79,9 +79,6 @@ public abstract class HUDMod extends Mod {
 	}
 
 	public void renderDummy() {
-		System.out.println("xDDD");
-		System.out.println(renderInfo.getX());
-		System.out.println(renderInfo.getY());
 		render();
 	}
 

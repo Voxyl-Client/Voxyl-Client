@@ -30,7 +30,7 @@ public abstract class Mod {
 
 		this.settings = new ModSettings();
 
-		settingsFile = new File(FileManager.getModsDirectory(), getClass().getSimpleName() + "Settings.json");
+		settingsFile = new File(FileManager.getModsDirectory(), name.replaceAll(" ", "") + "Settings.json");
 
 		init();
 
@@ -59,7 +59,6 @@ public abstract class Mod {
 	}
 
 	public void loadDataFromFile() {
-
 		ModSettings loaded = FileManager.readFromJson(settingsFile, ModSettings.class);
 
 		if (loaded == null){
@@ -81,8 +80,6 @@ public abstract class Mod {
 			}
 			settings = compromisedSettings;
 		}
-
-		saveDataToFile();
 	}
 
 	public void onSettingChange(int settingId, GuiIntractable intractable) {

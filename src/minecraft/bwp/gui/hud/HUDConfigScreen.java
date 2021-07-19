@@ -102,7 +102,7 @@ public class HUDConfigScreen extends GuiScreen {
 		}
 
 		for(HUDMod mod : mods) {
-			ScreenPosition pos = mod.getPos();
+			RenderInfo pos = mod.getPos();
 
 			int absX = pos.getX();
 			int absY = pos.getY();
@@ -199,7 +199,7 @@ public class HUDConfigScreen extends GuiScreen {
 
 	private void moveSelectedModBy(int offsetX, int offsetY) {
 		HUDMod mod = selectedMod.get();
-		ScreenPosition pos = mod.getPos();
+		RenderInfo pos = mod.getPos();
 
 		int newX = pos.getX() + offsetX;
 		int newY = pos.getY() + offsetY;
@@ -345,7 +345,7 @@ public class HUDConfigScreen extends GuiScreen {
 	}
 
 	private void adjustBounds(HUDMod mod) {
-		ScreenPosition pos = mod.getPos();
+		RenderInfo pos = mod.getPos();
 
 		ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
 
@@ -366,7 +366,7 @@ public class HUDConfigScreen extends GuiScreen {
 		loadMouseOver(x, y);
 
 		if (selectedMod.isPresent()) {
-			ScreenPosition pos = selectedMod.get().getPos();
+			RenderInfo pos = selectedMod.get().getPos();
 
 			if (selectedMod.get().shouldUsePadding()) {
 				if (x >= pos.getX() - padding && x <= pos.getX() - padding + nodeSize && y >= pos.getY() - padding - (nodeSize + 4) && y <= pos.getY() - padding - 4) {
@@ -399,7 +399,7 @@ public class HUDConfigScreen extends GuiScreen {
 
 		@Override
 		public boolean test(HUDMod mod) {
-			ScreenPosition pos = mod.getPos();
+			RenderInfo pos = mod.getPos();
 
 			int absoluteX = pos.getX();
 			int absoluteY = pos.getY();

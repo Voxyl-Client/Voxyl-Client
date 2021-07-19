@@ -13,12 +13,10 @@ import java.util.List;
 
 public class ModCPS extends HUDMod {
 
-    private List<Long> clicks = new ArrayList<Long>();
-    private List<Long> clicksRight = new ArrayList<Long>();
-    private boolean wasPressed;
-    private boolean wasPressedR;
-    private long lastPressed;
-    private long lastPressedR;
+    private final List<Long> primaryClicks = new ArrayList<>();
+    private final List<Long> secondaryClicks = new ArrayList<>();
+    private boolean wasPrimaryPressed;
+    private boolean wasSecondaryPressed;
 
     public ModCPS() {
         super("CPS");
@@ -42,25 +40,25 @@ public class ModCPS extends HUDMod {
     @Override
     public void render() {
         final boolean pressed = Mouse.isButtonDown(0);
-        if(pressed != this.wasPressed){
-            this.lastPressed = System.currentTimeMillis();
-            this.wasPressed = pressed;
+        if(pressed != this.wasPrimaryPressed){
+            long lastPressedPrimary = System.currentTimeMillis();
+            this.wasPrimaryPressed = pressed;
             if(pressed){
-                this.clicks.add(this.lastPressed);
+                this.primaryClicks.add(lastPressedPrimary);
             }
         }
         final boolean pressedR = Mouse.isButtonDown(1);
-        if(pressedR != this.wasPressedR){
-            this.lastPressedR = System.currentTimeMillis();
-            this.wasPressedR = pressedR;
+        if(pressedR != this.wasSecondaryPressed){
+            long lastPressedSecondary = System.currentTimeMillis();
+            this.wasSecondaryPressed = pressedR;
             if(pressedR){
-                this.clicksRight.add(this.lastPressedR);
+                this.secondaryClicks.add(lastPressedSecondary);
             }
         }
         if ((boolean) settings.getSetting(0).getValue()){
-            Render.drawChromaString("CPS : " + getCPS() + " | " + getRightCPS(), renderInfo.getX() , renderInfo.getY(), renderInfo.getScale(), true);
+            Render.drawChromaString("CPS : " + getPrimaryCPS() + " | " + getSecondaryCPS(), renderInfo.getX() , renderInfo.getY(), renderInfo.getScale(), true);
         } else {
-            Render.drawString("CPS : " + getCPS() + " | " + getRightCPS(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
+            Render.drawString("CPS : " + getPrimaryCPS() + " | " + getSecondaryCPS(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
         }
 
     }
@@ -72,14 +70,15 @@ public class ModCPS extends HUDMod {
         }
     }
 
-    private int getCPS(){
+    private int getPrimaryCPS(){
         final long time = System.currentTimeMillis();
-        this.clicks.removeIf(aLong -> aLong + 1000 < time);
-        return this.clicks.size();
+        this.primaryClicks.removeIf(aLong -> aLong + 1000 < time);
+        return this.primaryClicks.size();
     }
-    private int getRightCPS(){
+
+    private int getSecondaryCPS(){
         final long time = System.currentTimeMillis();
-        this.clicksRight.removeIf(aLong -> aLong + 1000 < time);
-        return this.clicksRight.size();
+        this.secondaryClicks.removeIf(aLong -> aLong + 1000 < time);
+        return this.secondaryClicks.size();
     }
 }

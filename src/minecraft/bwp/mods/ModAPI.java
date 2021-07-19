@@ -33,6 +33,10 @@ public class ModAPI {
 	
 	public void register(Mod...mods) {
 		this.registeredMods.addAll(Arrays.asList(mods));
+
+		for (Mod mod : mods) {
+			mod.saveDataToFile();
+		}
 	}
 	
 	public void unRegister(Mod...mods) {

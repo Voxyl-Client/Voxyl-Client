@@ -4,7 +4,7 @@ import bwp.utils.Render;
 
 import org.lwjgl.opengl.GL11;
 
-import bwp.gui.hud.ScreenPosition;
+import bwp.gui.hud.RenderInfo;
 import bwp.mods.HUDMod;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.init.Items;
@@ -46,7 +46,7 @@ public class ModArmorStatus extends HUDMod {
 		renderItemStack(0, new ItemStack(Items.leather_boots), renderInfo);
 	}
 
-	private void renderItemStack(int i, ItemStack is,ScreenPosition position) {
+	private void renderItemStack(int i, ItemStack is, RenderInfo position) {
 		if (is == null) {
 			return;
 		}

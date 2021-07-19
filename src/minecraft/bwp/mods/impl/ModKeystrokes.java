@@ -1,6 +1,6 @@
 package bwp.mods.impl;
 
-import bwp.gui.hud.ScreenPosition;
+import bwp.gui.hud.RenderInfo;
 import bwp.mods.HUDMod;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
@@ -105,7 +105,7 @@ public class ModKeystrokes extends HUDMod {
 		}
 	}
 	
-	private ScreenPosition pos;
+	private RenderInfo pos;
 
 	@Override
 	public int getWidth() {

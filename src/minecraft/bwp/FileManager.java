@@ -51,6 +51,7 @@ public class FileManager {
             e.printStackTrace();
         }
     }
+
     public static <T> T readFromJson(File file, Class<T> c){
         try{
             StringBuilder builder = new StringBuilder();
@@ -60,7 +61,6 @@ public class FileManager {
             String nextLine;
             while((nextLine = reader.readLine()) != null ){
                 builder.append(nextLine);
-                System.out.println(nextLine);
             }
 
             reader.close();
