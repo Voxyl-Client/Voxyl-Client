@@ -5,7 +5,7 @@ import bwp.event.impl.ClientTickEvent;
 import bwp.event.impl.KeyPressEvent;
 import bwp.event.impl.WorldUnloadEvent;
 import bwp.gui.SplashProgress;
-import bwp.mods.impl.togglemotion.BWPMovementInput;
+import bwp.mods.impl.togglemotion.ToggleMovementInput;
 import com.google.common.collect.*;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -2344,7 +2344,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             this.thePlayer.preparePlayerToSpawn();
             worldClientIn.spawnEntityInWorld(this.thePlayer);
-            this.thePlayer.movementInput = new BWPMovementInput(this.gameSettings);
+            this.thePlayer.movementInput = new ToggleMovementInput();//new BWPMovementInput(this.gameSettings);
             this.playerController.setPlayerCapabilities(this.thePlayer);
             this.renderViewEntity = this.thePlayer;
         }
@@ -2382,7 +2382,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.thePlayer.setClientBrand(s);
         this.theWorld.spawnEntityInWorld(this.thePlayer);
         this.playerController.flipPlayer(this.thePlayer);
-        this.thePlayer.movementInput = new BWPMovementInput(this.gameSettings);
+        this.thePlayer.movementInput = new ToggleMovementInput();//new BWPMovementInput(this.gameSettings);
         this.thePlayer.setEntityId(i);
         this.playerController.setPlayerCapabilities(this.thePlayer);
         this.thePlayer.setReducedDebug(entityplayersp.hasReducedDebug());

@@ -13,6 +13,14 @@ import java.awt.*;
 public class Render {
     private static Minecraft mc = Minecraft.getMinecraft();
 
+    public static void drawHUDString(String string, int x, int y, float scale, boolean chroma) {
+        if (chroma) {
+            drawChromaString(string, x, y, scale, true);
+        } else {
+            drawString(string, x, y, scale, true);
+        }
+    }
+
     public static void drawChromaString(String string, int x, int y, float scale, boolean shadow)
     {
         GL11.glPushMatrix();

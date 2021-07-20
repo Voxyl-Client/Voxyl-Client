@@ -7,27 +7,22 @@ import bwp.mods.settings.ModSetting;
 import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
 
+import java.text.DecimalFormat;
+
 public class ToggleSprint extends HUDMod {
-    private String textToRender = "";
-
-    //settings
-    public int keyHoldTicks = 7;
-    private boolean chroma = false;
-    private int color = -1;
-
     public ToggleSprint() {
         super("Toggle Sprint");
     }
 
     @Override
     protected void init() {
-        settings.addSetting(new ModSetting(0, "Fly Boost", ModSettingType.CHECKBOX, this, true));
-        settings.addSetting(new ModSetting(1, "Fly Boost Factor", ModSettingType.SLIDER, this, 4.0));
+        settings.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, false));
+        settings.addSetting(new ModSetting(1, "Toggle Sneak", ModSettingType.CHECKBOX, this, false));
     }
 
     @Override
     public int getWidth() {
-        return font.getStringWidth(textToRender);
+        return font.getStringWidth("[Sprinting Toggled]" + 5);
     }
 
     @Override
@@ -36,28 +31,20 @@ public class ToggleSprint extends HUDMod {
     }
 
     @Override
-    public void renderDummy() {
-        if (chroma) {
-            textToRender = "[Sprinting] (Toggled)";
+    public void render() {
+        String textToRender = mc.thePlayer.movementInput.getText();
 
-            Render.drawChromaString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
-
-        }else{
-            textToRender = "[Sprinting] (Toggled)";
-            Render.drawString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
-        }
+        Render.drawHUDString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), (boolean) settings.getSetting(0).getValue());
     }
 
     @Override
-    public void render() {
-        textToRender = mc.thePlayer.movementInput.getSprintText();
-        Render.drawString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true, color);
+    public void renderDummy() {
+        Render.drawHUDString("[Sprinting Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), (boolean) settings.getSetting(0).getValue());
     }
 
     @Override
     public void onSettingChange(int settingId, GuiIntractable intractable) {
-        if (settingId == 0) {
-            settings.getSetting(0).setValue(((CheckBoxButton) intractable).isChecked());
-        }
+        if (settingId == 0) settings.getSetting(0).setValue(((CheckBoxButton) intractable).isChecked());
+        else if (settingId == 1) settings.getSetting(1).setValue(((CheckBoxButton) intractable).isChecked());
     }
 }

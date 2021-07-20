@@ -9,10 +9,10 @@ import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 
 
-public class ModFPS extends HUDMod {
+public class ModPing extends HUDMod {
 
-	public ModFPS() {
-		super("FPS");
+	public ModPing() {
+		super("Ping Display");
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class ModFPS extends HUDMod {
 
 	@Override
 	public int getWidth() {
-		return 50;
+		return font.getStringWidth("200 MS");
 	}
 
 	@Override
@@ -32,7 +32,11 @@ public class ModFPS extends HUDMod {
 
 	@Override
 	public void render() {
-		Render.drawHUDString(Minecraft.getDebugFPS() + " FPS", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), (boolean) settings.getSetting(0).getValue());
+		int ping;
+		if (mc.getCurrentServerData() == null) ping = 0;
+		else ping = (int) mc.getCurrentServerData().pingToServer;
+
+		Render.drawHUDString(ping + " MS", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), (boolean) settings.getSetting(0).getValue());
 	}
 
 	@Override

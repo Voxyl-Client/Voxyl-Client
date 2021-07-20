@@ -6,6 +6,7 @@ import bwp.mods.HUDMod;
 import bwp.mods.settings.ModSetting;
 import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class ModCPS extends HUDMod {
 
     @Override
     public int getWidth() {
-        return font.getStringWidth("CPS: 00 | 00") + 5;
+        return font.getStringWidth("00 | 00 CPS") + 5;
     }
 
     @Override
@@ -55,12 +56,8 @@ public class ModCPS extends HUDMod {
                 this.secondaryClicks.add(lastPressedSecondary);
             }
         }
-        if ((boolean) settings.getSetting(0).getValue()){
-            Render.drawChromaString("CPS : " + getPrimaryCPS() + " | " + getSecondaryCPS(), renderInfo.getX() , renderInfo.getY(), renderInfo.getScale(), true);
-        } else {
-            Render.drawString("CPS : " + getPrimaryCPS() + " | " + getSecondaryCPS(), renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
-        }
 
+        Render.drawHUDString(getPrimaryCPS() + " | " + getSecondaryCPS() + " CPS", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), (boolean) settings.getSetting(0).getValue());
     }
 
     @Override

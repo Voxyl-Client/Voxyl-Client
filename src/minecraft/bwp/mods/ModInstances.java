@@ -1,13 +1,7 @@
 package bwp.mods;
 
-import bwp.gui.hud.HUDManager;
 import bwp.mods.impl.*;
-import bwp.mods.impl.togglemotion.ToggleSneak;
 import bwp.mods.impl.togglemotion.ToggleSprint;
-import bwp.mods.settings.ModSetting;
-import bwp.mods.settings.ModSettingType;
-
-import java.util.Arrays;
 
 
 public class ModInstances {
@@ -16,15 +10,11 @@ public class ModInstances {
 	
 	private static ModFPS modFPS;
 	
-	private static ModCoords modCoords;
-	
 	private static ModArrow modArrow;
 	
 	private static ModKeystrokes modKeyStrokes;
 
 	private static ToggleSprint toggleSprint;
-
-	private static ToggleSneak toggleSneak;
 
 	private static ModCPS modCPS;
 
@@ -35,6 +25,8 @@ public class ModInstances {
 	private static ModTime time;
 
 	private static FullBright fullbright;
+
+	private static ModPing ping;
 	
 	public static void register() {
 		ModAPI api = ModAPI.getInstance();
@@ -45,9 +37,6 @@ public class ModInstances {
 		modFPS = new ModFPS();
 		api.register(modFPS);
 		
-		modCoords = new ModCoords();
-		api.register(modCoords);
-		
 		modArrow = new ModArrow();
 		api.register(modArrow);
 		
@@ -56,9 +45,6 @@ public class ModInstances {
 
 		toggleSprint = new ToggleSprint();
 		api.register(toggleSprint);
-
-		toggleSneak = new ToggleSneak();
-		api.register(toggleSneak);
 
 		modCPS = new ModCPS();
 		api.register(modCPS);
@@ -74,14 +60,13 @@ public class ModInstances {
 
 		fullbright = new FullBright();
 		api.register(fullbright);
+
+		ping = new ModPing();
+		api.register(ping);
 	}
 
 	public static ToggleSprint getToggleSprint() {
 		return toggleSprint;
-	}
-
-	public static ToggleSneak getToggleSneak() {
-		return toggleSneak;
 	}
 
 	public static ModPerspective getModPerspective(){

@@ -16,7 +16,6 @@ public abstract class Mod {
 	protected final FontRenderer font;
 	protected final Client client;
 	protected final String name;
-	protected boolean chroma = false;
 
 	protected File settingsFile;
 

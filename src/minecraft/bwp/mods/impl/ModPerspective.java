@@ -3,14 +3,16 @@ package bwp.mods.impl;
 import bwp.event.EventManager;
 import bwp.event.EventTarget;
 import bwp.event.impl.KeyPressEvent;
-import bwp.mods.HUDMod;
+import bwp.mods.Mod;
+import bwp.mods.settings.ModSetting;
+import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
-public class ModPerspective extends HUDMod {
+public class ModPerspective extends Mod {
 
-    private boolean returnOnRelease = true; //this means you have to hold down key
     private boolean perspectiveToggled = false;
 
     private float cameraYaw = 0F;
@@ -24,9 +26,16 @@ public class ModPerspective extends HUDMod {
         EventManager.register(this);
     }
 
+    @Override
+    protected void init() {
+        settings.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, false));
+    }
+
     @EventTarget
     public void keyBoardEvent(KeyPressEvent e) {
         if (e.getKey() == mc.gameSettings.CLIENT_PERSPECTIVE.getKeyCode() && settings.getEnabled()) {
+            //this means you have to hold down key
+            boolean returnOnRelease = true;
             if (Keyboard.getEventKeyState()) {
                 perspectiveToggled = !perspectiveToggled;
 
@@ -77,41 +86,4 @@ public class ModPerspective extends HUDMod {
         }
         return false;
     }
-
-    @Override
-    public int getWidth() {
-        return font.getStringWidth("[Perspective Toggled]");
-    }
-
-    @Override
-    public int getHeight() {
-        return font.FONT_HEIGHT;
-    }
-
-    @Override
-    public void render() {
-        if(perspectiveToggled){
-            if(chroma){
-                Render.drawChromaString("[Perspective Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
-            }
-            else {
-                Render.drawString("[Perspective Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
-            }
-
-        }
-
-    }
-
-    @Override
-    public void renderDummy(){
-        if(chroma){
-            Render.drawChromaString("[Perspective Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
-        }
-        else {
-
-            Render.drawString("[Perspective Toggled]", renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), true);
-        }
-    }
-
-
 }

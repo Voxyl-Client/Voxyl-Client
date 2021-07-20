@@ -1,6 +1,6 @@
 package net.minecraft.client.entity;
 
-import bwp.mods.impl.togglemotion.BWPMovementInput;
+import bwp.mods.impl.togglemotion.ToggleMovementInput;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -100,7 +100,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
     private int positionUpdateTicks;
     private boolean hasValidHealth;
     private String clientBrand;
-    public BWPMovementInput movementInput;
+    public ToggleMovementInput movementInput;
     protected Minecraft mc;
 
     /**

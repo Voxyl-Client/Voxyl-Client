@@ -4,6 +4,8 @@ import bwp.mods.HUDMod;
 import bwp.utils.Render;
 
 public class ModCoords extends HUDMod {
+	// This mod is not used
+
 	private int color = -1;
 
 

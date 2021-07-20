@@ -1,7 +1,11 @@
 package bwp.mods.impl;
 
+import bwp.gui.elements.CheckBoxButton;
+import bwp.gui.elements.GuiIntractable;
 import bwp.gui.hud.RenderInfo;
 import bwp.mods.HUDMod;
+import bwp.mods.settings.ModSetting;
+import bwp.mods.settings.ModSettingType;
 import bwp.utils.Render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -15,20 +19,21 @@ public class ModKeystrokes extends HUDMod {
 		super("Keystrokes");
 	}
 
-	public static enum KeystrokesMode {
+	@Override
+	protected void init() {
+		settings.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, false));
+	}
+
+	public enum KeystrokesMode {
 		
 		WASD(Key.W, Key.A, Key.S, Key.D),
-		WASD_MOUSE(Key.W, Key.A, Key.S, Key.D, Key.LMB, Key.RMB),
-		WASD_SPRINT(Key.W, Key.A, Key.S, Key.D, new Key("Sprint", Minecraft.getMinecraft().gameSettings.keyBindSprint, 1, 41, 58, 18)),
-		WASD_SPRINT_MOUSE(Key.W, Key.A, Key.S, Key.D, Key.LMB, Key.RMB, new Key("Sprint", Minecraft.getMinecraft().gameSettings.keyBindSprint, 1, 61, 58, 18));
-		
-		
+		WASD_MOUSE(Key.W, Key.A, Key.S, Key.D, Key.LMB, Key.RMB);
 		
 		private final Key[] keys;
 		private int width;
 		private int height;
 		 
-		private KeystrokesMode(Key... keysIn) {
+		KeystrokesMode(Key... keysIn) {
 			this.keys = keysIn;
 			
 			for(Key key : keys) {
@@ -53,9 +58,8 @@ public class ModKeystrokes extends HUDMod {
 		return false;
 	}
 
-	private KeystrokesMode mode = KeystrokesMode.WASD_SPRINT_MOUSE;
-			
-	
+	private KeystrokesMode mode = KeystrokesMode.WASD_MOUSE;
+
 	
 	private static class Key {
 		
@@ -104,18 +108,14 @@ public class ModKeystrokes extends HUDMod {
 			return name;
 		}
 	}
-	
-	private RenderInfo pos;
 
 	@Override
 	public int getWidth() {
-		// TODO Auto-generated method stub
 		return mode.getWidth();
 	}
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
 		return mode.getHeight();
 	}
 
@@ -126,31 +126,26 @@ public class ModKeystrokes extends HUDMod {
 			int textWidth = font.getStringWidth(key.getName());
 
 
-			Gui.drawRect(pos.getX() + (int) ((key.getX()) * pos.getScale()), pos.getY()  + (int) ((key.getY()) * pos.getScale()) ,
-				pos.getX()  + (int) ((key.getX()) * pos.getScale())  + (int) ((key.getWidth()) * pos.getScale()),
-				pos.getY()+ (int) ((key.getY()) * pos.getScale())+ (int) ((key.getHeight()) * pos.getScale()),
+			Gui.drawRect(renderInfo.getX() + (int) ((key.getX()) * renderInfo.getScale()), renderInfo.getY()  + (int) ((key.getY()) * renderInfo.getScale()) ,
+				renderInfo.getX()  + (int) ((key.getX()) * renderInfo.getScale())  + (int) ((key.getWidth()) * renderInfo.getScale()),
+				renderInfo.getY()+ (int) ((key.getY()) * renderInfo.getScale())+ (int) ((key.getHeight()) * renderInfo.getScale()),
 				key.isDown() ? new Color(255, 255, 255).getRGB() : new Color(0, 0,0, 102).getRGB());
 
-			int adjX = (int) (pos.getX() + ((key.getX()) * pos.getScale()) + ((key.getWidth()) * pos.getScale()) / 2 - (textWidth * pos.getScale()) / 2);
-			int adjY = (int) (pos.getY() + ((key.getY()) * pos.getScale()) + ((key.getHeight()) * pos.getScale()) / 2 - (4 * pos.getScale()));
+			int adjX = (int) (renderInfo.getX() + ((key.getX()) * renderInfo.getScale()) + ((key.getWidth()) * renderInfo.getScale()) / 2 - (textWidth * renderInfo.getScale()) / 2);
+			int adjY = (int) (renderInfo.getY() + ((key.getY()) * renderInfo.getScale()) + ((key.getHeight()) * renderInfo.getScale()) / 2 - (4 * renderInfo.getScale()));
 
-			if (chroma) {
-				Render.drawChromaString(
-						key.getName(),
-						adjX,
-						adjY,
-						pos.getScale(),
-						true);
+			if ((boolean) settings.getSetting(0).getValue()) {
+				Render.drawChromaString(key.getName(), adjX, adjY, renderInfo.getScale(), true);
 			} else {
-				Render.drawString(
-						key.getName(),
-						adjX,
-						adjY,
-						pos.getScale(),
-						key.isDown() ? Color.BLACK.getRGB() : Color.WHITE.getRGB(),
-						true
-				);
+				Render.drawString(key.getName(), adjX, adjY, renderInfo.getScale(), key.isDown() ? Color.BLACK.getRGB() : Color.WHITE.getRGB(), true);
 			}
+		}
+	}
+
+	@Override
+	public void onSettingChange(int settingId, GuiIntractable intractable) {
+		if (settingId == 0) {
+			settings.getSetting(0).setValue(((CheckBoxButton) intractable).isChecked());
 		}
 	}
 }

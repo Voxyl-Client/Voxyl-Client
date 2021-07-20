@@ -18,14 +18,6 @@ public abstract class HUDMod extends Mod {
 		if (renderInfoFile == null) renderInfoFile = new File(FileManager.getModsDirectory(), name.replaceAll(" ", "") + "Position.json");
 	}
 
-	public void changeColor(int colorIn){
-
-	}
-
-	public int getColor(){
-		return 0;
-	}
-
 	public void setPos(RenderInfo pos) {
 		renderInfo = pos;
 	}

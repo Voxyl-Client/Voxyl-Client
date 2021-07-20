@@ -217,7 +217,7 @@ public class HUDConfigScreen extends GuiScreen {
 
 		if (!mod.shouldUsePadding()) adjPadding = 0;
 
-		for (SnappingZone zone : snappingZones) {
+		/*for (SnappingZone zone : snappingZones) {
 			if (zone.getSnappingArea() == SnappingArea.CENTER) {
 				adjX = newX + (int) (mod.getWidth() * pos.getScale()) / 2;
 				adjY = newY + (int) (mod.getHeight() * pos.getScale()) / 2;
@@ -329,7 +329,8 @@ public class HUDConfigScreen extends GuiScreen {
 		} else {
 			displacementX = 0;
 			displacementY = 0;
-		}
+		}*/
+		pos.setPos(newX, newY, pos.getScale());
 	}
 
 	@Override
