@@ -7,9 +7,11 @@ import net.minecraft.client.renderer.InventoryEffectRenderer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MovementInput;
 
+import java.util.Arrays;
+
 public class ToggleMovementInput extends MovementInput {
-    private boolean sprintingToggled = false;
-    private boolean sneakingToggled = false;
+    private static boolean sprintingToggled = false;
+    private static boolean sneakingToggled = false;
 
     private final Minecraft mc = Minecraft.getMinecraft();
 

@@ -18,6 +18,7 @@ public class ToggleSprint extends HUDMod {
     protected void init() {
         settings.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, false));
         settings.addSetting(new ModSetting(1, "Toggle Sneak", ModSettingType.CHECKBOX, this, false));
+        settings.addSetting(new ModSetting(2, "Show Text", ModSettingType.CHECKBOX, this, true));
     }
 
     @Override
@@ -32,9 +33,11 @@ public class ToggleSprint extends HUDMod {
 
     @Override
     public void render() {
-        String textToRender = mc.thePlayer.movementInput.getText();
+        if ((boolean) settings.getSetting(2).getValue()) {
+            String textToRender = mc.thePlayer.movementInput.getText();
 
-        Render.drawHUDString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), (boolean) settings.getSetting(0).getValue());
+            Render.drawHUDString(textToRender, renderInfo.getX(), renderInfo.getY(), renderInfo.getScale(), (boolean) settings.getSetting(0).getValue());
+        }
     }
 
     @Override
@@ -46,5 +49,6 @@ public class ToggleSprint extends HUDMod {
     public void onSettingChange(int settingId, GuiIntractable intractable) {
         if (settingId == 0) settings.getSetting(0).setValue(((CheckBoxButton) intractable).isChecked());
         else if (settingId == 1) settings.getSetting(1).setValue(((CheckBoxButton) intractable).isChecked());
+        else if (settingId == 2) settings.getSetting(2).setValue(((CheckBoxButton) intractable).isChecked());
     }
 }

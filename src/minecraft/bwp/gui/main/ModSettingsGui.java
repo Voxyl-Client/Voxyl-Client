@@ -90,6 +90,13 @@ public class ModSettingsGui extends GuiWindow {
 		if (scroll < 0) scroll = 0;
 		if (scroll > heightOutOfFrame) scroll = heightOutOfFrame;
 
+		if (mouseX < x || mouseX > x + windowWidth || mouseY < y || mouseY > y + windowHeight) {
+			if (Mouse.getEventButton() == 0 && Mouse.getEventButtonState()) {
+				HUDManager.getInstance().openConfigScreen();
+			}
+			return;
+		}
+
 		for (Map.Entry<GuiIntractable, Integer> entry: buttons.entrySet()) {
 			if (entry.getKey().handleInteract(mouseX, mouseY)) {
 				mod.onSettingChange(entry.getValue(), entry.getKey());

@@ -1,6 +1,5 @@
 package bwp.gui;
 
-import java.io.File;
 import java.io.IOException;
 
 import bwp.gui.elements.template.ClientButton;
@@ -16,13 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.input.Keyboard;
 
-import com.mojang.authlib.exceptions.AuthenticationException;
-import com.mojang.authlib.exceptions.InvalidCredentialsException;
-
-import bwp.Client;
-import bwp.FileManager;
-import bwp.SessionChanger;
-import bwp.gui.hud.HUDManager;
+import bwp.login.SessionChanger;
 
 public class GuiLogin extends GuiScreen
 {
@@ -55,14 +48,12 @@ public class GuiLogin extends GuiScreen
     {
 		if(ufr == null) {
 			ufr = UnicodeFontRenderer.getFontOnPC("Arial", 20);
-
-
-
 		}
 
-    	Client.getInstance().getDiscordRP().update("Signing In", "Login Menu", "large");
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
+        this.buttonList.add(new ClientButton(2, this.width / 2 - 100, this.height / 4 + 72 + 18, 200, 20, I18n.format("Microsoft Login", new Object[0])));
+
         this.buttonList.add(new ClientButton(0, this.width / 2 - 100, this.height / 4 + 96 + 18, 200, 20, I18n.format("Login", new Object[0])));
         this.buttonList.add(new ClientButton(1, this.width / 2 - 100, this.height / 4 + 120 + 18, 200, 20, I18n.format("Cancel", new Object[0])));
         this.loginNameField = new GuiTextField(0, this.fontRendererObj, this.width / 2 - 100, 66, 200, 20);
@@ -83,76 +74,30 @@ public class GuiLogin extends GuiScreen
         Keyboard.enableRepeatEvents(false);
     }
 
-    protected void actionPerformed(GuiButton button) throws IOException
-    {
-        if (button.enabled)
-        {
-            if (button.id == 1)
-            {
+    protected void actionPerformed(GuiButton button) throws IOException {
+        if (button.enabled) {
+            if (button.id == 1) {
             	this.mc.displayGuiScreen(new GuiMainMenu());
-            }
-            else if (button.id == 0)
-            {
+            } else if (button.id == 0) {
                 this.loginName = this.loginNameField.getText();
                 this.loginPass = this.loginPassField.getText();
-                try {
-                SessionChanger.getInstance().setUser(this.loginName, this.loginPass);
-                }catch(InvalidCredentialsException e) {
-                	errored = true;
-                	
 
-				} catch (AuthenticationException e) {
-					// TODO Auto-generated catch block
-					
-					errored = true;
+                SessionChanger.login(loginName, loginPass);
 
-				}
-     
-                
-                if(errored) {
-                	HUDManager.getInstance().openErrorScreen();
-                }
-                else {
-                if(!FileManager.doesLoginFileExist()) {
-                	FileManager.writeJsonToFile(new File(FileManager.getCacheDirectory(), "temp_name.json"), this.loginName);
-                	FileManager.writeJsonToFile(new File(FileManager.getCacheDirectory(), "temp_pass.json"), this.loginPass);
-                }
-                this.mc.displayGuiScreen(new GuiMultiplayer(new GuiMainMenu()));
-                }
+                this.mc.displayGuiScreen(new GuiMainMenu());
+            } else if (button.id == 2) {
+                this.loginName = this.loginNameField.getText();
+                this.loginPass = this.loginPassField.getText();
+
+                SessionChanger.login(loginName, loginPass);
+
+                this.mc.displayGuiScreen(new GuiMainMenu());
             }
-            }
-        
-    }
-    public void openErrorScreen() {
-        if(FileManager.doesLoginFileExist()) {
-            String user = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_name.json"), String.class);
-            String pass = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_pass.json"), String.class);
-
-            try {
-
-                SessionChanger sessionChanger = new SessionChanger();
-                sessionChanger.setUser(user, pass);
-
-
-
-
-            } catch (AuthenticationException e) {
-                // TODO Auto-generated catch block
-                GuiLogin guiError = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
-                guiError.initGui();
-                mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
-            }
-
-        }
-        else {
-            GuiLogin guiError = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
-            guiError.initGui();
-            mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
         }
     }
 
     /**
-     * Fired when a key is typed (except F11 who toggle full screen). This is the equivalent of
+     * Fired when a key is typed (except F11 which toggle full screen). This is the equivalent of
      * KeyListener.keyTyped(KeyEvent e). Args : character (character on the key), keyCode (lwjgl Keyboard key code)
      */
     protected void keyTyped(char typedChar, int keyCode) throws IOException
@@ -195,7 +140,7 @@ public class GuiLogin extends GuiScreen
         this.mc.getTextureManager().bindTexture(new ResourceLocation("bwp/bg.png"));
         Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, width, height, width, height);
         
-        this.drawCenteredString(this.fontRendererObj, "Login", this.width / 2, 17, 16777215);
+        drawCenteredString(this.fontRendererObj, "Login", this.width / 2, 17, 16777215);
         this.drawString(this.fontRendererObj, "Username", this.width / 2 - 100, 53, 10526880);
         this.drawString(this.fontRendererObj, "Password", this.width / 2 - 100, 94, 10526880);
         this.loginNameField.drawTextBox();

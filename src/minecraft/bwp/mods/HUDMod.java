@@ -2,7 +2,6 @@ package bwp.mods;
 
 import bwp.FileManager;
 import bwp.gui.hud.RenderInfo;
-import com.google.gson.Gson;
 
 import java.io.*;
 

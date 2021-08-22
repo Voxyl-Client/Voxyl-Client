@@ -27,4 +27,8 @@ public class ClientButton extends GuiButton {
             this.drawCenteredString(fr, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, j);
         }
     }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 }

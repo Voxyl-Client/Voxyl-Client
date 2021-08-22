@@ -3,6 +3,7 @@ package bwp.gui.main;
 import java.io.IOException;
 
 import bwp.gui.elements.ModButton;
+import bwp.gui.elements.template.CustomButton;
 import bwp.gui.window.GuiWindow;
 
 import bwp.gui.hud.HUDManager;
@@ -67,7 +68,14 @@ public class MainGui extends GuiWindow {
 		if (scroll < 0) scroll = 0;
 		if (scroll > heightOutOfFrame) scroll = heightOutOfFrame;
 
-		for (ModButton button : buttons) {
+		if (mouseX < x || mouseX > x + windowWidth || mouseY < y || mouseY > y + windowHeight) {
+			if (Mouse.getEventButton() == 0 && Mouse.getEventButtonState()) {
+				HUDManager.getInstance().openConfigScreen();
+			}
+			return;
+		}
+
+		for (CustomButton button : buttons) {
 			button.handleInteract(mouseX, mouseY);
 		}
 	}

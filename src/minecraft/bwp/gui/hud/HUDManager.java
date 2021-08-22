@@ -2,14 +2,15 @@ package bwp.gui.hud;
 
 import java.io.File;
 
+import bwp.Client;
 import bwp.event.EventManager;
 import bwp.gui.GuiLogin;
+import bwp.gui.GuiAccounts;
 import bwp.gui.main.MainGui;
-import bwp.mods.ModAPI;
-import com.mojang.authlib.exceptions.AuthenticationException;
 
 import bwp.FileManager;
-import bwp.SessionChanger;
+import bwp.login.Accounts;
+import com.google.gson.Gson;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMultiplayer;
@@ -44,32 +45,9 @@ public class HUDManager {
 	}
 
 	public void openLoginScreen(){
-		if(FileManager.doesLoginFileExist()) {
-			String user = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_name.json"), String.class);
-			String pass = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_pass.json"), String.class);
-			
-			try {
-
-			SessionChanger sessionChanger = new SessionChanger();
-			sessionChanger.setUser(user, pass);
-			
-
-
-	
-			} catch (AuthenticationException e) {
-				// TODO Auto-generated catch block
-				GuiLogin guiLogin = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
-				guiLogin.initGui();
-				mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
-			}
-
-		}
-		else {
 		GuiLogin guiLogin = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
 		guiLogin.initGui();
-		mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
-		}
-
+		mc.displayGuiScreen(guiLogin);
 	}
 
 	public void openMainScreen(){
@@ -78,31 +56,18 @@ public class HUDManager {
 		mc.displayGuiScreen(guiMain);
 	}
 
-	public void openErrorScreen() {
-		if(FileManager.doesLoginFileExist()) {
-			String user = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_name.json"), String.class);
-			String pass = FileManager.readFromJson(new File(FileManager.getCacheDirectory(), "temp_pass.json"), String.class);
+	public void openStartScreen(){
+		GuiMainMenu guiMain = new GuiMainMenu();
+		guiMain.initGui();
+		mc.displayGuiScreen(guiMain);
+	}
 
-			try {
+	public void openAccountsScreen(){
+		GuiAccounts guiProfiles = new GuiAccounts();
+		guiProfiles.initGui();
 
-				SessionChanger sessionChanger = new SessionChanger();
-				sessionChanger.setUser(user, pass);
+		Accounts.loadFromFile();
 
-
-
-
-			} catch (AuthenticationException e) {
-				// TODO Auto-generated catch block
-				GuiLogin guiError = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
-				guiError.initGui();
-				mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
-			}
-
-		}
-		else {
-			GuiLogin guiError = new GuiLogin(new GuiMultiplayer(new GuiMainMenu()));
-			guiError.initGui();
-			mc.displayGuiScreen(new GuiLogin(new GuiMultiplayer(new GuiMainMenu())));
-		}
+		this.mc.displayGuiScreen(guiProfiles);
 	}
 }

@@ -53,7 +53,6 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
      */
     public void initGui()
     {
-    	Client.getInstance().getDiscordRP().update("Idle", "Multiplayer menu", "large");
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
 

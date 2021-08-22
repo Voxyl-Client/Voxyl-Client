@@ -5,7 +5,10 @@ import bwp.event.EventTarget;
 import bwp.event.impl.ClientTickEvent;
 import bwp.gui.SplashProgress;
 import bwp.gui.hud.HUDManager;
+import bwp.login.Accounts;
+import bwp.login.SessionChanger;
 import bwp.mods.ModInstances;
+
 import net.minecraft.client.Minecraft;
 
 public class Client {
@@ -14,27 +17,18 @@ public class Client {
 	public static Client getInstance() {
 		return INSTANCE;
 	}
-	
-	private DiscordRP discordRP = new DiscordRP();
-
-	private final HUDManager hudManager = HUDManager.getInstance();
 
 	public void init() {
 		FileManager.init();
 		SplashProgress.setProgress(1, "Creating Discord Connection");
-		discordRP.start();
 		EventManager.register(this);
+
+		Accounts.loadFromFile();
+
+		SessionChanger.init();
 	}
 	public void start() {
 		ModInstances.register();
-	}
-	public void shutdown() {
-		discordRP.shutdown();
-	}
-	
-	
-	public DiscordRP getDiscordRP() {
-		return discordRP;
 	}
 
 	@EventTarget
@@ -43,11 +37,7 @@ public class Client {
 		Minecraft mc = Minecraft.getMinecraft();
 
 		if(mc.gameSettings.CLIENT_GUI_MOD_POS.isPressed()) {
-			hudManager.openMainScreen();
-		}
-
-		if(mc.gameSettings.CLIENT_LOGIN.isPressed()) {
-			hudManager.openLoginScreen();
+			HUDManager.getInstance().openMainScreen();
 		}
 	}
 }

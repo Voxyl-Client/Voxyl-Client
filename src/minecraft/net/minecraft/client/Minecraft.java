@@ -970,7 +970,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         try
         {
-        	Client.getInstance().shutdown();
             this.stream.shutdownStream();
             logger.info("Stopping!");
 
@@ -2264,7 +2263,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         networkmanager.sendPacket(new C00Handshake(47, socketaddress.toString(), 0, EnumConnectionState.LOGIN));
         networkmanager.sendPacket(new C00PacketLoginStart(this.getSession().getProfile()));
         this.myNetworkManager = networkmanager;
-        Client.getInstance().getDiscordRP().update("Playing Singleplayer", worldName, "small");
     }
 
     /**

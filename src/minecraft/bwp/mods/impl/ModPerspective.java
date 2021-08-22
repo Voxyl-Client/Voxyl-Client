@@ -3,11 +3,11 @@ package bwp.mods.impl;
 import bwp.event.EventManager;
 import bwp.event.EventTarget;
 import bwp.event.impl.KeyPressEvent;
+import bwp.gui.elements.CheckBoxButton;
+import bwp.gui.elements.GuiIntractable;
 import bwp.mods.Mod;
 import bwp.mods.settings.ModSetting;
 import bwp.mods.settings.ModSettingType;
-import bwp.utils.Render;
-import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
@@ -28,14 +28,12 @@ public class ModPerspective extends Mod {
 
     @Override
     protected void init() {
-        settings.addSetting(new ModSetting(0, "Chroma", ModSettingType.CHECKBOX, this, false));
+        settings.addSetting(new ModSetting(0, "Toggle Freelook", ModSettingType.CHECKBOX, this, false));
     }
 
     @EventTarget
     public void keyBoardEvent(KeyPressEvent e) {
         if (e.getKey() == mc.gameSettings.CLIENT_PERSPECTIVE.getKeyCode() && settings.getEnabled()) {
-            //this means you have to hold down key
-            boolean returnOnRelease = true;
             if (Keyboard.getEventKeyState()) {
                 perspectiveToggled = !perspectiveToggled;
 
@@ -48,7 +46,7 @@ public class ModPerspective extends Mod {
                 } else {
                     mc.gameSettings.thirdPersonView = previousPerspective;
                 }
-            } else if (returnOnRelease) {
+            } else if (!(boolean) settings.getSetting(0).getValue()) {
                 perspectiveToggled = false;
                 mc.gameSettings.thirdPersonView = previousPerspective;
             }
@@ -85,5 +83,12 @@ public class ModPerspective extends Mod {
 
         }
         return false;
+    }
+
+    @Override
+    public void onSettingChange(int settingId, GuiIntractable intractable) {
+        if (settingId == 0) {
+            settings.getSetting(0).setValue(((CheckBoxButton) intractable).isChecked());
+        }
     }
 }

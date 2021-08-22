@@ -7,6 +7,7 @@ import bwp.gui.hud.snapping.SnappingZone;
 import bwp.mods.HUDMod;
 import bwp.mods.Mod;
 import bwp.mods.ModAPI;
+import bwp.mods.impl.togglemotion.ToggleSprint;
 import bwp.utils.*;
 
 import bwp.utils.Rectangle;
@@ -102,6 +103,11 @@ public class HUDConfigScreen extends GuiScreen {
 		}
 
 		for(HUDMod mod : mods) {
+			if (mod instanceof ToggleSprint) {
+				// Checks for the should render text settings value
+				if (!((boolean) mod.getSettings().getSetting(2).getValue())) continue;
+			}
+
 			RenderInfo pos = mod.getPos();
 
 			int absX = pos.getX();
@@ -171,10 +177,10 @@ public class HUDConfigScreen extends GuiScreen {
 	@Override
 	protected void mouseReleased(int mouseX, int mouseY, int state) {
 		if (state == 0) {
-			for (SnappingZone zone : snappingZones) {
+			/*for (SnappingZone zone : snappingZones) {
 				if (this.hoveredMod.isPresent() && zone.getModToSnap() != null)
 					if (zone.getModToSnap().equals(this.hoveredMod.get())) { zone.removeRendererToSnap(); }
-			}
+			}*/
 
 			displacementX = 0;
 			displacementY = 0;

@@ -35,6 +35,8 @@ public class GuiIngameMenu extends GuiScreen
         this.buttonList.add(guibutton = new GuiButton(7, this.width / 2 + 2, this.height / 4 + 96 + i, 98, 20, I18n.format("menu.shareToLan", new Object[0])));
         this.buttonList.add(new GuiButton(5, this.width / 2 - 100, this.height / 4 + 48 + i, 98, 20, I18n.format("gui.achievements", new Object[0])));
         this.buttonList.add(new GuiButton(6, this.width / 2 + 2, this.height / 4 + 48 + i, 98, 20, I18n.format("gui.stats", new Object[0])));
+
+        this.buttonList.add(new GuiButton(8, this.width / 2 - 100, this.height / 4 + 72 + i, "Servers"));
         guibutton.enabled = this.mc.isSingleplayer() && !this.mc.getIntegratedServer().getPublic();
     }
 
@@ -74,12 +76,10 @@ public class GuiIngameMenu extends GuiScreen
             case 3:
             default:
                 break;
-
             case 4:
                 this.mc.displayGuiScreen((GuiScreen)null);
                 this.mc.setIngameFocus();
                 break;
-
             case 5:
                 this.mc.displayGuiScreen(new GuiAchievements(this, this.mc.thePlayer.getStatFileWriter()));
                 break;
@@ -90,6 +90,8 @@ public class GuiIngameMenu extends GuiScreen
 
             case 7:
                 this.mc.displayGuiScreen(new GuiShareToLan(this));
+            case 8:
+                this.mc.displayGuiScreen(new GuiMultiplayer(this));
         }
     }
 

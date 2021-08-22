@@ -68,18 +68,6 @@ public class GuiConnecting extends GuiScreen
                     GuiConnecting.this.networkManager.setNetHandler(new NetHandlerLoginClient(GuiConnecting.this.networkManager, GuiConnecting.this.mc, GuiConnecting.this.previousGuiScreen));
                     GuiConnecting.this.networkManager.sendPacket(new C00Handshake(47, ip, port, EnumConnectionState.LOGIN));
                     GuiConnecting.this.networkManager.sendPacket(new C00PacketLoginStart(GuiConnecting.this.mc.getSession().getProfile()));
-                    if(ip == "bedwarspractice.club") {
-                        Client.getInstance().getDiscordRP().update("Playing "+ ip + (port != 25565 ? ":" + port : ""), "Perfecting skills" , "small");
-                    }else {
-
-                        Client.getInstance().getDiscordRP().update("Playing "+ ip + (port != 25565 ? ":" + port : ""), "In game","large");
-                    }
-                        
-
-                  
-
-    
-
                 }
                 catch (UnknownHostException unknownhostexception)
                 {

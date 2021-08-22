@@ -1,6 +1,7 @@
 package bwp.gui.window;
 
 import bwp.gui.elements.ModButton;
+import bwp.gui.elements.template.CustomButton;
 import bwp.gui.hud.HUDManager;
 import bwp.utils.ColorUtils;
 import bwp.utils.Render;
@@ -25,7 +26,7 @@ public class GuiWindow extends GuiScreen {
     protected int windowHeight;
     protected int windowWidth;
     protected final GuiWindow previous;
-    protected final List<ModButton> buttons = new ArrayList<>();
+    protected final List<CustomButton> buttons = new ArrayList<>();
 
     protected int mouseX = 0;
     protected int mouseY = 0;
@@ -81,13 +82,6 @@ public class GuiWindow extends GuiScreen {
 
         mouseX = Mouse.getEventX() * this.width / this.mc.displayWidth;
         mouseY = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
-
-        if (mouseX < x || mouseX > x + windowWidth || mouseY < y || mouseY > y + windowHeight) {
-            if (Mouse.getEventButton() == 0 && Mouse.getEventButtonState()) {
-                HUDManager.getInstance().openConfigScreen();
-            }
-            return;
-        }
     }
 
     @Override

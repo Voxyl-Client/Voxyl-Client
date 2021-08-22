@@ -11,7 +11,7 @@ public class FileManager {
     private static File ROOT_DIR = new File(".bwp");
     private static File MODS_DIR = new File(ROOT_DIR, "Mods");
     private static File CACHE_DIR = new File(ROOT_DIR, "Cache");
-    public static File LOGIN_CACHE = new File(CACHE_DIR, "temp_name.json");
+    public static File LOGIN_CACHE = new File(CACHE_DIR, "profiles.json");
 
     public static void init(){
         if(ROOT_DIR.exists()){ ROOT_DIR.mkdirs(); }
